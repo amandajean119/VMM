@@ -1,0 +1,75 @@
+\title{Final Project Proposal \\ Allocation on Real-Time Multiprocessor Systems using Genetic Algorithms}
+
+\author{ Oscar Mondragon, and  
+Amanda Minnich \\
+Computer Science Department\\
+University of New Mexico\\
+{\rm \{omondrag, aminnich\}@cs.unm.edu  }\\
+%copy the following lines to add more authors
+% \and
+% {\rm Name}\\
+%Name Institution
+} % end author
+          
+\date{April 1, 2013}
+
+\documentclass[11pt]{article}
+\usepackage{graphicx,float,wrapfig}
+\usepackage[margin=0.92in]{geometry}
+\usepackage{wrapfig}
+\usepackage{url}
+\usepackage{setspace}
+\singlespacing
+
+
+\begin{document}
+\maketitle
+\doublespacing
+
+\section{Background}
+
+Allocation of tasks on real-time multiprocessors systems is a problem with a high computational complexity solution~\cite{Mondragon:13}. There are two approaches to solving this problem: the partitioning approach and the global approach. In the partitioning strategy all the instances of a task are allocated to a single processor, while in the global strategy any instance of a task can migrate among processors when required~\cite{Lopez:04}. We will be using the partitioning approach for this project. The multiprocessor maximum utilization bound depends on the allocation algorithm used. Since this allocation problem is NP hard, some approximate solutions have been proposed which include the Worst Fit (WF), First Fit (FF), Next Fit (NF), and Best Fit (BF) heuristics~\cite{Zapata:05}. 
+
+Allocation is required before tasks can be scheduled in a real time multiprocessor system. Solutions such as Rate Monotonic Scheduling (RM) and Earliest Deadline First Scheduling (EDF) ~\cite{Dall:78} have been proposed. The optimal allocation of tasks varies depending on what kind of scheduling algorithm one wants to use. For this project, we want to use the EDF scheduler. This scheduler uses dynamically calculated priorities as scheduling criteria to choose what task will be scheduled next. These priority values are calculated based on the deadlines of the tasks that are in the run queue. Tasks with earliest deadline will receive higher priorities. A period (T) and a slice (C) are associated to each task. The period is defined as the amount of time the task may receive a CPU allocation, and the slice is the minimum amount of time received for the task during each period~\cite{Chung:73}. The portion of CPU used for a task is $\frac{C}{T}$. Therefore, the utilization factor of a CPU is given by: 
+
+\begin{center}
+$U = \sum_{i=1}^{n} \frac{C_{i}}{T_{i}}$ 
+\end{center}
+
+Where n is the number of tasks allocated on a CPU and $U \leq 1$. 
+
+If a maximum utilization ($U_{MAX}$) for the CPU is given, the equation becomes,
+
+\begin{center}
+$U = \sum_{n}^{i=1} \frac{C_{i}}{T_{i}} \leq U_{MAX} \leq 1$ 
+\end{center}
+
+Since we are planning on using this scheduler, our allocation must always satisfy this formula.
+
+Allocation and scheduling have a direct application to Virtual Machine Monitors (VMMs), where virtual cores need to be allocated and scheduled over physical cores. In this problem a variable called the time dilation factor (TDF) also affects allocation. Time dilation allows the perceived availability of resources of a virtual machine to be changed by altering the real time by a factor, called the time dilation factor. This provides for the slowing down or speeding up the passage of time detected by a guest operating system ~\cite{Gupta:06}. Slowing down the system has the effect of making the external world appear sped up. For example, if you have a TDF of 10, for 10 seconds of real time you have 1 second in the guest system, so the guest system recieves more events from the external world per unit time. The TDF is defined as $\frac{real time}{virtual time}$. During allocation, the following formulas relating to the TDF must always be satisfied:
+
+\begin{center}
+$ \frac{1}{TDF} \cdot \sum_{n}^{i=1} \frac{C_{i}}{T_{i}} \leq U_{MAX}$ and
+$\frac{\sum_{i=1}^{n} F_{VCPUi} }{F_{PCPU}} \leq TDF$
+\end{center}
+
+Where $F_{PCPU}$ is the speed of a physical CPU and $F_{VCPUi}$ is the speed of a virtual core allocated to that physical CPU.
+
+
+\section{Problem}
+
+Since optimizing the allocation and scheduling of tasks on real-time multiprocessors systems is quite complex, it seems like the perfect problem for a genetic algorithm. There are a variety of parameters to be optimized, and we need to explore the parameter space, but to do so exhaustively would take exponential time. By encoding a fitness function related to the efficient use of our multiprocessor resources, we can use the genetic algorithm to evolve parameters that (roughly) maximize this value.
+
+\section{Methods}
+
+For our project, we plan to write a genetic algorithm in C that evolves ideal parameters for task allocation on real-time multiprocessors. Our chromosome will consist of a TDF for each virtual machine, slice and period values for every core of every virtual machine, and an allocation matching of a virtual core to a physical core for every virtual core. All of the values evolved must meet the requirements detailed above, so we will check every chromosome for that after each step of evolution. Our fitness function will be $\frac{\sum_{i=1}^{n} \frac{C_{i}}{T_{i}}}{n}$, which measures how close to full each of our physical CPUs are. We plan to always provide enough virtual cores to saturate the available physical cores. The static input parameters for this problem are the number of physical cores, the speed of each physical core, the utilization value of each physical core, the number of virtual cores, and the speed of each virtual core.
+
+Our first step will be to write our basic genetic algorithm. Based on the work we have done on the previous project, we feel that this will not be too difficult. The extra step we will have to add in is checking whether the evolved components meet the requirements described above. Our next step will be to experiment with a variety of mutation rates and types, crossover rates and types, and selection types. We want to generate a table similar to those in Project 2.1. We will also graph the evolving chromosomes to get a feel for the change in parameters over time.
+
+Once we have found the best set of parameters, we plan to do many runs of the algorithm and collect the top performing chromosomes. We then plan to compare them and find the overall top three. In order to get a feel for how our evolved chromosomes perform in real situations, we would like to test these parameters in the Palacios Virtual Machine Monitor, which is a free software package that Oscar currently works with~\cite{Mondragon:13}. This is not planned to be a major component of our project, but we think it would help inform whether our choice of the fitness function made sense. 
+
+\bibliographystyle{abbrv}
+\bibliography{finalProj_report}
+\end{document}
+
+

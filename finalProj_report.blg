@@ -1,0 +1,67 @@
+This is BibTeX, Version 0.99d (TeX Live 2011)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: finalProj_report.aux
+The style file: abbrv.bst
+Database file #1: finalProj_report.bib
+Name 1 in "Oscar Mondragon, and Patrick Bridges" has a comma at the end for entry Mondragon:13
+while executing---line 1049 of file abbrv.bst
+Name 1 in "Jose Lopez, Jose Diaz, and Daniel Garcia" has a comma at the end for entry Lopez:04
+while executing---line 1049 of file abbrv.bst
+Name 1 in "Omar Pereira, and Pedro Mejia" has a comma at the end for entry Zapata:05
+while executing---line 1049 of file abbrv.bst
+Name 1 in "Sudarshan Dall, and C.L. Liu" has a comma at the end for entry Dall:78
+while executing---line 1049 of file abbrv.bst
+Name 1 in "Diwaker Gupta, Kennet Yocum, and Marvin MacNett" has a comma at the end for entry Gupta:06
+while executing---line 1049 of file abbrv.bst
+Name 1 in "Sudarshan Dall, and C.L. Liu" has a comma at the end for entry Dall:78
+while executing---line 1090 of file abbrv.bst
+Name 1 in "Diwaker Gupta, Kennet Yocum, and Marvin MacNett" has a comma at the end for entry Gupta:06
+while executing---line 1090 of file abbrv.bst
+Name 1 in "Jose Lopez, Jose Diaz, and Daniel Garcia" has a comma at the end for entry Lopez:04
+while executing---line 1090 of file abbrv.bst
+Name 1 in "Oscar Mondragon, and Patrick Bridges" has a comma at the end for entry Mondragon:13
+while executing---line 1090 of file abbrv.bst
+Name 1 in "Omar Pereira, and Pedro Mejia" has a comma at the end for entry Zapata:05
+while executing---line 1090 of file abbrv.bst
+You've used 6 entries,
+            2118 wiz_defined-function locations,
+            532 strings with 4723 characters,
+and the built_in function-call counts, 1460 in all, are:
+= -- 138
+> -- 78
+< -- 0
++ -- 30
+- -- 24
+* -- 74
+:= -- 279
+add.period$ -- 18
+call.type$ -- 6
+change.case$ -- 30
+chr.to.int$ -- 0
+cite$ -- 6
+duplicate$ -- 60
+empty$ -- 103
+format.name$ -- 24
+if$ -- 289
+int.to.chr$ -- 0
+int.to.str$ -- 6
+missing$ -- 6
+newline$ -- 33
+num.names$ -- 12
+pop$ -- 30
+preamble$ -- 1
+purify$ -- 24
+quote$ -- 0
+skip$ -- 48
+stack$ -- 0
+substring$ -- 30
+swap$ -- 6
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 24
+warning$ -- 0
+while$ -- 12
+width$ -- 7
+write$ -- 62
+(There were 10 error messages)

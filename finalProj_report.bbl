@@ -1,0 +1,37 @@
+\begin{thebibliography}{1}
+
+\bibitem{Dall:78}
+S.~Dall and C.~Liu.
+\newblock On a real time scheduling problem.
+\newblock {\em Operation Research}, 1978.
+
+\bibitem{Gupta:06}
+K.~Y. Diwaker~Gupta and M.~MacNett.
+\newblock To infinity and beyond: Time-warped emulation. proceedings of the 3rd
+  usenix symposium network on networked system design and implementation.
+\newblock {\em 3rd USENIX Symposium network on Networked System Design}, 2006.
+
+\bibitem{Lopez:04}
+J.~D. Jose~Lopez and D.~Garcia.
+\newblock Minimum and maximum utilization bounds for multiprocessor rate
+  monotonic scheduling.
+\newblock {\em IEEE Trans. on Parallel and Distributed Systems}, 2004.
+
+\bibitem{Chung:73}
+C.~L. Liu and J.~W. Layland.
+\newblock Scheduling algorithms for multiprogramming in a hard real-time
+  environment.
+\newblock {\em Journal of the ACM}, 1973.
+
+\bibitem{Mondragon:13}
+O.~Mondragon and P.~Bridges.
+\newblock Emulation of large scale high performance systems through vmms.
+\newblock {\em 9th Annual UNM Computer Science Symposium}, 2013.
+
+\bibitem{Zapata:05}
+O.~Pereira and P.~Mejia.
+\newblock Edf and rm multiprocessor scheduling algorithms: Survey and
+  performance evaluation.
+\newblock {\em Queue}, 2005.
+
+\end{thebibliography}
