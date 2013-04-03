@@ -11,7 +11,7 @@ University of New Mexico\\
 %Name Institution
 } % end author
           
-\date{April 1, 2013}
+\date{April 3, 2013}
 
 \documentclass[11pt]{article}
 \usepackage{graphicx,float,wrapfig}
@@ -62,7 +62,25 @@ Since optimizing the allocation and scheduling of tasks on real-time multiproces
 
 \section{Methods}
 
-For our project, we plan to write a genetic algorithm in C that evolves ideal parameters for task allocation on real-time multiprocessors. Our chromosome will consist of a TDF for each virtual machine, slice and period values for every core of every virtual machine, and an allocation matching of a virtual core to a physical core for every virtual core. All of the values evolved must meet the requirements detailed above, so we will check every chromosome for that after each step of evolution. Our fitness function will be $\frac{\sum_{i=1}^{n} \frac{C_{i}}{T_{i}}}{n}$, which measures how close to full each of our physical CPUs are. We plan to always provide enough virtual cores to saturate the available physical cores. The static input parameters for this problem are the number of physical cores, the speed of each physical core, the utilization value of each physical core, the number of virtual cores, and the speed of each virtual core.
+For our project, we plan to write a genetic algorithm in C that evolves ideal parameters for task allocation on real-time multiprocessors. Our chromosome will consist of a TDF for each virtual machine, slice and period values for every core of every virtual machine, and an allocation matching of a virtual core to a physical core for every virtual core. All of the values evolved must meet the requirements detailed above, so we will check every chromosome for that after each step of evolution. Our fitness function will be 
+
+\begin{center}
+
+$fitness = \frac{\sum_{i=1}^{n} \frac{Uachieved_i}{Umax_i}}{n}$
+
+\begin{flushleft}
+Where,
+
+$n =$ number of physical cores.
+
+$Uachieved_{i} =$ Achieved utilization for physical core i.
+
+$Umax_{i} =$ Maximum utilization for physical core i.
+\end{flushleft}
+
+\end{center}
+
+This fitness function measures how close to full each of our physical CPUs are. We plan to always provide enough virtual cores to saturate the available physical cores. The static input parameters for this problem are the number of physical cores, the speed of each physical core, the utilization value of each physical core, the number of virtual cores, and the speed of each virtual core.
 
 Our first step will be to write our basic genetic algorithm. Based on the work we have done on the previous project, we feel that this will not be too difficult. The extra step we will have to add in is checking whether the evolved components meet the requirements described above. Our next step will be to experiment with a variety of mutation rates and types, crossover rates and types, and selection types. We want to generate a table similar to those in Project 2.1. We will also graph the evolving chromosomes to get a feel for the change in parameters over time.
 
