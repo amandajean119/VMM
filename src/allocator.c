@@ -38,32 +38,60 @@ int initGA(struct ga * ga){
   
   ga->aConfig = config;
   ga->populationSize = 100;
+  ga->population = malloc(ga->populationSize*sizeof(machine));
   
   // Configuration which is constant for each machine
   int nrPcores = 10;
   int nrVms = 1;
   int nrVcores = 50;
-  int i, j;
+  int i, j, k, l;
   pcore * pcores = malloc(nrPcores*sizeof(pcore));
   vm * vms = malloc(nrVms*sizeof(vm));
   
   for (i = 0; i < nrPcores; i++) {
     srand(time(NULL));
-    pcores[i] ->speedKhz = rand() % config->maxCPU + config->minCPU;
-    pcores[i] ->maxUtilization = rand() % config->maxU + config->minU;
+    pcores[i].speedKhz = rand() % config->maxCPU + config->minCPU;
+    pcores[i].maxUtilization = rand() % config->maxU + config->minU;
     
   }
   
   for (i = 0; i < nrVms; i++) {
     
-    vms[i]->vcores = malloc(nrVcores*sizeof(vcore));
+    vms[i].vcores = malloc(nrVcores*sizeof(vcore));
     
     for (j = 0;  j < nrVcores; j++) {
-      vms[i]->vcores[j] ->speedKhz =
+      vms[i].vcores[j].speedKhz =
 	rand() % config->maxCPU + config->minCPU;
     }
   }
 
+  for (i = 0; i < ga->populationSize; i++) {
+      ga->population[i].pcores = pcores;
+      ga->population[i].nrPcores = nrPcores;
+      ga->population[i].nrVms = nrVms;
+
+      for (j = 0;  j < nrVms; j++) {
+        ga->population[i].vms[j].nrVcores = vms[j].nrVcores;
+        ga->population[i].vms[j].tdf =
+        			rand() % config->maxTdf + config->minTdf;
+
+        for (k = 0; k < nrVcores; k++) {
+
+        	ga->population[i].vms[j].vcores[k].slice =
+					rand() % config->maxSlice + config->minSlice;
+
+			ga->population[i].vms[j].vcores[k].period =
+								rand() % config->maxPeriod + config->minPeriod;
+
+			ga->population[i].vms[j].vcores[k].speedKhz =
+					vms[j].vcores[k].speedKhz;
+			while (!equationissatisfied) {
+				ga->population[i].vms[j].vcores[k].pcore =
+					&pcores[rand() % nrPcores];
+			}
+        }
+      }
+    }
 
   return 0;
   

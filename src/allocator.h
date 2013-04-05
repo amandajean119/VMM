@@ -12,19 +12,56 @@
 
 typedef uint64_t timeUs;
 
+
 /*
- * General Data structure for the Genetic algorithm
+ * Physical core data structure
  */
 
-typedef struct ga {
+typedef struct pcore{
 
-  int populationSize;
-  machine * population;  // Array with the different configurations
-			 // for a physical machine. Each element of the
-			 // array represents an individual of the
-			 // population
-  allocConfig * aConfig;	// Allocator Configuration
-} ga;
+  int speedKhz;			// pcpu speed in Khz
+  int maxUtilization;		// Maximum utilization (Range 0 - 100)
+  int utilization;		// Achieved utilization
+} pcore;
+
+/*
+ * Virtual core data structure
+ */
+
+typedef struct vcore{
+
+  timeUs slice;	   // Size of the slice in usec
+  timeUs period;   // Size of the period in usec
+  int speedKhz;	   // vcpu speed in Khz
+  pcore * pcore;   // Physical core allocated to this vcore
+} vcore;
+
+
+/*
+ * Virtual Machine data structure
+ */
+
+typedef struct vm {
+
+  int nrVcores;	   // Number of virtual cores in this virtual machine
+  int tdf;         // Time dilation factor for this vm
+  vcore * vcores;  // Pointer to the array of virtual cores of this vm
+} vm;
+
+
+/*
+ * Physical Machine data structure
+ */
+
+typedef struct machine {
+
+  int nrPcores;
+  int nrVms;
+  pcore * pcores;       // Array of physical cores in this physical machine
+  vm * vms;		// Pointer to the arrray of vms of this machine
+  float fitness;	// Fitness function for this physical machine
+    			// configuration
+} machine;
 
 
 /*
@@ -48,53 +85,17 @@ typedef struct allocatorConfig{
 
 
 /*
- * Physical Machine data structure
+ * General Data structure for the Genetic algorithm
  */
 
-typedef struct machine {
+typedef struct ga {
 
-  int nrPcores;
-  int nrVms;
-  pcore * pcores;       // Array of physical cores in this physical machine
-  vm * vms;		// Pointer to the arrray of vms of this machine
-  float fitness;	// Fitness function for this physical machine
-    			// configuration
-} machine;
-
-
-/*
- * Virtual Machine data structure
- */
-
-typedef struct vm {
-
-  int nrVcores;	   // Number of virtual cores in this virtual machine
-  int tdf;         // Time dilation factor for this vm
-  vcore * vcores;  // Pointer to the array of virtual cores of this vm
-} vm;
-
-/*
- * Virtual core data structure
- */
-
-typedef struct vcore{
-
-  timeUs slice;	   // Size of the slice in usec
-  timeUs period;   // Size of the period in usec
-  int speedKhz;	   // vcpu speed in Khz
-  pcore * pcore;   // Physical core allocated to this vcore
-} vcore;
-
-/*
- * Physical core data structure
- */
-
-typedef struct pcore{
-
-  int speedKhz;			// pcpu speed in Khz
-  int maxUtilization;		// Maximum utilization (Range 0 - 100)
-  int utilization;		// Achieved utilization
-} pcore;
-
+  int populationSize;
+  machine * population;  // Array with the different configurations
+			 // for a physical machine. Each element of the
+			 // array represents an individual of the
+			 // population
+  allocConfig * aConfig;	// Allocator Configuration
+} ga;
 
 #endif /* ALLOCATOR_H_ */
