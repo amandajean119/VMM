@@ -12,55 +12,29 @@
 
 typedef uint64_t timeUs;
 
-/*
- * General Data structure for the Genetic algorithm
- */
-
-typedef struct ga {
-
-	int populationSize;
-	machine * population; // Array with the different configurations
-								 // for a physical machine. Each element of the
-								 // array represents an individual of the
-								 // population
-    allocatorConfig * aConfig;	// Allocator Configuration
-} ga;
-
 
 /*
- * Allocator configuration data structure
+ * Physical core data structure
  */
 
-typedef struct allocatorConfig{
+typedef struct pcore{
 
-	 timeUs minSlice;       // Minimum slice allowed for a vcore
-	 timeUs maxSlice;       // Maximum slice allowed for a vcore
-	 timeUs minPeriod;      // Minimum period allowed for a vcore
-	 timeUs maxPeriod;      // Maximum period allowed for a vcore
-	 int minTdf;			// Minimum time dilation factor allowed for a vm
-	 int maxTdf;		    // Maximum time dilation factor allowed for a vm
-     int minCPU;            // Minimum CPU speed
-     int maxCPU;   			// Maximum CPU speed
-     int minU;				// Minimum utilization factor
-     int maxU;				// Maximum utilization factor
-
-} allocConfig;
-
+  int speedKhz;			// pcpu speed in Khz
+  int maxUtilization;		// Maximum utilization (Range 0 - 100)
+  int utilization;		// Achieved utilization
+} pcore;
 
 /*
- * Physical Machine data structure
+ * Virtual core data structure
  */
 
-typedef struct machine {
+typedef struct vcore{
 
-	int nrPcores;
-	int nrVms;
-	struct pcore * pcores;  // Array of physical cores in this physical machine
-    struct vm * vms;		// Pointer to the arrray of vms of this machine
-
-    float fitness;			// Fitness function for this physical machine
-    						// configuration
-} machine;
+  timeUs slice;	   // Size of the slice in usec
+  timeUs period;   // Size of the period in usec
+  int speedKhz;	   // vcpu speed in Khz
+  pcore * pcore;   // Physical core allocated to this vcore
+} vcore;
 
 
 /*
@@ -69,35 +43,59 @@ typedef struct machine {
 
 typedef struct vm {
 
-	int nrVcores;			// Number of virtual cores in this virtual machine
-	int tdf;                // Time dilation factor for this vm
-	struct vcore * vcores;  // Pointer to the array of virtual cores of this
-							// vm
+  int nrVcores;	   // Number of virtual cores in this virtual machine
+  int tdf;         // Time dilation factor for this vm
+  vcore * vcores;  // Pointer to the array of virtual cores of this vm
 } vm;
 
-/*
- * Virtual core data structure
- */
-
-typedef struct vcore{
-
-	timeUs slice;			// Size of the slice in usec
-	timeUs period;			// Size of the period in usec
-	int speedKhz;			// vcpu speed in Khz
-	struct phCore * pcore;  // Physical core allocated to this vcore
-} vcore;
 
 /*
- * Physical core data structure
+ * Physical Machine data structure
  */
 
-typedef struct pcore{
+typedef struct machine {
 
-	int speedKhz;			// pcpu speed in Khz
-    int maxUtilization;		// Maximum utilization (Range 0 - 100)
-    int utilization;		// Achieved utilization
-} pcore;
+  int nrPcores;
+  int nrVms;
+  pcore * pcores;       // Array of physical cores in this physical machine
+  vm * vms;		// Pointer to the arrray of vms of this machine
+  float fitness;	// Fitness function for this physical machine
+    			// configuration
+} machine;
 
 
+/*
+ * Allocator configuration data structure
+ */
+
+typedef struct allocatorConfig{
+
+  timeUs minSlice;       // Minimum slice allowed for a vcore
+  timeUs maxSlice;       // Maximum slice allowed for a vcore
+  timeUs minPeriod;      // Minimum period allowed for a vcore
+  timeUs maxPeriod;      // Maximum period allowed for a vcore
+  int minTdf;		 // Minimum time dilation factor allowed for a vm
+  int maxTdf;		 // Maximum time dilation factor allowed for a vm
+  int minCPU;            // Minimum CPU speed
+  int maxCPU;   	 // Maximum CPU speed
+  int minU;		 // Minimum utilization factor
+  int maxU;		 // Maximum utilization factor
+
+} allocConfig;
+
+
+/*
+ * General Data structure for the Genetic algorithm
+ */
+
+typedef struct ga {
+
+  int populationSize;
+  machine * population;  // Array with the different configurations
+			 // for a physical machine. Each element of the
+			 // array represents an individual of the
+			 // population
+  allocConfig * aConfig;	// Allocator Configuration
+} ga;
 
 #endif /* ALLOCATOR_H_ */
