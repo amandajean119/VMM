@@ -212,7 +212,6 @@ int main(){
 	initGA(ga);
 	evaluateFitness(ga);
 
-
 	while(nrGen < maxGen && ga->bestFitness<1.0 ){
 
 		selection(ga);
