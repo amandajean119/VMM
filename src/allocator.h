@@ -96,6 +96,8 @@ typedef struct ga {
 			 // array represents an individual of the
 			 // population
   allocConfig * aConfig;	// Allocator Configuration
+  float bestFitness;
+  float avgFitness;
 } ga;
 
 #endif /* ALLOCATOR_H_ */
