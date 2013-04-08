@@ -12,7 +12,7 @@
 
 typedef uint64_t timeUs;
 
-
+struct vcore;
 /*
  * Physical core data structure
  */
@@ -22,6 +22,8 @@ typedef struct pcore{
   int speedKhz;			// pcpu speed in Khz
   int maxUtilization;		// Maximum utilization (Range 0 - 100)
   int utilization;		// Achieved utilization
+  int nrVCores;
+  struct vcore * vcores;
 } pcore;
 
 /*
@@ -56,11 +58,10 @@ typedef struct vm {
 typedef struct machine {
 
   int nrPcores;
-  int nrVms;
   pcore * pcores;       // Array of physical cores in this physical machine
-  vm * vms;		// Pointer to the arrray of vms of this machine
-  float fitness;	// Fitness function for this physical machine
-    			// configuration
+  vm * vm;		        // Pointer to the vm
+  float fitness;	    // Fitness function for this physical machine
+    			        // configuration
 } machine;
 
 
@@ -99,5 +100,17 @@ typedef struct ga {
   float bestFitness;
   float avgFitness;
 } ga;
+
+typedef struct chromosome{
+
+	int tdf;
+	timeUs slice;	   // Size of the slice in usec
+	timeUs period;   // Size of the period in usec
+	int speedKhz;	   // vcpu speed in Khz
+	pcore * pcore;
+
+}
+
+
 
 #endif /* ALLOCATOR_H_ */
