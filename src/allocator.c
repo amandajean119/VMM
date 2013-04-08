@@ -25,6 +25,8 @@
 #define PCORES 10
 #define VMS 1
 #define VCORES 50
+#define CROSSRATE 0.2
+#define MUTRATE 0.2
 
 /*
  * Check to make sure assignment satisfies formulas
@@ -178,13 +180,212 @@ int selection(ga * ga){
 
 
 /*
- * Perform crossover with selected individuals
+ * Perform one-point crossover:
+ * Two parents (p1 and p2) are randomly chosen from the current population.
+ * Then, a random integer x between 0 and VMS-1 is generated. Two new children
+ * (ch1 and ch2) are generated from those parents. The VMs in the positions 0
+ * to x of the array of VMs of p1 and the VMs in the positions x+1 to VMS-1 of
+ * the array of VMs of p2 are copied to ch1. On the other hand, the rest of VMs
+ * of p1 and p2 are copied to ch2. These two new children are added to the new
+ * population. This process is repeated until the number of individuals is equal
+ * to POPULATION.
+ */
+
+/*
+ * TODO:
+ * CheckConstraints
  */
 
 int crossover(ga * ga){
 
-	return 0;
+	int i,j;
+	int nrNewPop = 0;
+	machine * newPopulation = malloc(POPULATION*sizeof(machine));
 
+	// Two parents chosen randomly
+
+	while(nrNewPop < POPULATION){
+
+		int indexP1 = rand() % ga->populationSize;
+		int indexP2 = rand() % ga->populationSize;
+
+		// Parents pointers
+
+		machine * p1 = &ga->population[indexP1];
+		machine * p2 = &ga->population[indexP2];
+
+		// Children pointers
+
+		machine * ch1 = malloc(sizeof(machine));
+		machine * ch2 = malloc(sizeof(machine));
+
+
+		// Set the information of the physical cores
+		// (It is constant for all machines)
+
+		ch1->nrPcores = PCORES;
+		ch1->nrVms = VMS;
+		ch1->fitness = p1->fitness; // Should be recalculated
+									//if crossover is performed
+		ch1->pcores = malloc(PCORES * sizeof(pcore));
+		ch1->vms = malloc(VMS * sizeof(vm));
+
+		ch2->nrPcores = PCORES;
+		ch2->nrVms = VMS;
+		ch1->fitness = p2->fitness; // Should be recalculated
+									//if crossover is performed
+		ch2->pcores = malloc(PCORES * sizeof(pcore));
+		ch2->vms = malloc(VMS * sizeof(vm));
+
+		for (i = 0; i < PCORES; i++) {
+
+			ch1->pcores[i].maxUtilization = p1->pcores[i].maxUtilization;
+			ch1->pcores[i].speedKhz = p1->pcores[i].speedKhz;
+			ch1->pcores[i].utilization = 0; // Should be recalculated later
+
+			ch2->pcores[i].maxUtilization = p1->pcores[i].maxUtilization;
+			ch2->pcores[i].speedKhz = p1->pcores[i].speedKhz;
+			ch2->pcores[i].utilization = 0; // Should be recalculated later
+
+		}
+
+		if(rand()>CROSSRATE){
+
+			// Point for crossover generated randomly
+
+			int x = rand() % VMS;
+
+
+			// According with the crossover point (x) the VMS of the parents are
+			// assigned to the children.
+
+			for (i = 0; i < VMS; i++) {
+
+				vm * vmCh1 = &ch1->vms[i];
+				vmCh1->nrVcores = VCORES;
+				vmCh1->vcores = malloc(VCORES*sizeof(vcore));
+
+				vm * vmCh2 = &ch2->vms[i];
+				vmCh2->nrVcores = VCORES;
+				vmCh2->vcores = malloc(VCORES*sizeof(vcore));
+
+
+				if(i <= x){
+
+					vmCh1->nrVcores = p1->vms[i].nrVcores;
+					vmCh1->tdf = p1->vms[i].tdf;
+
+					for (j = 0; j < VCORES; j++) {
+
+						vmCh1->vcores[j].pcore = p1->vms[i].vcores[j].pcore;
+						vmCh1->vcores[j].period = p1->vms[i].vcores[j].period;
+						vmCh1->vcores[j].slice = p1->vms[i].vcores[j].slice;
+						vmCh1->vcores[j].speedKhz = p1->vms[i].vcores[j].speedKhz;
+
+					}
+
+					vmCh2->nrVcores = p2->vms[i].nrVcores;
+					vmCh2->tdf = p2->vms[i].tdf;
+
+					for (j = 0; j < VCORES; j++) {
+
+						vmCh2->vcores[j].pcore = p2->vms[i].vcores[j].pcore;
+						vmCh2->vcores[j].period = p2->vms[i].vcores[j].period;
+						vmCh2->vcores[j].slice = p2->vms[i].vcores[j].slice;
+						vmCh2->vcores[j].speedKhz = p2->vms[i].vcores[j].speedKhz;
+
+					}
+				}
+
+				else {
+
+					vmCh1->nrVcores = p2->vms[i].nrVcores;
+					vmCh1->tdf = p2->vms[i].tdf;
+
+					for (j = 0; j < VCORES; j++) {
+
+						vmCh1->vcores[j].pcore = p2->vms[i].vcores[j].pcore;
+						vmCh1->vcores[j].period = p2->vms[i].vcores[j].period;
+						vmCh1->vcores[j].slice = p2->vms[i].vcores[j].slice;
+						vmCh1->vcores[j].speedKhz = p2->vms[i].vcores[j].speedKhz;
+
+					}
+
+					vmCh2->nrVcores = p1->vms[i].nrVcores;
+					vmCh2->tdf = p1->vms[i].tdf;
+
+					for (j = 0; j < VCORES; j++) {
+
+						vmCh2->vcores[j].pcore = p1->vms[i].vcores[j].pcore;
+						vmCh2->vcores[j].period = p1->vms[i].vcores[j].period;
+						vmCh2->vcores[j].slice = p1->vms[i].vcores[j].slice;
+						vmCh2->vcores[j].speedKhz = p1->vms[i].vcores[j].speedKhz;
+
+					}
+
+				}
+
+			}
+		}
+
+		else{
+
+			for (i = 0; i < VMS; ++i) {
+
+				ch1->vms[i].nrVcores = p1->vms[i].nrVcores;
+				ch1->vms[i].tdf = p1->vms[i].tdf;
+
+				ch2->vms[i].nrVcores = p2->vms[i].nrVcores;
+				ch2->vms[i].tdf = p2->vms[i].tdf;
+
+				for (j = 0; j < VCORES; ++j) {
+
+					ch1->vms[i].vcores[j].period = p1->vms[i].vcores[j].period;
+					ch1->vms[i].vcores[j].slice = p1->vms[i].vcores[j].slice;
+					ch1->vms[i].vcores[j].speedKhz = p1->vms[i].vcores[j].speedKhz;
+					ch1->vms[i].vcores[j].pcore = malloc(sizeof(pcore));
+					ch1->vms[i].vcores[j].pcore->maxUtilization =
+							ch1->vms[i].vcores[j].pcore->maxUtilization;
+					ch1->vms[i].vcores[j].pcore->speedKhz =
+							ch1->vms[i].vcores[j].pcore->speedKhz;
+					ch1->vms[i].vcores[j].pcore->utilization =
+							ch1->vms[i].vcores[j].pcore->utilization;
+
+					ch2->vms[i].vcores[j].period = p2->vms[i].vcores[j].period;
+					ch2->vms[i].vcores[j].slice = p2->vms[i].vcores[j].slice;
+					ch2->vms[i].vcores[j].speedKhz = p2->vms[i].vcores[j].speedKhz;
+					ch2->vms[i].vcores[j].pcore = malloc(sizeof(pcore));
+					ch2->vms[i].vcores[j].pcore->maxUtilization =
+							ch2->vms[i].vcores[j].pcore->maxUtilization;
+					ch2->vms[i].vcores[j].pcore->speedKhz =
+							ch2->vms[i].vcores[j].pcore->speedKhz;
+					ch2->vms[i].vcores[j].pcore->utilization =
+							ch2->vms[i].vcores[j].pcore->utilization;
+
+
+				}
+
+			}
+
+
+
+		}
+
+		newPopulation[++nrNewPop] = *ch1;
+		newPopulation[++nrNewPop] = *ch2;
+
+	}
+
+
+	for (i = 0; i < PCORES; ++i) {
+
+	}
+
+	// TODO CheckConstraints
+	free(ga->population);
+	ga->population = newPopulation;
+
+	return 0;
 }
 
 /*
