@@ -90,7 +90,6 @@ int initGA(struct ga * ga){
   vm * vm = malloc(sizeof(vm));
   
   for (i = 0; i < nrPcores; i++) {
-    srand(time(NULL));
     pcores[i].speedKhz = rand() % config->maxCPU + config->minCPU;
     pcores[i].maxUtilization = rand() % config->maxU + config->minU;
     pcores[i].nrVCores = 0;
@@ -107,6 +106,7 @@ int initGA(struct ga * ga){
 
 
   for (i = 0; i < ga->populationSize; i++) {
+
       ga->population[i].pcores = pcores;
       ga->population[i].nrPcores = nrPcores;
       ga->population[i].vm->nrVcores = vm->nrVcores;
@@ -128,7 +128,7 @@ int initGA(struct ga * ga){
 				ga->population[i].pcores[index].
 					vcores[ga->population[i].pcores[index].nrVCores] =
 							ga->population[i].vm->vcores[k];
-				satisfies = checkConstraints(ga->population[i].vm->vcores[k].pcore, &ga->population[i].vm);
+				satisfies = checkConstraints(ga->population[i].vm->vcores[k].pcore, ga->population[i].vm);
 			}
         	ga->population[i].pcores[index].nrVCores++;
         }
@@ -149,6 +149,7 @@ int evaluateFitness(ga * ga){
 	int i, j;
 	ga->avgFitness = 0.0;
 	ga->bestFitness = 0.0;
+	ga->bestMachineIndex = 0;
 	for (i = 0; i < ga->populationSize; ++i) {
 		utilizationPercent = 0;
 		for (j = 0; j < ga->population[i].nrPcores; ++j) {
@@ -158,8 +159,10 @@ int evaluateFitness(ga * ga){
 		fitness = utilizationPercent/ ga->population[i].nrPcores;
 		ga->population[i].fitness = fitness;
 		ga->avgFitness += fitness;
-		if (fitness > ga->bestFitness)
+		if (fitness > ga->bestFitness) {
 			ga->bestFitness = fitness;
+			ga->bestMachineIndex = i;
+		}
 	}
 	ga->avgFitness /= ga->populationSize;
 	return 0;
@@ -171,9 +174,22 @@ int evaluateFitness(ga * ga){
  */
 
 int selection(ga * ga){
-
+	machine elite = ga->population[ga->bestMachineIndex];
+	machine * newPopulation = malloc(POPULATION*sizeof(machine));
+	newPopulation[0] = elite;
+	ga->bestMachineIndex = 0;
+	int i, index1, index2;
+	for (i = 1; i < POPULATION; i++) {
+		index1 = rand() % POPULATION;
+		index2 = rand() % POPULATION;
+		if (ga->population[index1].fitness > ga->population[index2].fitness)
+			newPopulation[i] = ga->population[index1];
+		else
+			newPopulation[i] = ga->population[index2];
+	}
+	free(ga->population);
+	ga->population = newPopulation;
 	return 0;
-
 }
 
 
@@ -189,16 +205,12 @@ int selection(ga * ga){
  * to POPULATION.
  */
 
-/*
- * TODO:
- * CheckConstraints
- */
-
 
 int crossover(ga * ga){
 
 	int i,j;
 	int nrNewPop = 0;
+	int satisfies = -1;
 	machine * newPopulation = malloc(POPULATION*sizeof(machine));
 
 	// Two parents chosen randomly
@@ -246,13 +258,63 @@ int crossover(ga * ga){
 
 		}
 		// Point for crossover generated randomly
+		while (satisfies < 0) {
+			int x = rand() % VCORES;
+			if(rand()>CROSSRATE && x > 0){
+				ch1->vm->tdf = p1->vm->tdf;
+				ch2->vm->tdf = p2->vm->tdf;
+				for (i = 0; i < x; i++) {
+					ch1->vm->vcores[i].period = p1->vm->vcores[i].period;
+					ch1->vm->vcores[i].slice = p1->vm->vcores[i].slice;
+					ch1->vm->vcores[i].speedKhz = p1->vm->vcores[i].speedKhz;
+					ch1->vm->vcores[i].pcore = malloc(sizeof(pcore));
+					ch1->vm->vcores[i].pcore->maxUtilization =
+							p1->vm->vcores[i].pcore->maxUtilization;
+					ch1->vm->vcores[i].pcore->speedKhz =
+							p1->vm->vcores[i].pcore->speedKhz;
+					ch1->vm->vcores[i].pcore->utilization =
+							p1->vm->vcores[i].pcore->utilization;
 
-		int x = rand() % VCORES;
-		if(rand()>CROSSRATE && x > 0){
-			ch1->vm->tdf = p1->vm->tdf;
-			ch2->vm->tdf = p2->vm->tdf;
-			for (i = 0; i < x; i++) {
-				ch1->vm->vcores[i].period = p1->vm->vcores[i].period;
+					ch2->vm->vcores[i].period = p2->vm->vcores[i].period;
+					ch2->vm->vcores[i].slice = p2->vm->vcores[i].slice;
+					ch2->vm->vcores[i].speedKhz = p2->vm->vcores[i].speedKhz;
+					ch2->vm->vcores[i].pcore = malloc(sizeof(pcore));
+					ch2->vm->vcores[i].pcore->maxUtilization =
+							p2->vm->vcores[i].pcore->maxUtilization;
+					ch2->vm->vcores[i].pcore->speedKhz =
+							p2->vm->vcores[i].pcore->speedKhz;
+					ch2->vm->vcores[i].pcore->utilization =
+							p2->vm->vcores[i].pcore->utilization;
+				}
+				for (i = x; i < VCORES; i++) {
+					ch1->vm->vcores[i].period = p2->vm->vcores[i].period;
+					ch1->vm->vcores[i].slice = p2->vm->vcores[i].slice;
+					ch1->vm->vcores[i].speedKhz = p2->vm->vcores[i].speedKhz;
+					ch1->vm->vcores[i].pcore = malloc(sizeof(pcore));
+					ch1->vm->vcores[i].pcore->maxUtilization =
+							p2->vm->vcores[i].pcore->maxUtilization;
+					ch1->vm->vcores[i].pcore->speedKhz =
+							p2->vm->vcores[i].pcore->speedKhz;
+					ch1->vm->vcores[i].pcore->utilization =
+							p2->vm->vcores[i].pcore->utilization;
+
+					ch2->vm->vcores[i].period = p1->vm->vcores[i].period;
+					ch2->vm->vcores[i].slice = p1->vm->vcores[i].slice;
+					ch2->vm->vcores[i].speedKhz = p1->vm->vcores[i].speedKhz;
+					ch2->vm->vcores[i].pcore = malloc(sizeof(pcore));
+					ch2->vm->vcores[i].pcore->maxUtilization =
+							p1->vm->vcores[i].pcore->maxUtilization;
+					ch2->vm->vcores[i].pcore->speedKhz =
+							p1->vm->vcores[i].pcore->speedKhz;
+					ch2->vm->vcores[i].pcore->utilization =
+							p1->vm->vcores[i].pcore->utilization;
+				}
+			}
+			else{
+
+				ch1->vm->tdf = p1->vm->tdf;
+				ch2->vm->tdf = p2->vm->tdf;
+				for (j = 0; j < VCORES; ++j) {ch1->vm->vcores[i].period = p1->vm->vcores[i].period;
 				ch1->vm->vcores[i].slice = p1->vm->vcores[i].slice;
 				ch1->vm->vcores[i].speedKhz = p1->vm->vcores[i].speedKhz;
 				ch1->vm->vcores[i].pcore = malloc(sizeof(pcore));
@@ -273,72 +335,25 @@ int crossover(ga * ga){
 						p2->vm->vcores[i].pcore->speedKhz;
 				ch2->vm->vcores[i].pcore->utilization =
 						p2->vm->vcores[i].pcore->utilization;
+				}
+
+
 			}
-			for (i = x; i < VCORES; i++) {
-				ch1->vm->vcores[i].period = p2->vm->vcores[i].period;
-				ch1->vm->vcores[i].slice = p2->vm->vcores[i].slice;
-				ch1->vm->vcores[i].speedKhz = p2->vm->vcores[i].speedKhz;
-				ch1->vm->vcores[i].pcore = malloc(sizeof(pcore));
-				ch1->vm->vcores[i].pcore->maxUtilization =
-						p2->vm->vcores[i].pcore->maxUtilization;
-				ch1->vm->vcores[i].pcore->speedKhz =
-						p2->vm->vcores[i].pcore->speedKhz;
-				ch1->vm->vcores[i].pcore->utilization =
-						p2->vm->vcores[i].pcore->utilization;
-
-				ch2->vm->vcores[i].period = p1->vm->vcores[i].period;
-				ch2->vm->vcores[i].slice = p1->vm->vcores[i].slice;
-				ch2->vm->vcores[i].speedKhz = p1->vm->vcores[i].speedKhz;
-				ch2->vm->vcores[i].pcore = malloc(sizeof(pcore));
-				ch2->vm->vcores[i].pcore->maxUtilization =
-						p1->vm->vcores[i].pcore->maxUtilization;
-				ch2->vm->vcores[i].pcore->speedKhz =
-						p1->vm->vcores[i].pcore->speedKhz;
-				ch2->vm->vcores[i].pcore->utilization =
-						p1->vm->vcores[i].pcore->utilization;
+			satisfies = 0;
+			for (i = 0; i < VCORES; i++) {
+				satisfies += checkConstraints(ch1->vm->vcores[i].pcore, ch1->vm);
+				satisfies += checkConstraints(ch2->vm->vcores[i].pcore, ch2->vm);
 			}
-		}
-		else{
-
-			ch1->vm->tdf = p1->vm->tdf;
-			ch2->vm->tdf = p2->vm->tdf;
-			for (j = 0; j < VCORES; ++j) {ch1->vm->vcores[i].period = p1->vm->vcores[i].period;
-			ch1->vm->vcores[i].slice = p1->vm->vcores[i].slice;
-			ch1->vm->vcores[i].speedKhz = p1->vm->vcores[i].speedKhz;
-			ch1->vm->vcores[i].pcore = malloc(sizeof(pcore));
-			ch1->vm->vcores[i].pcore->maxUtilization =
-					p1->vm->vcores[i].pcore->maxUtilization;
-			ch1->vm->vcores[i].pcore->speedKhz =
-					p1->vm->vcores[i].pcore->speedKhz;
-			ch1->vm->vcores[i].pcore->utilization =
-					p1->vm->vcores[i].pcore->utilization;
-
-			ch2->vm->vcores[i].period = p2->vm->vcores[i].period;
-			ch2->vm->vcores[i].slice = p2->vm->vcores[i].slice;
-			ch2->vm->vcores[i].speedKhz = p2->vm->vcores[i].speedKhz;
-			ch2->vm->vcores[i].pcore = malloc(sizeof(pcore));
-			ch2->vm->vcores[i].pcore->maxUtilization =
-					p2->vm->vcores[i].pcore->maxUtilization;
-			ch2->vm->vcores[i].pcore->speedKhz =
-					p2->vm->vcores[i].pcore->speedKhz;
-			ch2->vm->vcores[i].pcore->utilization =
-					p2->vm->vcores[i].pcore->utilization;
-			}
-
-
 		}
 
 		newPopulation[++nrNewPop] = *ch1;
 		newPopulation[++nrNewPop] = *ch2;
+	}
 
-}
-
-	// TODO CheckConstraints
 	free(ga->population);
 	ga->population = newPopulation;
 
 	return 0;
-
 }
 
 /*
@@ -347,9 +362,40 @@ int crossover(ga * ga){
 
 int mutation(ga * ga){
 
-  
-	return 0;
+	int i, j;
+	int satisfies = -1;
 
+	for (i = 0; i < POPULATION; ++i) {
+		machine * indiv = &ga->population[i];
+
+		if(rand() > MUTRATE){
+			int newTdf = indiv->vm->tdf + (rand()%2 -1);
+			if(newTdf>= MINTDF && newTdf<= MAXTDF)
+				indiv->vm->tdf = newTdf;
+		}
+
+		for (j = 0; j < VCORES; ++j) {
+			while (satisfies == -1) {
+				if(rand() > MUTRATE){
+					int newPeriod = indiv->vm->vcores[j].period + (rand() % 2 - 1);
+					if(newPeriod>= MINPERIOD && newPeriod<= MAXPERIOD)
+						indiv->vm->vcores[i].period = newPeriod;
+				}
+				if(rand() > MUTRATE){
+					int newSlice = indiv->vm->vcores[j].slice + (rand() % 2 - 1);
+					if(newSlice>= MINSLICE && newSlice<= MAXSLICE)
+						indiv->vm->vcores[i].slice = newSlice;
+				}
+				if(rand() > MUTRATE){
+					int newAllocationIndex = (rand() % indiv->nrPcores);
+					indiv->vm->vcores[i].pcore = &indiv->pcores[newAllocationIndex];
+				}
+			satisfies = checkConstraints(ga->population[i].vm->vcores[j].pcore, ga->population[i].vm);
+			}
+		}
+	}
+
+	return 0;
 }
 
 /*
@@ -363,9 +409,11 @@ int main(){
 	int maxGen = MAXGEN;
 	int nrGen = 0;			// Number of generations
 	struct ga * ga;
+    srand(time(NULL));
 
 	initGA(ga);
 	evaluateFitness(ga);
+
 
 	while(nrGen < maxGen && ga->bestFitness<1.0 ){
 
@@ -376,6 +424,6 @@ int main(){
 
 	}
 
-
+	return 0;
 
 }

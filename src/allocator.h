@@ -98,19 +98,9 @@ typedef struct ga {
 			 // population
   allocConfig * aConfig;	// Allocator Configuration
   float bestFitness;
+  int bestMachineIndex;
   float avgFitness;
 } ga;
-
-typedef struct chromosome{
-
-	int tdf;
-	timeUs slice;	   // Size of the slice in usec
-	timeUs period;   // Size of the period in usec
-	int speedKhz;	   // vcpu speed in Khz
-	pcore * pcore;
-
-}
-
 
 
 #endif /* ALLOCATOR_H_ */
