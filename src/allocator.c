@@ -347,6 +347,7 @@ int crossover(ga * ga){
 
 int mutation(ga * ga){
 
+  
 	return 0;
 
 }
@@ -365,7 +366,6 @@ int main(){
 
 	initGA(ga);
 	evaluateFitness(ga);
-
 
 	while(nrGen < maxGen && ga->bestFitness<1.0 ){
 
