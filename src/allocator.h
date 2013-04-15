@@ -19,6 +19,7 @@ struct vcore;
 
 typedef struct pcore{
 
+  int id;
   int speedKhz;			// pcpu speed in Khz
   int maxUtilization;		// Maximum utilization (Range 0 - 100)
   int utilization;		// Achieved utilization
@@ -32,6 +33,7 @@ typedef struct pcore{
 
 typedef struct vcore{
 
+  int id;
   timeUs slice;	   // Size of the slice in usec
   timeUs period;   // Size of the period in usec
   int speedKhz;	   // vcpu speed in Khz

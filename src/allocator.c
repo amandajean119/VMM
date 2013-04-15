@@ -38,13 +38,21 @@ int checkConstraints(pcore * pcore, vm * vm) {
 	int pcoreSpeed = pcore->speedKhz;
 	int i;
 	float utilization = 0.0;
-	int speedSum = 0.0;
+	int speedSum = 0;
 	float slicePeriod = 0.0;
 	for (i = 0; i < nrVcores; i++) {
-		slicePeriod = pcore->vcores[i].slice/pcore->vcores[i].period;
+		slicePeriod = 100 * (float)pcore->vcores[i].slice/(float)pcore->vcores[i].period;
 		utilization += slicePeriod;
 		speedSum += pcore->vcores[i].speedKhz;
+		printf("check constrains, utilization %f\n",utilization);
+		printf("check constrains, speedSum %f\n",speedSum);
 	}
+
+	printf("check constrains, tdf %d\n",tdf);
+	printf("check constrains, uMax %d\n",uMax);
+    printf("check constrains, speedSum %d\n",speedSum);
+    printf("check constrains, pcoreSpeed %d\n",pcoreSpeed);
+
 	if (utilization/tdf > uMax)
 		return -1;
 	if (speedSum/pcoreSpeed > tdf)
@@ -58,70 +66,86 @@ int checkConstraints(pcore * pcore, vm * vm) {
 
 int initGA(struct ga * ga){
 
+  printf("Initializing general parameters\n");
+
   allocConfig * config = malloc(sizeof(allocConfig));
-  
+
   // CPU Speeds in Khz
   config->maxCPU = MAXCPU;   // Khz
   config->minCPU = MINCPU ;
-  
+
   // Percentage of utilization
   config->maxU = MAXU;
   config->minU = MINU;
-  
+
   // Time dilation Factor
   config->maxTdf = MAXTDF;
   config->minTdf = MINTDF;
-  
+
   // Slices and periods in micro seconds
   config->maxSlice = MAXSLICE; // Usec
   config->minSlice = MINSLICE;
   config->maxPeriod = MAXPERIOD;
   config->minPeriod = MINPERIOD;
-  
+
   ga->aConfig = config;
   ga->populationSize = POPULATION;
   ga->population = malloc(ga->populationSize*sizeof(machine));
-  
+
   // Configuration which is constant for each machine
   int nrPcores = PCORES;
   int nrVcores = VCORES;
   int i, j, k, satisfies, index;
-  pcore * pcores = malloc(nrPcores*sizeof(pcore));
-  vm * vm = malloc(sizeof(vm));
-  
-  for (i = 0; i < nrPcores; i++) {
-    pcores[i].speedKhz = rand() % config->maxCPU + config->minCPU;
-    pcores[i].maxUtilization = rand() % config->maxU + config->minU;
-    pcores[i].nrVCores = 0;
-    pcores[i].vcores = malloc(nrVcores*sizeof(vcore));
-    
-  }
-  
-    vm->vcores = malloc(nrVcores*sizeof(vcore));
-    
-    for (j = 0;  j < nrVcores; j++) {
-      vm->vcores[j].speedKhz =
-	rand() % config->maxCPU + config->minCPU;
-    }
 
+  printf("Initializing before for\n");
 
   for (i = 0; i < ga->populationSize; i++) {
 
+	  printf("inside for\n");
+
+	  pcore * pcores = malloc(nrPcores*sizeof(pcore));
+	  vm * vm = malloc(sizeof(vm));
+
+	  printf("Initializing physical cores\n");
+
+	  for (i = 0; i < nrPcores; i++) {
+		pcores[i].id = i;
+	    pcores[i].speedKhz = rand() % (config->maxCPU - config->minCPU) + config->minCPU;
+	    pcores[i].maxUtilization = rand() % (config->maxU - config->minU) + config->minU;
+	    pcores[i].nrVCores = 0;
+	    pcores[i].vcores = malloc(nrVcores*sizeof(vcore));
+
+	  }
+
+	    vm->vcores = malloc(nrVcores*sizeof(vcore));
+
+	    for (j = 0;  j < nrVcores; j++) {
+	      vm->vcores[j].speedKhz =
+		(rand() % (config->maxCPU - config->minCPU)) + config->minCPU;
+		//(100000000-10000000 + 1) +10000000;
+
+	      printf("vcore speed: %d\n", vm->vcores[j].speedKhz);
+	      vm->vcores[j].id = j;
+	    }
       ga->population[i].pcores = pcores;
+      ga->population[i].vm = vm;
       ga->population[i].nrPcores = nrPcores;
       ga->population[i].vm->nrVcores = vm->nrVcores;
-      ga->population[i].vm->tdf =
-        			rand() % config->maxTdf + config->minTdf;
+
         for (k = 0; k < nrVcores; k++) {
         	satisfies = -1;
     		ga->population[i].vm->vcores[k].speedKhz =
     				vm->vcores[k].speedKhz;
         	while (satisfies == -1) {
+
+        		printf("Inside while\n");
+        	      ga->population[i].vm->tdf =
+        	        			rand() % (config->maxTdf - config->minTdf) + config->minTdf;
         		ga->population[i].vm->vcores[k].slice =
-        				rand() % config->maxSlice + config->minSlice;
+        				rand() % (config->maxSlice - config->minSlice) + config->minSlice;
 
         		ga->population[i].vm->vcores[k].period =
-						rand() % config->maxPeriod + config->minPeriod;
+						rand() % (config->maxPeriod - config->minPeriod) + config->minPeriod;
         		index = rand() % nrPcores;
 				ga->population[i].vm->vcores[k].pcore =
 					&pcores[index];
@@ -398,6 +422,42 @@ int mutation(ga * ga){
 	return 0;
 }
 
+int printMachineParameters(machine * m){
+
+	int i,j;
+	pcore pCore;
+	vcore vCore;
+	printf("Fitness %f\n", m->fitness);
+    printf("Time dilation factor %d\n",	m->vm->tdf);
+	printf("Number of pcores %d\n", m->nrPcores);
+
+	for (i = 0; i < m->nrPcores; i++) {
+
+		pCore = m->pcores[i];
+		printf("For pcore number %d:\n",pCore.id);
+		printf("Maximum utilization %d\n", pCore.maxUtilization);
+		printf("Actual utilization %d\n", pCore.utilization);
+		printf("Number of virtual cores %d", pCore.nrVCores);
+		printf("For the virtual cores allocated to pcore number %d:", i);
+
+
+		for (j = 0; j < pCore.nrVCores ; ++j) {
+
+			vCore = pCore.vcores[j];
+			printf("For vcore number %d:\n",vCore.id);
+		    printf("Slice %f\n",(float)vCore.slice);
+		    printf("Period %f",(float)vCore.period);
+		    printf("CPU Speed (Khz) %d",vCore.speedKhz);
+            printf("Physical core id %d", vCore.pcore->id);
+
+		}
+
+	}
+
+	return 0;
+}
+
+
 /*
  * Main function
  */
@@ -406,13 +466,24 @@ int main(){
 
 	printf(" *** Real time multiprocessor allocator***\n");
 
+	int i;
 	int maxGen = MAXGEN;
 	int nrGen = 0;			// Number of generations
 	struct ga * ga;
     srand(time(NULL));
 
+
 	initGA(ga);
+
+	/*
 	evaluateFitness(ga);
+
+	for (i = 0; i < ga->populationSize; i++) {
+		printMachineParameters(&(ga->population[i]));
+
+	}
+
+
 
 
 	while(nrGen < maxGen && ga->bestFitness<1.0 ){
@@ -422,7 +493,7 @@ int main(){
 		mutation(ga);
 		evaluateFitness(ga);
 
-	}
+	}*/
 
 	return 0;
 
