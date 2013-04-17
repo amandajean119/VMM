@@ -21,9 +21,9 @@
 #define MINSLICE 1000
 #define MAXPERIOD 100000000
 #define MINPERIOD 100000
-#define POPULATION 100
-#define PCORES 10
-#define VCORES 50
+#define POPULATION 10
+#define PCORES 2
+#define VCORES 5
 #define CROSSRATE 0.2
 #define MUTRATE 0.2
 
@@ -44,14 +44,14 @@ int checkConstraints(pcore * pcore, vm * vm) {
 		slicePeriod = 100 * (float)pcore->vcores[i].slice/(float)pcore->vcores[i].period;
 		utilization += slicePeriod;
 		speedSum += pcore->vcores[i].speedKhz;
-		printf("check constrains, utilization %f\n",utilization);
-		printf("check constrains, speedSum %f\n",speedSum);
+		//		printf("check constrains, utilization %f\n",utilization);
+		//printf("check constrains, speedSum %d\n",speedSum);
 	}
 
-	printf("check constrains, tdf %d\n",tdf);
-	printf("check constrains, uMax %d\n",uMax);
-    printf("check constrains, speedSum %d\n",speedSum);
-    printf("check constrains, pcoreSpeed %d\n",pcoreSpeed);
+	//	printf("check constrains, tdf %d\n",tdf);
+	//	printf("check constrains, uMax %d\n",uMax);
+	//  printf("check constrains, speedSum %d\n",speedSum);
+	// printf("check constrains, pcoreSpeed %d\n",pcoreSpeed);
 
 	if (utilization/tdf > uMax)
 		return -1;
@@ -66,30 +66,31 @@ int checkConstraints(pcore * pcore, vm * vm) {
 
 int initGA(struct ga * ga){
 
-  printf("Initializing general parameters\n");
+  //printf("Initializing general parameters\n");
 
-  allocConfig * config = malloc(sizeof(allocConfig));
+  allocConfig * config =  malloc(sizeof(allocConfig));
+  ga-> aConfig = config;
 
   // CPU Speeds in Khz
-  config->maxCPU = MAXCPU;   // Khz
-  config->minCPU = MINCPU ;
+  ga->aConfig->maxCPU = MAXCPU;   // Khz
+  ga->aConfig->minCPU = MINCPU ;
 
   // Percentage of utilization
-  config->maxU = MAXU;
-  config->minU = MINU;
+  ga->aConfig->maxU = MAXU;
+  ga->aConfig->minU = MINU;
 
   // Time dilation Factor
-  config->maxTdf = MAXTDF;
-  config->minTdf = MINTDF;
-
-  // Slices and periods in micro seconds
-  config->maxSlice = MAXSLICE; // Usec
-  config->minSlice = MINSLICE;
-  config->maxPeriod = MAXPERIOD;
-  config->minPeriod = MINPERIOD;
-
-  ga->aConfig = config;
+  ga->aConfig->maxTdf = MAXTDF;
+  ga->aConfig->minTdf = MINTDF;
   ga->populationSize = POPULATION;
+  // Slices and periods in micro seconds
+  //WEIRD BUG, SEG FAULTS IF PERIOD PARAMS ARE BELOW SLICE PARAMS
+  ga->aConfig->maxPeriod = MAXPERIOD;
+  ga->aConfig->minPeriod = MINPERIOD;
+  ga->aConfig->maxSlice = MAXSLICE; // Usec
+  ga->aConfig->minSlice = MINSLICE;
+ 
+ 
   ga->population = malloc(ga->populationSize*sizeof(machine));
 
   // Configuration which is constant for each machine
@@ -101,30 +102,30 @@ int initGA(struct ga * ga){
 
   for (i = 0; i < ga->populationSize; i++) {
 
-	  printf("inside for\n");
+    //    printf("next machine %d\n", i);
 
-	  pcore * pcores = malloc(nrPcores*sizeof(pcore));
+	  pcore * pcores =  malloc(nrPcores*sizeof(pcore));
 	  vm * vm = malloc(sizeof(vm));
 
-	  printf("Initializing physical cores\n");
+	  //	  printf("Initializing physical cores\n");
 
 	  for (i = 0; i < nrPcores; i++) {
-		pcores[i].id = i;
-	    pcores[i].speedKhz = rand() % (config->maxCPU - config->minCPU) + config->minCPU;
-	    pcores[i].maxUtilization = rand() % (config->maxU - config->minU) + config->minU;
-	    pcores[i].nrVCores = 0;
+	    pcores[i].id = i;
 	    pcores[i].vcores = malloc(nrVcores*sizeof(vcore));
+	    pcores[i].nrVCores = 0;
 
+	    pcores[i].maxUtilization = rand() % (ga->aConfig->maxU - ga->aConfig->minU) + ga->aConfig->minU;
+
+	    pcores[i].speedKhz = rand() % (ga->aConfig->maxCPU - ga->aConfig->minCPU) + ga->aConfig->minCPU;
+	    
 	  }
 
 	    vm->vcores = malloc(nrVcores*sizeof(vcore));
 
 	    for (j = 0;  j < nrVcores; j++) {
 	      vm->vcores[j].speedKhz =
-		(rand() % (config->maxCPU - config->minCPU)) + config->minCPU;
-		//(100000000-10000000 + 1) +10000000;
-
-	      printf("vcore speed: %d\n", vm->vcores[j].speedKhz);
+		(rand() % (ga->aConfig->maxCPU - ga->aConfig->minCPU)) + ga->aConfig->minCPU;
+	      //printf("vcore speed: %d\n", vm->vcores[j].speedKhz);
 	      vm->vcores[j].id = j;
 	    }
       ga->population[i].pcores = pcores;
@@ -138,14 +139,14 @@ int initGA(struct ga * ga){
     				vm->vcores[k].speedKhz;
         	while (satisfies == -1) {
 
-        		printf("Inside while\n");
+		  //	printf("Inside while\n");
         	      ga->population[i].vm->tdf =
-        	        			rand() % (config->maxTdf - config->minTdf) + config->minTdf;
+        	        			rand() % (ga->aConfig->maxTdf - ga->aConfig->minTdf) + ga->aConfig->minTdf;
         		ga->population[i].vm->vcores[k].slice =
-        				rand() % (config->maxSlice - config->minSlice) + config->minSlice;
+        				rand() % (ga->aConfig->maxSlice - ga->aConfig->minSlice) + ga->aConfig->minSlice;
 
         		ga->population[i].vm->vcores[k].period =
-						rand() % (config->maxPeriod - config->minPeriod) + config->minPeriod;
+						rand() % (ga->aConfig->maxPeriod - ga->aConfig->minPeriod) + ga->aConfig->minPeriod;
         		index = rand() % nrPcores;
 				ga->population[i].vm->vcores[k].pcore =
 					&pcores[index];
@@ -232,27 +233,30 @@ int selection(ga * ga){
 
 int crossover(ga * ga){
 
-	int i,j;
+  int i, j, indexP1, indexP2;
 	int nrNewPop = 0;
 	int satisfies = -1;
 	machine * newPopulation = malloc(POPULATION*sizeof(machine));
-
+	machine * p1;
+	machine * p2;
+	machine * ch1;
+	machine * ch2;
 	// Two parents chosen randomly
 
 	while(nrNewPop < POPULATION){
 
-		int indexP1 = rand() % ga->populationSize;
-		int indexP2 = rand() % ga->populationSize;
+		indexP1 = rand() % ga->populationSize;
+		indexP2 = rand() % ga->populationSize;
 
 		// Parent pointers
 
-		machine * p1 = &ga->population[indexP1];
-		machine * p2 = &ga->population[indexP2];
+		p1 = &ga->population[indexP1];
+		p2 = &ga->population[indexP2];
 
 		// Children pointers
 
-		machine * ch1 = malloc(sizeof(machine));
-		machine * ch2 = malloc(sizeof(machine));
+	        ch1 = malloc(sizeof(machine));
+	        ch2 = malloc(sizeof(machine));
 
 
 		// Set the information of the physical cores
@@ -261,23 +265,22 @@ int crossover(ga * ga){
 		ch1->nrPcores = PCORES;
 		ch1->fitness = p1->fitness; // Should be recalculated
 									//if crossover is performed
-		ch1->pcores = malloc(PCORES * sizeof(pcore));
+		ch1->pcores = malloc(ch1->nrPcores * sizeof(pcore));
 		ch1->vm = malloc(sizeof(vm));
 
 		ch2->nrPcores = PCORES;
-		ch1->fitness = p2->fitness; // Should be recalculated
+		ch2->fitness = p2->fitness; // Should be recalculated
 									//if crossover is performed
-		ch2->pcores = malloc(PCORES * sizeof(pcore));
+		ch2->pcores = malloc(ch2->nrPcores * sizeof(pcore));
 		ch2->vm = malloc(sizeof(vm));
-
-		for (i = 0; i < PCORES; i++) {
+		for (i = 0; i < ch1->nrPcores; i++) {
 
 			ch1->pcores[i].maxUtilization = p1->pcores[i].maxUtilization;
 			ch1->pcores[i].speedKhz = p1->pcores[i].speedKhz;
 			ch1->pcores[i].utilization = 0; // Should be recalculated later
 
-			ch2->pcores[i].maxUtilization = p1->pcores[i].maxUtilization;
-			ch2->pcores[i].speedKhz = p1->pcores[i].speedKhz;
+			ch2->pcores[i].maxUtilization = p2->pcores[i].maxUtilization;
+			ch2->pcores[i].speedKhz = p2->pcores[i].speedKhz;
 			ch2->pcores[i].utilization = 0; // Should be recalculated later
 
 		}
@@ -456,8 +459,22 @@ int printMachineParameters(machine * m){
 
 	return 0;
 }
-
-
+/*
+int free(ga) {
+  int i, j, k, l;
+  for (i = 0; i < ga->populationSize; i++) {
+    for (j = 0; j < ga->machine[i]->nrPcores; j++) {
+      for (k = 0; k < ga->machine[i]->pcores[j].nrVCores; k++) {
+	free(ga->machine[i]->pcores[j].vcore[k]);
+      }
+    }
+    for (j = 0; j < ga-> machine[i]->vm->nrVcores; j++) {
+      free(ga->machine[i]->vm->vcores[j]);
+  }
+  }
+  return 0;
+}
+*/
 /*
  * Main function
  */
@@ -469,10 +486,10 @@ int main(){
 	int i;
 	int maxGen = MAXGEN;
 	int nrGen = 0;			// Number of generations
-	struct ga * ga;
-    srand(time(NULL));
+	ga * ga = malloc(sizeof(ga));
+	srand(time(NULL));
 
-
+	
 	initGA(ga);
 
 	/*
