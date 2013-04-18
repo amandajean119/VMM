@@ -21,8 +21,8 @@ typedef struct pcore{
 
   int id;
   int speedKhz;			// pcpu speed in Khz
-  int maxUtilization;		// Maximum utilization (Range 0 - 100)
-  int utilization;		// Achieved utilization
+  float maxUtilization;		// Maximum utilization (Range 0 - 100)
+  float utilization;		// Achieved utilization
   int nrVCores;
   struct vcore * vcores;
 } pcore;
@@ -59,6 +59,7 @@ typedef struct vm {
 
 typedef struct machine {
 
+  int id;
   int nrPcores;
   pcore * pcores;       // Array of physical cores in this physical machine
   vm * vm;		        // Pointer to the vm
