@@ -10,7 +10,8 @@
 #include <stdlib.h>     /* malloc, free, rand */
 #include <time.h>       /* srand */
 
-#define MAXGEN 10
+
+#define MAXGEN 500
 #define MAXCPU 10000000
 #define MINCPU 1000000
 #define MAXU 100
@@ -19,11 +20,11 @@
 #define MINTDF 1
 #define MAXSLICE 1000000
 #define MINSLICE 1000
-#define MAXPERIOD 100000000
-#define MINPERIOD 100000
-#define POPULATION 10
-#define PCORES 100
-#define VCORES 1000
+#define MAXPERIOD 10000000
+#define MINPERIOD 10000
+#define POPULATION 300
+#define PCORES 50
+#define VCORES 450
 #define CROSSRATE 0.2
 #define MUTRATE 0.2
 
@@ -31,16 +32,21 @@
 float calculateUtilization(pcore * pcore) {
 
 	int nrVcores = pcore->nrVCores;
-	//	printf("nrVCores: %d\n", nrVcores);
 	int i;
 	float utilization = 0.0;
 	float slicePeriod = 0.0;
 	for (i = 0; i < nrVcores; i++) {
+		
+//	printf("Calculate utilization. vcore %d Slice: %f Period: %f\n",pcore->vcores[i].id, 
+	//	(float)pcore->vcores[i].slice, 
+	//	(float)pcore->vcores[i].period);
+
+		
 		slicePeriod = 100 * (float)pcore->vcores[i].slice/(float)pcore->vcores[i].period;
 		utilization += slicePeriod;
-		//		printf("current utilization %f\n", utilization);
 	}
-	//	printf("done with this pcore\n");
+	//printf("Max Utilization: %f, Actual Utilization from calcUt function: %f\n", pcore->maxUtilization, utilization);
+	
 	return utilization;
 }
 
@@ -51,25 +57,43 @@ float calculateUtilization(pcore * pcore) {
 int checkConstraints(pcore * pcore, vm * vm) {
 	int tdf = vm->tdf;
 	int nrVcores = pcore->nrVCores;
-	int uMax = pcore->maxUtilization;
+	float uMax = pcore->maxUtilization;
+//printf("in checkConstraints max utilization for pcore %d: %f\n", pcore->id, pcore->maxUtilization);
 	int pcoreSpeed = pcore->speedKhz;
 	int i;
 	float utilization = calculateUtilization(pcore);
-	int speedSum = 0;
+	float speedSum = 0;
 	float slicePeriod = 0.0;
+//	printf("Number of virtual cores for pcore %d: %d\n", pcore->id, nrVcores);
 	for (i = 0; i < nrVcores; i++) {
+	if (pcore->vcores[i].slice > pcore->vcores[i].period) {
+//		printf("****************REJECTED DUE TO SLICE > PERIOD********\n");
+		return -1;
+	}
 	  speedSum += pcore->vcores[i].speedKhz;
 	}
-
-	//	printf("check constrains, tdf %d\n",tdf);
-	//	printf("check constrains, uMax %d\n",uMax);
-	//  printf("check constrains, speedSum %d\n",speedSum);
-	// printf("check constrains, pcoreSpeed %d\n",pcoreSpeed);
-
-	if (utilization/tdf > uMax)
+	
+	
+    /*     printf("********** check constrains ***********\n");
+	 printf("check constrains, Pcore id %d\n",pcore->id);
+	 printf("check constrains, tdf %d\n",tdf);
+	 printf("check constrains, uMax %f\n",uMax);
+	 printf("check constrains, speedSum %f\n",speedSum);
+	 printf("check constrains, utilization %f\n",utilization);
+	 printf("check constrains, pcoreSpeed %d\n",pcoreSpeed);
+         printf("check constrains, utilization/tdf  %f\n",utilization/tdf );
+	 printf("check constrains, speedSum/pcoreSpeed  %f\n", speedSum/pcoreSpeed );
+	 printf("***************************************\n");
+      */ 
+	if (utilization/(float)tdf > uMax) {
+//		printf("*********REJECTED DUE TO UTILIZATION*****\n");
 		return -1;
-	if (speedSum/pcoreSpeed > tdf)
+}
+	if (speedSum/(float)pcoreSpeed > tdf){
+//		printf("*********REJECTED DUE TO SPEED SUM*****\n");
 		return -1;
+}
+//	printf("************ACCEPTED********\n");
 	return 0;
 }
 
@@ -88,9 +112,12 @@ int getnrVCores(pcore * pcore) {
 
 int initGA(struct ga * ga){
 
-  printf("Initializing general parameters\n");
+  vcore * vc;
+  int index = -1;
 
-   ga-> aConfig  =  (struct allocatorConfig *) malloc(sizeof(struct allocatorConfig));
+ // printf("Initializing general parameters\n");
+
+  ga-> aConfig  =  (struct allocatorConfig *) malloc(sizeof(struct allocatorConfig));
  
   // CPU Speeds in Khz
   ga->aConfig->maxCPU = MAXCPU;   // Khz
@@ -117,18 +144,19 @@ int initGA(struct ga * ga){
   // Configuration which is constant for each machine
   int nrPcores = PCORES;
   int nrVcores = VCORES;
-  int i, j, k, satisfies, index;
+  int i, j, k, satisfies;
 
-  printf("Initializing before for\n");
+  //printf("Initializing before for\n");
 
   for (i = 0; i < ga->populationSize; i++) {
 
-    printf("next machine %d\n", i);
+ //   
     ga->population[i].id = i;
+//printf("next machine %d\n", ga->population[i].id);
     pcore * pcores =  (pcore *) malloc(nrPcores*sizeof(pcore));
     vm * vm = (struct vm *) malloc(sizeof(struct vm));
     
-    printf("Initializing physical cores\n");
+    //printf("Initializing physical cores\n");
     
     for (j = 0; j < nrPcores; j++) {
       pcores[j].id = j;
@@ -136,7 +164,7 @@ int initGA(struct ga * ga){
       pcores[j].nrVCores = 0;
       
       pcores[j].maxUtilization = rand() % (ga->aConfig->maxU - ga->aConfig->minU) + ga->aConfig->minU;
-      
+   //   printf("max utilization for pcore %d: %f\n", j, pcores[j].maxUtilization);
       pcores[j].speedKhz = rand() % (ga->aConfig->maxCPU - ga->aConfig->minCPU) + ga->aConfig->minCPU;
       
     }
@@ -146,7 +174,6 @@ int initGA(struct ga * ga){
     for (j = 0;  j < nrVcores; j++) {
       vm->vcores[j].speedKhz =
 	(rand() % (ga->aConfig->maxCPU - ga->aConfig->minCPU)) + ga->aConfig->minCPU;
-      printf("vcore speed: %d\n", vm->vcores[j].speedKhz);
       vm->vcores[j].id = j;
     }
     ga->population[i].pcores = pcores;
@@ -155,33 +182,49 @@ int initGA(struct ga * ga){
     ga->population[i].vm->nrVcores = vm->nrVcores;
     
         for (k = 0; k < nrVcores; k++) {
-        	satisfies = -1;
-    		ga->population[i].vm->vcores[k].speedKhz =
-    				vm->vcores[k].speedKhz;
-        	while (satisfies == -1) {
+		vc = &ga->population[i].vm->vcores[k];
 
-		  printf("Inside while\n");
+        	satisfies = -1;
+		index = -1;
+    		vc->speedKhz = vm->vcores[k].speedKhz;
+		vc->id = vm->vcores[k].id;
+
+        	while (satisfies == -1) {
+                  
+		 if(index!=-1) {
+
+		  removeVcoreFromPcore(&ga->population[i].pcores[index], vc->id);
+	          
+		}
 		  ga->population[i].vm->tdf =
 		    rand() % (ga->aConfig->maxTdf - ga->aConfig->minTdf) + ga->aConfig->minTdf;
-		  ga->population[i].vm->vcores[k].slice =
+		  vc->slice =
 		    rand() % (ga->aConfig->maxSlice - ga->aConfig->minSlice) + ga->aConfig->minSlice;
 		  
-		  ga->population[i].vm->vcores[k].period =
+		  vc->period =
 		    rand() % (ga->aConfig->maxPeriod - ga->aConfig->minPeriod) + ga->aConfig->minPeriod;
 		  index = rand() % nrPcores;
-		  ga->population[i].vm->vcores[k].pcore =
-		    &pcores[index];
+		  vc->pcore =
+		    &ga->population[i].pcores[index];
 		  ga->population[i].pcores[index].
-		    vcores[ga->population[i].pcores[index].nrVCores] =
-		    ga->population[i].vm->vcores[k];
-		  satisfies = checkConstraints(ga->population[i].vm->vcores[k].pcore, ga->population[i].vm);
-		}
+		    vcores[ga->population[i].pcores[index].nrVCores] = *vc;
 		++ga->population[i].pcores[index].nrVCores;
+//		printf("for machine %d\n", ga->population[i].id);
+//		printf("max utilization for pcore %d: %f\n", index, ga->population[i].pcores[index].maxUtilization);
+//printf("max utilization for pcore %d: %f\n", index, vc->pcore->maxUtilization);
+		  satisfies = checkConstraints(vc->pcore, ga->population[i].vm);
+		} // end while
+		
+		ga->population[i].vm->vcores[k] = *vc;
+				
 		ga->population[i].pcores[index].utilization = calculateUtilization(&(ga->population[i].pcores[index]));
         }
 
+	
+
     }
   
+	
   return 0;
 }
 
@@ -195,21 +238,19 @@ int evaluateFitness(ga * ga){
 	float utilizationPercent;
 	int i, j;
 	ga->avgFitness = 0.0;
-	ga->bestFitness = 0.0;
+	//ga->bestFitness = 0.0;
 	ga->bestMachineIndex = 0;
 	for (i = 0; i < ga->populationSize; ++i) {
+	//	printf("for machine %d\n", i);
 		utilizationPercent = 0.0;
 		for (j = 0; j < ga->population[i].nrPcores; ++j) {
-		  printf("max utilization: %f\n", ga->population[i].pcores[j].maxUtilization);
-		  printf("actual utilization: %f\n", ga->population[i].pcores[j].utilization);
 		  utilizationPercent += ga->population[i].pcores[j].utilization/
 		    (ga->population[i].pcores[j].maxUtilization*ga->population[i].vm->tdf);
-			printf("utilization percent: %f\n", utilizationPercent);
+	//	printf("utilization percent for pcore %d: %f\n", j, ga->population[i].pcores[j].utilization/
+		//    (ga->population[i].pcores[j].maxUtilization*ga->population[i].vm->tdf));
 		}
 		fitness = utilizationPercent/ (float)ga->population[i].nrPcores;
-		printf("fitness: %f\n", fitness);
-		if (fitness > 1.0)
-		  printf("FITNESS OVER 1.0");
+	//	printf("fitness: %f\n", fitness);
 		ga->population[i].fitness = fitness;
 		ga->avgFitness += fitness;
 		if (fitness > ga->bestFitness) {
@@ -230,15 +271,19 @@ int selection(ga * ga){
 	machine elite = ga->population[ga->bestMachineIndex];
 	machine * newPopulation = (machine*) malloc(POPULATION*sizeof(machine));
 	newPopulation[0] = elite;
+	newPopulation[0].id = 0;
 	ga->bestMachineIndex = 0;
 	int i, index1, index2;
 	for (i = 1; i < POPULATION; i++) {
 		index1 = rand() % POPULATION;
 		index2 = rand() % POPULATION;
+		//printf("Fitness1 %f\n", ga->population[index1].fitness);
+		//printf("Fitness2 %f\n", ga->population[index2].fitness);
 		if (ga->population[index1].fitness > ga->population[index2].fitness)
 			newPopulation[i] = ga->population[index1];
 		else
 			newPopulation[i] = ga->population[index2];
+		newPopulation[i].id = i;
 	}
 	free(ga->population);
 	ga->population = newPopulation;
@@ -260,8 +305,9 @@ int selection(ga * ga){
 
 
 int crossover(ga * ga){
-
-  int i, j, indexP1, indexP2;
+	
+	int i, j, k, indexP1, indexP2, pcoreId;
+	int crossCounter = 0;
 	int nrNewPop = -1;
 	int satisfies = -1;
 	machine * newPopulation = (machine*) malloc(POPULATION*sizeof(machine));
@@ -269,7 +315,6 @@ int crossover(ga * ga){
 	machine * p2;
 	machine * ch1;
 	machine * ch2;
-	// Two parents chosen randomly
 
 	while(nrNewPop < POPULATION - 1){
 
@@ -280,7 +325,7 @@ int crossover(ga * ga){
 
 		p1 = &ga->population[indexP1];
 		p2 = &ga->population[indexP2];
-
+               
 		// Children pointers
 
 	        ch1 = (machine *) malloc(sizeof(machine));
@@ -290,237 +335,400 @@ int crossover(ga * ga){
 		// Set the information of the physical cores
 		// (It is constant for all machines)
 
-		ch1->nrPcores = PCORES;
-		ch1->fitness = p1->fitness; // Should be recalculated
-									//if crossover is performed
+		ch1->id = p1->id;		
+		ch1->nrPcores = p1->nrPcores;
+		ch1->fitness = 0.0;
 		ch1->pcores = (pcore *) malloc(ch1->nrPcores * sizeof(pcore));
 		ch1->vm = (vm *) malloc(sizeof(vm));
 		ch1->vm->vcores = (vcore *) malloc(VCORES*sizeof(vcore));
 
-		ch2->nrPcores = PCORES;
-		ch2->fitness = p2->fitness; // Should be recalculated
-									//if crossover is performed
+		ch2->id = p2->id;
+		ch2->nrPcores = p2->nrPcores;
+		ch2->fitness = 0.0;
 		ch2->pcores = (pcore *) malloc(ch2->nrPcores * sizeof(pcore));
 		ch2->vm = (vm *) malloc(sizeof(vm));
 		ch2->vm->vcores = (vcore *) malloc(VCORES*sizeof(vcore));
-		
+                
 		for (i = 0; i < ch1->nrPcores; i++) {
-		  ch1->pcores[i].id = i;
-			ch1->pcores[i].maxUtilization = p1->pcores[i].maxUtilization;
-			ch1->pcores[i].speedKhz = p1->pcores[i].speedKhz;
-			ch1->pcores[i].utilization = 0; // Should be recalculated later
-			ch1->pcores[i].nrVCores = 0;
-			ch2->pcores[i].id = i;
-			ch2->pcores[i].nrVCores = 0;
-			ch2->pcores[i].maxUtilization = p2->pcores[i].maxUtilization;
-			ch2->pcores[i].speedKhz = p2->pcores[i].speedKhz;
-			ch2->pcores[i].utilization = 0; // Should be recalculated later
+		    ch1->pcores[i].id = i;
+		    ch1->pcores[i].maxUtilization = p1->pcores[i].maxUtilization;
+		    ch1->pcores[i].speedKhz = p1->pcores[i].speedKhz;
+		    ch1->pcores[i].utilization = 0; // Should be recalculated later
+		    ch1->pcores[i].nrVCores = 0;
+		    
+		    ch2->pcores[i].id = i;
+		    ch2->pcores[i].maxUtilization = p2->pcores[i].maxUtilization;
+		    ch2->pcores[i].speedKhz = p2->pcores[i].speedKhz;
+		    ch2->pcores[i].utilization = 0; // Should be recalculated later
+		    ch2->pcores[i].nrVCores = 0;
+			
 
 		}
-		
-		for (i = 0; i < VCORES; i++) {
-		  ch1->vm->vcores[i].pcore = (pcore *) malloc(sizeof(pcore));
-		  ch2->vm->vcores[i].pcore = (pcore *) malloc(sizeof(pcore));
 
+			
+		for(i=0;i<VCORES;i++){
+			ch1->vm->vcores[i].pcore =  (pcore *) malloc( sizeof(pcore));
+			ch2->vm->vcores[i].pcore =  (pcore *) malloc( sizeof(pcore));
 		}
-		
-		// Point for crossover generated randomly
-		while (satisfies < 0) {
-		 
-			int x = rand() % VCORES;
+
+
+		while (satisfies < 0 && crossCounter <100 ) {
+
+			//printf("Inside crossover while\n");
+			for(i=0;i<ch1->nrPcores;i++){
+				ch1->pcores[i].nrVCores = 0;
+				ch2->pcores[i].nrVCores = 0;
+				free(ch1->pcores[i].vcores);
+				free(ch2->pcores[i].vcores);
+				ch1->pcores[i].vcores = (vcore *) malloc(VCORES*sizeof(vcore));
+				ch2->pcores[i].vcores = (vcore *) malloc(VCORES*sizeof(vcore));
+					
+			} // end for
+
+			int x = rand() % VCORES;// Crossover point
+
 			if(rand()>CROSSRATE && x > 0){
+
+				//printf("***** Doing crossover *****\n");
+
 				ch1->vm->tdf = p1->vm->tdf;
 				ch2->vm->tdf = p2->vm->tdf;
 				for (i = 0; i < x; i++) {
-				  ch1->pcores[ch1->vm->vcores[i].pcore->id].nrVCores = 0;
-				  ch2->pcores[ch2->vm->vcores[i].pcore->id].nrVCores = 0;
-					ch1->vm->vcores[i].period = p1->vm->vcores[i].period;
-					ch1->vm->vcores[i].slice = p1->vm->vcores[i].slice;
-					ch1->vm->vcores[i].speedKhz = p1->vm->vcores[i].speedKhz;
-					ch1->vm->vcores[i].pcore->id =
-					  p1->vm->vcores[i].pcore->id;
-					++ch1->pcores[ch1->vm->vcores[i].pcore->id].nrVCores;
-					ch1->vm->vcores[i].pcore->utilization = calculateUtilization(ch1->vm->vcores[i].pcore);	
-					ch1->vm->vcores[i].pcore->maxUtilization =
-							p1->vm->vcores[i].pcore->maxUtilization;
-					ch1->vm->vcores[i].pcore->speedKhz =
-							p1->vm->vcores[i].pcore->speedKhz;
+					vcore * vcoreCh1 = &ch1->vm->vcores[i];
+					vcore * vcoreCh2 = &ch2->vm->vcores[i];
+			
+					vcoreCh1->id = p1->vm->vcores[i].id;
+					vcoreCh1->period = p1->vm->vcores[i].period;
+					vcoreCh1->slice = p1->vm->vcores[i].slice;
+					vcoreCh1->speedKhz = p1->vm->vcores[i].speedKhz;
+			
+					pcoreId =  p1->vm->vcores[i].pcore->id;
+					vcoreCh1->pcore = &ch1->pcores[pcoreId];
+					vcoreCh1->pcore->vcores[vcoreCh1->pcore->nrVCores] = *vcoreCh1;
+					vcoreCh1->pcore->nrVCores++;
+					vcoreCh1->pcore->utilization = calculateUtilization(vcoreCh1->pcore);	
+                         	
+					vcoreCh2->id = p2->vm->vcores[i].id;
+					vcoreCh2->period = p2->vm->vcores[i].period;
+					vcoreCh2->slice = p2->vm->vcores[i].slice;
+					vcoreCh2->speedKhz = p2->vm->vcores[i].speedKhz;
 
-					ch2->vm->vcores[i].period = p2->vm->vcores[i].period;
-					ch2->vm->vcores[i].slice = p2->vm->vcores[i].slice;
-					ch2->vm->vcores[i].speedKhz = p2->vm->vcores[i].speedKhz;
-					ch2->vm->vcores[i].pcore->id =
-					  p2->vm->vcores[i].pcore->id;
-					++ch2->pcores[ch2->vm->vcores[i].pcore->id].nrVCores;
-					ch2->vm->vcores[i].pcore->utilization = calculateUtilization(ch2->vm->vcores[i].pcore);	
-					ch2->vm->vcores[i].pcore->maxUtilization =
-							p2->vm->vcores[i].pcore->maxUtilization;
-					ch2->vm->vcores[i].pcore->speedKhz =
-							p2->vm->vcores[i].pcore->speedKhz;
-				}
+					pcoreId =  p2->vm->vcores[i].pcore->id;
+					vcoreCh2->pcore = &ch2->pcores[pcoreId];
+					
+					vcoreCh2->pcore->vcores[vcoreCh2->pcore->nrVCores] = *vcoreCh2;
+					vcoreCh2->pcore->nrVCores++;
+					vcoreCh2->pcore->utilization = calculateUtilization(vcoreCh2->pcore);	
+				
+			
+				} // end for
 				for (i = x; i < VCORES; i++) {
-				   ch1->pcores[ch1->vm->vcores[i].pcore->id].nrVCores = 0;
-				   ch2->pcores[ch2->vm->vcores[i].pcore->id].nrVCores = 0;
-					ch1->vm->vcores[i].period = p2->vm->vcores[i].period;
-					ch1->vm->vcores[i].slice = p2->vm->vcores[i].slice;
-					ch1->vm->vcores[i].speedKhz = p2->vm->vcores[i].speedKhz;
-					ch1->vm->vcores[i].pcore->id =
-					  p2->vm->vcores[i].pcore->id;
-					++ch1->pcores[ch1->vm->vcores[i].pcore->id].nrVCores;
-					ch1->vm->vcores[i].pcore->utilization = calculateUtilization(ch1->vm->vcores[i].pcore);	
-					ch1->vm->vcores[i].pcore->maxUtilization =
-							p2->vm->vcores[i].pcore->maxUtilization;
-					ch1->vm->vcores[i].pcore->speedKhz =
-							p2->vm->vcores[i].pcore->speedKhz;
 
-					ch2->vm->vcores[i].period = p1->vm->vcores[i].period;
-					ch2->vm->vcores[i].slice = p1->vm->vcores[i].slice;
-					ch2->vm->vcores[i].speedKhz = p1->vm->vcores[i].speedKhz;
-					ch2->vm->vcores[i].pcore->id =
-					  p1->vm->vcores[i].pcore->id;
-					++ch2->pcores[ch2->vm->vcores[i].pcore->id].nrVCores;
-					ch2->vm->vcores[i].pcore->utilization = calculateUtilization(ch2->vm->vcores[i].pcore);	
-					ch2->vm->vcores[i].pcore->maxUtilization =
-							p1->vm->vcores[i].pcore->maxUtilization;
-					ch2->vm->vcores[i].pcore->speedKhz =
-							p1->vm->vcores[i].pcore->speedKhz;
-				}
-			}
+
+					vcore * vcoreCh1 = &ch1->vm->vcores[i];
+					vcore * vcoreCh2 = &ch2->vm->vcores[i];
+				
+					vcoreCh1->id = p2->vm->vcores[i].id;
+					vcoreCh1->period = p2->vm->vcores[i].period;
+					vcoreCh1->slice = p2->vm->vcores[i].slice;
+					vcoreCh1->speedKhz = p2->vm->vcores[i].speedKhz;
+
+					pcoreId =  p2->vm->vcores[i].pcore->id;
+					vcoreCh1->pcore = &ch1->pcores[pcoreId];
+
+					vcoreCh1->pcore->vcores[vcoreCh1->pcore->nrVCores] = *vcoreCh1;
+					vcoreCh1->pcore->nrVCores++;
+					vcoreCh1->pcore->utilization = calculateUtilization(vcoreCh1->pcore);	
+
+					vcoreCh2->id = p1->vm->vcores[i].id;
+					vcoreCh2->period = p1->vm->vcores[i].period;
+					vcoreCh2->slice = p1->vm->vcores[i].slice;
+					vcoreCh2->speedKhz = p1->vm->vcores[i].speedKhz;
+
+					pcoreId =  p1->vm->vcores[i].pcore->id;
+					vcoreCh2->pcore = &ch2->pcores[pcoreId];
+					
+					vcoreCh2->pcore->vcores[vcoreCh2->pcore->nrVCores] = *vcoreCh2;
+					vcoreCh2->pcore->nrVCores++;
+					vcoreCh2->pcore->utilization = calculateUtilization(vcoreCh2->pcore);	
+
+		
+				} // end for
+			} // end if
 			else{
+				//printf("***** No crossover just copying to next generation *****\n");
+				
+				for (i = 0; i < VCORES; i++) {
 
-				ch1->vm->tdf = p1->vm->tdf;
-				ch2->vm->tdf = p2->vm->tdf;
-				for (j = 0; j < VCORES; ++j) {
-				  ch1->pcores[ch1->vm->vcores[j].pcore->id].nrVCores = 0;
-				  ch2->pcores[ch2->vm->vcores[j].pcore->id].nrVCores = 0;
-				  ch1->vm->vcores[i].period = p1->vm->vcores[i].period;
-				ch1->vm->vcores[i].slice = p1->vm->vcores[i].slice;
-				ch1->vm->vcores[i].speedKhz = p1->vm->vcores[i].speedKhz;
-				ch1->vm->vcores[i].pcore->id =
-				  p1->vm->vcores[i].pcore->id;
-				++ch1->pcores[ch1->vm->vcores[i].pcore->id].nrVCores;
-				ch1->vm->vcores[i].pcore->utilization = calculateUtilization(ch1->vm->vcores[i].pcore);
-				ch1->vm->vcores[i].pcore->maxUtilization =
-						p1->vm->vcores[i].pcore->maxUtilization;
-				ch1->vm->vcores[i].pcore->speedKhz =
-						p1->vm->vcores[i].pcore->speedKhz;
+					vcore * vcoreCh1 = &ch1->vm->vcores[i];
+					vcore * vcoreCh2 = &ch2->vm->vcores[i];
+			
+					vcoreCh1->id = p1->vm->vcores[i].id;
+					vcoreCh1->period = p1->vm->vcores[i].period;
+					vcoreCh1->slice = p1->vm->vcores[i].slice;
+					vcoreCh1->speedKhz = p1->vm->vcores[i].speedKhz;
+			
+					pcoreId =  p1->vm->vcores[i].pcore->id;
+					vcoreCh1->pcore = &ch1->pcores[pcoreId];
+					
+					vcoreCh1->pcore->vcores[vcoreCh1->pcore->nrVCores] = *vcoreCh1;
+					vcoreCh1->pcore->nrVCores++;
+					vcoreCh1->pcore->utilization = calculateUtilization(vcoreCh1->pcore);	
+                         	
+					vcoreCh2->id = p2->vm->vcores[i].id;
+					vcoreCh2->period = p2->vm->vcores[i].period;
+					vcoreCh2->slice = p2->vm->vcores[i].slice;
+					vcoreCh2->speedKhz = p2->vm->vcores[i].speedKhz;
 
-				ch2->vm->vcores[i].period = p2->vm->vcores[i].period;
-				ch2->vm->vcores[i].slice = p2->vm->vcores[i].slice;
-				ch2->vm->vcores[i].speedKhz = p2->vm->vcores[i].speedKhz;
-				ch2->vm->vcores[i].pcore->id =
-				  p2->vm->vcores[i].pcore->id;
-				++ch2->pcores[ch2->vm->vcores[i].pcore->id].nrVCores;
-				ch2->vm->vcores[i].pcore->utilization = calculateUtilization(ch2->vm->vcores[i].pcore);		  
-				ch2->vm->vcores[i].pcore->maxUtilization =
-				  p2->vm->vcores[i].pcore->maxUtilization;
-				ch2->vm->vcores[i].pcore->speedKhz =
-						p2->vm->vcores[i].pcore->speedKhz;
-				}
+					pcoreId =  p2->vm->vcores[i].pcore->id;
+					vcoreCh2->pcore = &ch2->pcores[pcoreId];
+					
+					vcoreCh2->pcore->vcores[vcoreCh2->pcore->nrVCores] = *vcoreCh2;
+					vcoreCh2->pcore->nrVCores++;
+					vcoreCh2->pcore->utilization = calculateUtilization(vcoreCh2->pcore);	
 
 
-			}
-			satisfies = 0;
+				} // end for
+
+				} // end else
+			
+			
 			for (i = 0; i < VCORES; i++) {
-			  printf("pcore speed: %d\n", ch1->vm->vcores[i].pcore->speedKhz);
-			   printf("pcore speed: %d\n", ch2->vm->vcores[i].pcore->speedKhz);
-			   satisfies += checkConstraints(ch1->vm->vcores[i].pcore, ch1->vm);
-			   satisfies += checkConstraints(ch2->vm->vcores[i].pcore, ch2->vm);
-			}
+				satisfies = 0;
+			   	satisfies += checkConstraints(ch1->vm->vcores[i].pcore, ch1->vm);
+			   	satisfies += checkConstraints(ch2->vm->vcores[i].pcore, ch2->vm);
+			} // end for
+		crossCounter++;
+		
+		}  // end while satisfies
+		if (crossCounter >= 100) {
+			for (i = 0; i < VCORES; i++) {
+
+					vcore * vcoreCh1 = &ch1->vm->vcores[i];
+					vcore * vcoreCh2 = &ch2->vm->vcores[i];
+			
+					vcoreCh1->id = p1->vm->vcores[i].id;
+					vcoreCh1->period = p1->vm->vcores[i].period;
+					vcoreCh1->slice = p1->vm->vcores[i].slice;
+					vcoreCh1->speedKhz = p1->vm->vcores[i].speedKhz;
+			
+					pcoreId =  p1->vm->vcores[i].pcore->id;
+					vcoreCh1->pcore = &ch1->pcores[pcoreId];
+					
+					vcoreCh1->pcore->vcores[vcoreCh1->pcore->nrVCores] = *vcoreCh1;
+					vcoreCh1->pcore->nrVCores++;
+					vcoreCh1->pcore->utilization = calculateUtilization(vcoreCh1->pcore);	
+                         	
+					vcoreCh2->id = p2->vm->vcores[i].id;
+					vcoreCh2->period = p2->vm->vcores[i].period;
+					vcoreCh2->slice = p2->vm->vcores[i].slice;
+					vcoreCh2->speedKhz = p2->vm->vcores[i].speedKhz;
+
+					pcoreId =  p2->vm->vcores[i].pcore->id;
+					vcoreCh2->pcore = &ch2->pcores[pcoreId];
+					
+					vcoreCh2->pcore->vcores[vcoreCh2->pcore->nrVCores] = *vcoreCh2;
+					vcoreCh2->pcore->nrVCores++;
+					vcoreCh2->pcore->utilization = calculateUtilization(vcoreCh2->pcore);	
+
+
+				}
 		}
 
 		newPopulation[++nrNewPop] = *ch1;
 		newPopulation[++nrNewPop] = *ch2;
-    
-	}
+		satisfies = -1;
+		crossCounter = 0;
+ 		
+   
+	} // end while population
 
 	free(ga->population);
 	ga->population = newPopulation;
-
 	return 0;
+} // end crossover function
+
+
+/*
+ * Remove vcore from pcore
+ */
+
+int removeVcoreFromPcore(pcore * pc, int vcId){
+
+//	printf("***** removeVcoreFromPcore *****\n");
+	if(!pc)	printf("pc is NULL\n");	
+	else {int i, index;
+	for(i=0; i < pc->nrVCores; i++){
+		if(pc->vcores[i].id == vcId){
+			index = i;
+			break;			
+			}		
+	}	
+
+	if(index != (pc->nrVCores-1))
+		pc->vcores[index] = pc->vcores[pc->nrVCores-1];
+		
+	vcore * lastVcore = &pc->vcores[pc->nrVCores-1];
+	lastVcore = NULL;	
+	pc->nrVCores--;
+	
+	}
+	return 0;
+
 }
+
 
 /*
  * Mutate individuals
  */
 
 int mutation(ga * ga){
+	
 
-  int i, j, newTdf, newPeriod, newSlice, newAllocationIndex;
-  machine * indiv;
+	int i, j, k, newTdf, newPeriod, newSlice, newAllocationIndex;
+	machine * indiv;
+	/*for (i = 0; i < POPULATION; i++) {
+		for(j =0; j< VCORES; j++){
+			printf("machine %d, vcore %d\n",i,ga->population[i].vm->vcores[j].id);
+		} // end for
+
+	}*/ // end for
+
 	int satisfies = -1;
-
+	//printf("IN MUTATION\n");
 	for (i = 0; i < POPULATION; ++i) {
 		indiv = &ga->population[i];
-
-		if(rand() > MUTRATE){
-			newTdf = indiv->vm->tdf + (rand()%2 -1);
-			if(newTdf>= MINTDF && newTdf<= MAXTDF)
-				indiv->vm->tdf = newTdf;
-		}
-
-		for (j = 0; j < VCORES; ++j) {
-			while (satisfies == -1) {
-				if(rand() > MUTRATE){
-					newPeriod = indiv->vm->vcores[j].period + (rand() % 2 - 1);
-					if(newPeriod>= MINPERIOD && newPeriod<= MAXPERIOD)
-						indiv->vm->vcores[i].period = newPeriod;
-				}
-				if(rand() > MUTRATE){
-					newSlice = indiv->vm->vcores[j].slice + (rand() % 2 - 1);
-					if(newSlice>= MINSLICE && newSlice<= MAXSLICE)
-						indiv->vm->vcores[i].slice = newSlice;
-				}
-				if(rand() > MUTRATE){
-					newAllocationIndex = (rand() % indiv->nrPcores);
-					indiv->vm->vcores[i].pcore = &indiv->pcores[newAllocationIndex];
-				}
-			satisfies = checkConstraints(ga->population[i].vm->vcores[j].pcore, ga->population[i].vm);
+		while (satisfies == -1) {
+			if(rand() > MUTRATE){
+				newTdf = rand() % (ga->aConfig->maxTdf - ga->aConfig->minTdf) + ga->aConfig->minTdf;
+				//newTdf = indiv->vm->tdf + (rand()%2 -1);
+				if(newTdf>= MINTDF && newTdf<= MAXTDF)
+					indiv->vm->tdf = newTdf;
 			}
-			ga->population[i].pcores[j].nrVCores = getnrVCores(&(ga->population[i].pcores[j]));
-			ga->population[i].pcores[j].utilization = calculateUtilization(&(ga->population[i].pcores[j]));
-		}
-	}
+
+			for (j = 0; j < VCORES; j++) {
+				satisfies = -1;
+
+				vcore * vc = &indiv->vm->vcores[j];
+
+				//printf("IN MUTATION WHILE LOOP\n");
+				if(rand() > MUTRATE){
+					newPeriod = vc->period + (rand() % 2 - 1);
+					if(newPeriod>= MINPERIOD && newPeriod<= MAXPERIOD)
+						vc->period = newPeriod;
+				}
+				if(rand() > MUTRATE){
+					newSlice = vc->slice + (rand() % 2 - 1);
+					if(newSlice>= MINSLICE && newSlice<= MAXSLICE)
+						vc->slice = newSlice;
+				}
+
+				pcore * oldPcore = vc->pcore;
+
+				if(rand() > MUTRATE){
+
+					// We must add vc to the list of vcores of vc->pcore
+					// and remove it from the list of vcores of the old pcore and decrement the nrVcores in that pcore
+										
+					removeVcoreFromPcore(oldPcore, vc->id);
+					newAllocationIndex = (rand() % indiv->nrPcores);
+					vc->pcore = &indiv->pcores[newAllocationIndex];
+				
+					vc->pcore->vcores[vc->pcore->nrVCores] = *vc;
+					indiv->pcores[newAllocationIndex].nrVCores++;
+					vc->pcore->utilization = calculateUtilization(vc->pcore);
+
+				} //end if
+				satisfies = checkConstraints(vc->pcore, ga->population[i].vm);
+				if (satisfies == -1){
+					vc->pcore = oldPcore;	
+					oldPcore->vcores[oldPcore->nrVCores] = *vc;
+					oldPcore->nrVCores++;
+					indiv->pcores[newAllocationIndex].nrVCores--;
+					vc->pcore->utilization = calculateUtilization(vc->pcore);
+					oldPcore->utilization = calculateUtilization(oldPcore);
+
+
+				} // end if
+			
+			} //end for
+		} // end while
+	} // end for
 
 	return 0;
 }
+
+
+int printChromosome(machine * m, FILE * chromosomeFile){
+
+	int i,j;
+	pcore pCore;
+	vcore vCore;
+
+	for (i = 0; i < m->nrPcores; i++) {
+		pCore = m->pcores[i];
+		for (j = 0; j <  m->pcores[i].nrVCores ; ++j) {
+			vCore =  m->pcores[i].vcores[j];
+			
+	//fprintf(chromosomeFile, "%s", "Machine number, TDF, PHYSICAL CORE id, U, Vcore id, Slice, Period, Pcore\n");
+	fprintf(chromosomeFile,"%d, %d, %d, %f, %d, %f, %f, %d\n", 
+			m->id, 
+			m->vm->tdf,
+			m->pcores[i].id,
+			m->pcores[i].utilization, 
+			m->pcores[i].vcores[j].id,
+			(float)m->pcores[i].vcores[j].slice,
+			(float)m->pcores[i].vcores[j].period,
+			m->pcores[i].vcores[j].pcore->id);
+		} //end for
+
+	} // end for
+
+	return 0;
+}
+
 
 int printMachineParameters(machine * m){
 
 	int i,j;
-	//	pcore pCore;
-	//	vcore vCore;
-	printf("Machine number: %d\n", m->id);
-	printf("Fitness %f\n", m->fitness);
-	printf("Time dilation factor %d\n",	m->vm->tdf);
-	printf("Number of pcores %d\n", m->nrPcores);
-	
-	/*	for (i = 0; i < m->nrPcores; i++) {
+	pcore pCore;
+	vcore vCore;
+	printf("********* Machine Parameters *********\n");
+	printf("Machine number: %d, Fitness: %f, TDF: %d, #Pcores %d \n", 
+		m->id, 
+		m->fitness,
+		m->vm->tdf,
+		m->nrPcores);
 
-	  //pCore = m->pcores[i];
-		printf("For pcore number %d:\n", m->pcores[i].id);
-		printf("Maximum utilization %f\n",  m->pcores[i].maxUtilization);
-		printf("Actual utilization %f\n",  m->pcores[i].utilization);
-		printf("Number of virtual cores %d \n",  m->pcores[i].nrVCores);
-		printf("For the virtual cores allocated to pcore number %d: \n", m->pcores[i].id);
+	printf("MACHINE %d PHYSICAL CORES:\n", m->id);
+	for (i = 0; i < m->nrPcores; i++) {
 
+		pCore = m->pcores[i];
+		printf("PHYSICAL CORE: %d, MaxU: %f, U:%f, #Vcores: %d\n", 
+			m->pcores[i].id, 
+			m->pcores[i].maxUtilization, 
+			m->pcores[i].utilization, 
+			m->pcores[i].nrVCores);
+
+		printf("PHYSICAL CORE %d VIRTUAL CORES:\n", m->pcores[i].id);
 
 		for (j = 0; j <  m->pcores[i].nrVCores ; ++j) {
 
-		  //vCore =  m->pcores[i].vcores[j];
-			printf("For vcore number %d:\n",m->pcores[i].vcores[j].id);
-		    printf("Slice %f\n",(float)m->pcores[i].vcores[j].slice);
-		    printf("Period %f",(float)m->pcores[i].vcores[j].period);
-		    printf("CPU Speed (Khz) %d \n",m->pcores[i].vcores[j].speedKhz);
-            printf("Physical core id %d \n", m->pcores[i].vcores[j].pcore->id);
-
+			vCore =  m->pcores[i].vcores[j];
+			printf("Vcore: %d, Slice: %f, Period: %f, CPUSpeed: %d, Pcore %d\n",
+				m->pcores[i].vcores[j].id,
+				(float)m->pcores[i].vcores[j].slice,
+				(float)m->pcores[i].vcores[j].period,
+				m->pcores[i].vcores[j].speedKhz,
+				m->pcores[i].vcores[j].pcore->id);
 		}
 
 	}
-	*/
 
 	return 0;
 }
+
+
 /*
 int free(ga) {
   int i, j, k, l;
@@ -543,44 +751,59 @@ int free(ga) {
 
 int main(){
 
-	printf(" *** Real time multiprocessor allocator***\n");
+	//printf(" *** Real time multiprocessor allocator***\n");
 
 	int i;
-	int maxGen = MAXGEN;
+	int maxGen = MAXGEN+1;
 	int nrGen = 0;			// Number of generations
 	ga * ga = (struct ga *) malloc(sizeof(struct ga));
+	FILE * chromosomeFile;
+	remove("chromosome.txt");
+	chromosomeFile = fopen("chromosome.txt", "w");
+	fprintf(chromosomeFile, "%s", "Machine number, TDF, PHYSICAL CORE id, U, Vcore id, Slice, Period, Pcore\n");
+	FILE * fitnessFile;
+	remove("fitness.txt");
+	fitnessFile = fopen("fitness.txt", "w");
+	fprintf(fitnessFile, "%s", "Number of generations, Best fitness, Average fitness \n");
 	srand(time(NULL));
 
-	
+	//printf("Initializing GA\n");
 	initGA(ga);
-
-	
+	//printf("Evaluating fitness\n");
 	evaluateFitness(ga);
-		
-	for (i = 0; i < ga->populationSize; i++) {
-		printMachineParameters(&(ga->population[i]));
-
-	}
-
-		
-
+	for (i = 0; i < ga->populationSize; i++) 
+		printChromosome(&(ga->population[i]), chromosomeFile);
+	fprintf(fitnessFile, "%d, %f, %f\n", nrGen, ga->bestFitness, ga->avgFitness);
+	nrGen++;
+	//for (i = 0; i < ga->populationSize; i++) 
+	//	printMachineParameters(&(ga->population[i]));
 
 	while(nrGen < maxGen && ga->bestFitness<1.0 ){
-	  printf("Generation Number %d:\n", nrGen);
+
+		//printf("Selection for gen %d ...\n", nrGen);
 		selection(ga);
-			crossover(ga);
-			/*evaluateFitness(ga);
-		/*	for (i = 0; i < ga->populationSize; i++) {
-		  printMachineParameters(&(ga->population[i]));
-		}
-		*/
+		//printf("Mutation for gen %d ...\n", nrGen);
+		mutation(ga);
+		//printf("Crossover for gen %d ...\n", nrGen);
+		crossover(ga);
+		//printf("Evaluating fitness for gen %d ...\n", nrGen);
+		evaluateFitness(ga);
+		for (i = 0; i < ga->populationSize; i++) 
+			printChromosome(&(ga->population[i]), chromosomeFile);
+		fprintf(fitnessFile, "%d, %f, %f\n", nrGen, ga->bestFitness, ga->avgFitness);
+	/*	printf("Number of generations %d, ", nrGen);
+		printf("Best fitness: %f, ", ga->bestFitness);
+		printf("Average fitness: %f \n", ga->avgFitness);
+
+		//for (i = 0; i < ga->populationSize; i++)
+		//  printMachineParameters(&(ga->population[i]));
+	*/	
 		nrGen++;
 			
-		//mutation(ga);
-
-		
-	}
-	
+	} // end while
+ 
+	fclose(chromosomeFile);
+	fclose(fitnessFile);
         free(ga);
 	return 0;
 
