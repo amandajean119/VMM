@@ -62,20 +62,20 @@ Since optimizing the allocation and scheduling of tasks on real-time multiproces
 
 \section{Methods}
 
-For our project, we plan to write a genetic algorithm in C that evolves ideal parameters for task allocation on real-time multiprocessors. Our chromosome will consist of a TDF for each virtual machine, slice and period values for every core of every virtual machine, and an allocation matching of a virtual core to a physical core for every virtual core. All of the values evolved must meet the requirements detailed above, so we will check every chromosome for that after each step of evolution. Our fitness function will be 
+Our program is a genetic algorithm that evolves ideal parameters for task allocation on real-time multiprocessors. This program is written in C, so that it easily interfaces with existing virtualization software. We input the number of machines in the population, the number of generations for the algorithm to run, and the number of virtual cores in the virtual machine. We select random values in a fixed range for the maximum utilization value for each physical core and the CPU speed for both the physical and virtual cores. These values are fixed across the different machines in the population: for example in every machine physical core number 1 will have the same max utilization and speed values. Our chromosome consists of a TDF for each virtual machine, slice and period values for every core of every virtual machine, and an allocation matching of a virtual core to a physical core for every virtual core. All of the values evolved must meet the requirements detailed above, so we will check every chromosome for that after each step of evolution. Our fitness function will be 
 
 \begin{center}
 
-$fitness = \frac{\sum_{i=1}^{n} \frac{Uachieved_i}{Umax_i}}{n}$
+$fitness = \frac{\sum_{i=1}^{n} \frac{U_{achieved_i}}{U_{max_i}}}{TDF*n}$
 
 \begin{flushleft}
 Where,
 
 $n =$ number of physical cores.
 
-$Uachieved_{i} =$ Achieved utilization for physical core i.
+$U_{achieved_{i}} =$ Achieved utilization for physical core i.
 
-$Umax_{i} =$ Maximum utilization for physical core i.
+$U_{max_{i}} =$ Maximum utilization for physical core i.
 \end{flushleft}
 
 \end{center}
@@ -85,6 +85,10 @@ This fitness function measures how close to full each of our physical CPUs are. 
 Our first step will be to write our basic genetic algorithm. Based on the work we have done on the previous project, we feel that this will not be too difficult. The extra step we will have to add in is checking whether the evolved components meet the requirements described above. Our next step will be to experiment with a variety of mutation rates and types, crossover rates and types, and selection types. We want to generate a table similar to those in Project 2.1. We will also graph the evolving chromosomes to get a feel for the change in parameters over time.
 
 Once we have found the best set of parameters, we plan to do many runs of the algorithm and collect the top performing chromosomes. We then plan to compare them and find the overall top three. In order to get a feel for how our evolved chromosomes perform in real situations, we would like to test these parameters in the Palacios Virtual Machine Monitor, which is a free software package that Oscar currently works with~\cite{Mondragon:13}. This is not planned to be a major component of our project, but we think it would help inform whether our choice of the fitness function made sense. 
+
+\section{Results}
+
+\section{Conclusion}
 
 \bibliographystyle{abbrv}
 \bibliography{finalProj_report}
