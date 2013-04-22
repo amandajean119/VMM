@@ -668,7 +668,7 @@ int mutation(ga * ga){
 		  }
 		
 		}
-		mutAlloc = -1;// end if
+		mutAlloc = -1;    // end if
 		counter++;
 	      } //end while
 	      if (counter >= 100) {
@@ -791,8 +791,8 @@ int main(){
 	remove("fitness.txt");
 	remove("chromosome.txt");
 	
-	fitnessFile = fopen("fitness.txt", "a");
-	chromosomeFile = fopen("chromosome.txt", "a");
+	fitnessFile = fopen("fitness.txt", "w");
+	chromosomeFile = fopen("chromosome.txt", "w");
 	
 	fprintf(fitnessFile, "%s", "Number of generations, Best fitness, Average fitness \n");
 	fprintf(chromosomeFile, "%s", "Machine number, TDF, PHYSICAL CORE id, U, Vcore id, Slice, Period, Pcore\n");
