@@ -10,7 +10,8 @@
 #include <stdlib.h>     /* malloc, free, rand */
 #include <time.h>       /* srand */
 
-#define MAXGEN 1000
+
+#define MAXGEN 100
 #define MAXCPU 10000000
 #define MINCPU 1000000
 #define MAXU 100
@@ -21,7 +22,7 @@
 #define MINSLICE 1000
 #define MAXPERIOD 10000000
 #define MINPERIOD 10000
-#define POPULATION 400
+#define POPULATION 1000
 #define PCORES 50
 #define VCORES 450
 #define CROSSRATE 0.2
@@ -149,8 +150,9 @@ int initGA(struct ga * ga){
 
   for (i = 0; i < ga->populationSize; i++) {
 
- //   printf("next machine %d\n", i);
+ //   
     ga->population[i].id = i;
+//printf("next machine %d\n", ga->population[i].id);
     pcore * pcores =  (pcore *) malloc(nrPcores*sizeof(pcore));
     vm * vm = (struct vm *) malloc(sizeof(struct vm));
     
@@ -269,6 +271,7 @@ int selection(ga * ga){
 	machine elite = ga->population[ga->bestMachineIndex];
 	machine * newPopulation = (machine*) malloc(POPULATION*sizeof(machine));
 	newPopulation[0] = elite;
+	newPopulation[0].id = 0;
 	ga->bestMachineIndex = 0;
 	int i, index1, index2;
 	for (i = 1; i < POPULATION; i++) {
@@ -280,6 +283,7 @@ int selection(ga * ga){
 			newPopulation[i] = ga->population[index1];
 		else
 			newPopulation[i] = ga->population[index2];
+		newPopulation[i].id = i;
 	}
 	free(ga->population);
 	ga->population = newPopulation;
@@ -581,8 +585,10 @@ int removeVcoreFromPcore(pcore * pc, int vcId){
 int mutation(ga * ga){
 	
 
-	int i, j, k, newTdf, newPeriod, newSlice, newAllocationIndex;
+  int i, j, k, mutAlloc, oldPeriod, newPeriod, oldSlice, newSlice, newAllocationIndex;
 	machine * indiv;
+	vcore * vc;
+	pcore * oldPcore;
 	/*for (i = 0; i < POPULATION; i++) {
 		for(j =0; j< VCORES; j++){
 			printf("machine %d, vcore %d\n",i,ga->population[i].vm->vcores[j].id);
@@ -590,69 +596,124 @@ int mutation(ga * ga){
 
 	}*/ // end for
 
-	int satisfies = -1;
+	int satisfies, counter;
 	//printf("IN MUTATION\n");
 	for (i = 0; i < POPULATION; ++i) {
-		indiv = &ga->population[i];
-		while (satisfies == -1) {
-			if(rand() > MUTRATE){
-				newTdf = rand() % (ga->aConfig->maxTdf - ga->aConfig->minTdf) + ga->aConfig->minTdf;
-				//newTdf = indiv->vm->tdf + (rand()%2 -1);
-				if(newTdf>= MINTDF && newTdf<= MAXTDF)
-					indiv->vm->tdf = newTdf;
-			}
+	  // satisfies = -1;
+	 
+	  indiv = &ga->population[i];
+	 
+	    /*	  oldTDF = indiv->vm->tdf;
+		  if(rand() > MUTRATE){
+		  newTdf = rand() % (ga->aConfig->maxTdf - ga->aConfig->minTdf) + ga->aConfig->minTdf;
+		  //newTdf = indiv->vm->tdf + (rand()%2 -1);
+		  if(newTdf>= MINTDF && newTdf<= MAXTDF)
+		  indiv->vm->tdf = newTdf;
+		  }
+	    */
+	    for (j = 0; j < VCORES; j++) {
+	      satisfies = -1;
+	      counter = 0;
+	      mutAlloc = -1;
+	      while (satisfies == -1 && counter < 100) {
+		//	printf("inside mutation while, individual %d, vcore %d\n", i, j);
+	     
+	      
+		vc = &indiv->vm->vcores[j];
+		oldPeriod = vc->period;
+		oldSlice = vc->slice;
+		
+		//printf("IN MUTATION WHILE LOOP\n");
+		if(rand() > MUTRATE){
+		  
+		  newPeriod = vc->period + (rand() % 2 - 1);
+		  if(newPeriod>= MINPERIOD && newPeriod<= MAXPERIOD) 
+		    vc->period = newPeriod;
 
-			for (j = 0; j < VCORES; j++) {
-				satisfies = -1;
+		}
+		if(rand() > MUTRATE){
+		  
+		  newSlice = vc->slice + (rand() % 2 - 1);
+		  if(newSlice>= MINSLICE && newSlice<= MAXSLICE)
+		    vc->slice = newSlice;
+		}
+		
+		oldPcore = vc->pcore;
+		
+		if(rand() > MUTRATE){
+		  
+		  // We must add vc to the list of vcores of vc->pcore
+		  // and remove it from the list of vcores of the old pcore and decrement the nrVcores in that pcore
+		  mutAlloc = 0;
+		  removeVcoreFromPcore(oldPcore, vc->id);
+		  newAllocationIndex = (rand() % indiv->nrPcores);
+		  vc->pcore = &indiv->pcores[newAllocationIndex];
+		  
+		  vc->pcore->vcores[vc->pcore->nrVCores] = *vc;
+		  indiv->pcores[newAllocationIndex].nrVCores++;
+		  vc->pcore->utilization = calculateUtilization(vc->pcore);
+		  
+		} //end if
+		satisfies = checkConstraints(vc->pcore, ga->population[i].vm);
+		if (satisfies == -1){
+		  vc->period = oldPeriod;
+		  vc->slice = oldSlice;
+		  if (mutAlloc = 0) {
+		    vc->pcore = oldPcore;	
+		    oldPcore->vcores[oldPcore->nrVCores] = *vc;
+		    oldPcore->nrVCores++;
+		    indiv->pcores[newAllocationIndex].nrVCores--;
+		    vc->pcore->utilization = calculateUtilization(vc->pcore);
+		    oldPcore->utilization = calculateUtilization(oldPcore);
+		  }
+		
+		}
+		mutAlloc = -1;    // end if
+		counter++;
+	      } //end while
+	      if (counter >= 100) {
+		vc->period = oldPeriod;
+		vc->slice = oldSlice;
+		vc->pcore = oldPcore;	
+		oldPcore->vcores[oldPcore->nrVCores] = *vc;
+		oldPcore->nrVCores++;
+		indiv->pcores[newAllocationIndex].nrVCores--;
+		vc->pcore->utilization = calculateUtilization(vc->pcore);
+		oldPcore->utilization = calculateUtilization(oldPcore);
+	      }
+	    } //end for vcores
+	} // end for population
+	
+	return 0;
+}
 
-				vcore * vc = &indiv->vm->vcores[j];
 
-				//printf("IN MUTATION WHILE LOOP\n");
-				if(rand() > MUTRATE){
-					newPeriod = vc->period + (rand() % 2 - 1);
-					if(newPeriod>= MINPERIOD && newPeriod<= MAXPERIOD)
-						vc->period = newPeriod;
-				}
-				if(rand() > MUTRATE){
-					newSlice = vc->slice + (rand() % 2 - 1);
-					if(newSlice>= MINSLICE && newSlice<= MAXSLICE)
-						vc->slice = newSlice;
-				}
+int printChromosome(machine * m, FILE * chromosomeFile){
 
-				pcore * oldPcore = vc->pcore;
+	int i,j;
+	pcore pCore;
+	vcore vCore;
 
-				if(rand() > MUTRATE){
-
-					// We must add vc to the list of vcores of vc->pcore
-					// and remove it from the list of vcores of the old pcore and decrement the nrVcores in that pcore
-										
-					removeVcoreFromPcore(oldPcore, vc->id);
-					newAllocationIndex = (rand() % indiv->nrPcores);
-					vc->pcore = &indiv->pcores[newAllocationIndex];
-				
-					vc->pcore->vcores[vc->pcore->nrVCores] = *vc;
-					indiv->pcores[newAllocationIndex].nrVCores++;
-					vc->pcore->utilization = calculateUtilization(vc->pcore);
-
-				} //end if
-				satisfies = checkConstraints(vc->pcore, ga->population[i].vm);
-				if (satisfies == -1){
-					vc->pcore = oldPcore;	
-					oldPcore->vcores[oldPcore->nrVCores] = *vc;
-					oldPcore->nrVCores++;
-					indiv->pcores[newAllocationIndex].nrVCores--;
-					vc->pcore->utilization = calculateUtilization(vc->pcore);
-					oldPcore->utilization = calculateUtilization(oldPcore);
-
-
-				} // end if
-			
-			} //end for
-		} // end while
+	for (i = 0; i < m->nrPcores; i++) {
+		pCore = m->pcores[i];
+		for (j = 0; j <  m->pcores[i].nrVCores ; ++j) {
+			vCore =  m->pcores[i].vcores[j];
+			fprintf(chromosomeFile,"%d, %d, %d, %f, %d, %f, %f, %d\n", 
+				m->id, 
+				m->vm->tdf,
+				m->pcores[i].id,
+				m->pcores[i].utilization, 
+				m->pcores[i].vcores[j].id,
+				(float)m->pcores[i].vcores[j].slice,
+				(float)m->pcores[i].vcores[j].period,
+				m->pcores[i].vcores[j].pcore->id);
+		} //end for
+		
 	} // end for
 
 	return 0;
 }
+
 
 int printMachineParameters(machine * m){
 
@@ -717,47 +778,70 @@ int free(ga) {
 
 int main(){
 
-	printf(" *** Real time multiprocessor allocator***\n");
+	//printf(" *** Real time multiprocessor allocator***\n");
 
 	int i;
 	int maxGen = MAXGEN+1;
 	int nrGen = 0;			// Number of generations
 	ga * ga = (struct ga *) malloc(sizeof(struct ga));
+	
+	FILE * fitnessFile;
+	FILE * chromosomeFile;
+	
+	remove("fitness.txt");
+	remove("chromosome.txt");
+	
+	fitnessFile = fopen("fitness.txt", "w");
+	chromosomeFile = fopen("chromosome.txt", "w");
+	
+	fprintf(fitnessFile, "%s", "Number of generations, Best fitness, Average fitness \n");
+	fprintf(chromosomeFile, "%s", "Machine number, TDF, PHYSICAL CORE id, U, Vcore id, Slice, Period, Pcore\n");
+	
 	srand(time(NULL));
 
 	//printf("Initializing GA\n");
 	initGA(ga);
 	//printf("Evaluating fitness\n");
 	evaluateFitness(ga);
-	printf("Number of generations %d, ", nrGen);
-	printf("Best fitness: %f, ", ga->bestFitness);
-	printf("Average fitness: %f \n", ga->avgFitness);
+	fprintf(fitnessFile, "%d, %f, %f\n", nrGen, ga->bestFitness, ga->avgFitness);
+	fprintf(chromosomeFile, "%s", "Generation 0\n");
+	for (i = 0; i < ga->populationSize; i++) 
+	  printChromosome(&(ga->population[i]), chromosomeFile);
+	
+	
 	nrGen++;
 	//for (i = 0; i < ga->populationSize; i++) 
 	//	printMachineParameters(&(ga->population[i]));
 
 	while(nrGen < maxGen && ga->bestFitness<1.0 ){
 
-	  //printf("Selection for gen %d ...\n", nrGen);
+		//printf("Selection for gen %d ...\n", nrGen);
 		selection(ga);
 		//printf("Mutation for gen %d ...\n", nrGen);
 		mutation(ga);
-		//printf("Crossover for gen %d ...\n", nrGen);
+		//	printf("Crossover for gen %d ...\n", nrGen);
 		crossover(ga);
 		//printf("Evaluating fitness for gen %d ...\n", nrGen);
-		evaluateFitness(ga);
-		printf("Number of generations %d, ", nrGen);
+		//evaluateFitness(ga);
+		fprintf(fitnessFile, "%d, %f, %f\n", nrGen, ga->bestFitness, ga->avgFitness);
+		fprintf(chromosomeFile, "Generation %d", nrGen);		
+		for (i = 0; i < ga->populationSize; i++) 
+		  printChromosome(&(ga->population[i]), chromosomeFile);
+	
+	/*	printf("Number of generations %d, ", nrGen);
 		printf("Best fitness: %f, ", ga->bestFitness);
 		printf("Average fitness: %f \n", ga->avgFitness);
 
 		//for (i = 0; i < ga->populationSize; i++)
 		//  printMachineParameters(&(ga->population[i]));
-		
+	*/
+	
 		nrGen++;
 			
 	} // end while
  
-	
+	fclose(chromosomeFile);
+	fclose(fitnessFile);
         free(ga);
 	return 0;
 

@@ -22,11 +22,11 @@
 #define MINSLICE 1000
 #define MAXPERIOD 10000000
 #define MINPERIOD 10000
-#define POPULATION 1000
+#define POPULATION 100
 #define PCORES 50
 #define VCORES 450
-#define CROSSRATE 0.2
-#define MUTRATE 0.2
+#define CROSSRATE 1
+#define MUTRATE 1
 
 
 float calculateUtilization(pcore * pcore) {
@@ -822,7 +822,7 @@ int main(){
 		//	printf("Crossover for gen %d ...\n", nrGen);
 		crossover(ga);
 		//printf("Evaluating fitness for gen %d ...\n", nrGen);
-		//evaluateFitness(ga);
+		evaluateFitness(ga);
 		fprintf(fitnessFile, "%d, %f, %f\n", nrGen, ga->bestFitness, ga->avgFitness);
 		fprintf(chromosomeFile, "Generation %d", nrGen);		
 		for (i = 0; i < ga->populationSize; i++) 
