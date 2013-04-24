@@ -353,6 +353,29 @@ int evaluateFitness(ga * ga){
 
 }
 
+int selectionNoElitism(ga * ga){
+  //	machine elite = ga->population[ga->bestMachineIndex];
+	machine * newPopulation = (machine*) malloc(POPULATION*sizeof(machine));
+	//	newPopulation[0] = elite;
+	//newPopulation[0].id = 0;
+	ga->bestMachineIndex = 0;
+	int i, index1, index2;
+	for (i = 0; i < POPULATION; i++) {
+		index1 = rand() % POPULATION;
+		index2 = rand() % POPULATION;
+		//printf("Fitness1 %f\n", ga->population[index1].fitness);
+		//printf("Fitness2 %f\n", ga->population[index2].fitness);
+		if (ga->population[index1].fitness > ga->population[index2].fitness)
+			newPopulation[i] = ga->population[index1];
+		else
+			newPopulation[i] = ga->population[index2];
+		newPopulation[i].id = i;
+	}
+	free(ga->population);
+	ga->population = newPopulation;
+	return 0;
+}
+
 /*
  * Select the best individuals from the population
  */
@@ -694,17 +717,19 @@ int mutation(ga * ga){
 		
 		//printf("IN MUTATION WHILE LOOP\n");
 		if(rand() > MUTRATE){
-		  
-		  newPeriod = vc->period + (rand() % 2 - 1);
-		  if(newPeriod>= MINPERIOD && newPeriod<= MAXPERIOD) 
-		    vc->period = newPeriod;
+		  vc->period =
+		    rand() % (ga->aConfig->maxPeriod - ga->aConfig->minPeriod) + ga->aConfig->minPeriod;
+		  //newPeriod = vc->period + (rand() % 2 - 1);
+		  //if(newPeriod>= MINPERIOD && newPeriod<= MAXPERIOD) 
+		  //vc->period = newPeriod;
 
 		}
 		if(rand() > MUTRATE){
-		  
-		  newSlice = vc->slice + (rand() % 2 - 1);
-		  if(newSlice>= MINSLICE && newSlice<= MAXSLICE)
-		    vc->slice = newSlice;
+		  vc->slice =
+		    rand() % (ga->aConfig->maxSlice - ga->aConfig->minSlice) + ga->aConfig->minSlice;
+		  //		  newSlice = vc->slice + (rand() % 2 - 1);
+		  //if(newSlice>= MINSLICE && newSlice<= MAXSLICE)
+		  //vc->slice = newSlice;
 		}
 		
 		oldPcoreIndex = vc->pcore->id;
