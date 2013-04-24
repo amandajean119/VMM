@@ -22,29 +22,14 @@ plot(1:length(csv1(:,4)), csv1(:,4), '--b', 'LineWidth', 1.2);
 plot(1:length(csv5(:,3)), csv5(:,3), 'g', 'LineWidth', 1.2);
 plot(1:length(csv5(:,4)), csv5(:,4), '--g', 'LineWidth', 1.2);
 set(gca, 'fontsize', 20)
-title('No Crossover, no mutation, with and without elitism  ', 'fontsize', 25);
+title('No Crossover, no mutation  ', 'fontsize', 25);
 axis([0, 50, 0.0, 1.0]);
 xlabel('Generations','FontSize', 25);
 ylabel('Fitness','FontSize', 25);
-h_legend = legend('No elitism Best Fitness', 'No elitism Avg Fitness', 'With elitism Best Fitness', 'With elitism Avg Fitness','Location','NorthWest');
+h_legend = legend('No elitism Best Fitness', 'No elitism Avg Fitness', 'With elitism Best Fitness', 'With elitism Avg Fitness','Location','SouthEast');
 set(h_legend,'FontSize',15);
-print('-dpng', '-r200', filename);
-hold off;
-
-hold on;
-plot(1:length(csv1(:,3)), csv1(:,3), 'b', 'LineWidth', 1.2);
-plot(1:length(csv1(:,4)), csv1(:,4), '--b', 'LineWidth', 1.2);
-plot(1:length(csv5(:,3)), csv5(:,3), 'g', 'LineWidth', 1.2);
-plot(1:length(csv5(:,4)), csv5(:,4), '--g', 'LineWidth', 1.2);
-set(gca, 'fontsize', 20)
-title('No Crossover, no mutation, with and without elitism  ', 'fontsize', 25);
-axis([0, 50, 0.0, 1.0]);
-xlabel('Generations','FontSize', 25);
-ylabel('Fitness','FontSize', 25);
-h_legend = legend('No elitism Best Fitness', 'No elitism Avg Fitness', 'With elitism Best Fitness', 'With elitism Avg Fitness','Location','NorthWest');
-set(h_legend,'FontSize',15);
-print('-dpng', '-r200', filename);
-hold off;
+print('-dpng', '-r200', filename1);
+clf;
 
 hold on;
 plot(1:length(csv2(:,3)), csv2(:,3), 'b', 'LineWidth', 1.2);
@@ -52,14 +37,14 @@ plot(1:length(csv2(:,4)), csv2(:,4), '--b', 'LineWidth', 1.2);
 plot(1:length(csv6(:,3)), csv6(:,3), 'g', 'LineWidth', 1.2);
 plot(1:length(csv6(:,4)), csv6(:,4), '--g', 'LineWidth', 1.2);
 set(gca, 'fontsize', 20)
-title('No Crossover, 80% mutation rate, with and without elitism  ', 'fontsize', 25);
+title('No Crossover, 0.8 mutation rate  ', 'fontsize', 25);
 axis([0, 50, 0.0, 1.0]);
 xlabel('Generations','FontSize', 25);
 ylabel('Fitness','FontSize', 25);
-h_legend = legend('No elitism Best Fitness', 'No elitism Avg Fitness', 'With elitism Best Fitness', 'With elitism Avg Fitness','Location','NorthWest');
+h_legend = legend('No elitism Best Fitness', 'No elitism Avg Fitness', 'With elitism Best Fitness', 'With elitism Avg Fitness','Location','SouthEast');
 set(h_legend,'FontSize',15);
-print('-dpng', '-r200', filename);
-hold off;
+print('-dpng', '-r200', filename2);
+clf;
 
 hold on;
 plot(1:length(csv3(:,3)), csv3(:,3), 'b', 'LineWidth', 1.2);
@@ -67,14 +52,14 @@ plot(1:length(csv3(:,4)), csv3(:,4), '--b', 'LineWidth', 1.2);
 plot(1:length(csv7(:,3)), csv7(:,3), 'g', 'LineWidth', 1.2);
 plot(1:length(csv7(:,4)), csv7(:,4), '--g', 'LineWidth', 1.2);
 set(gca, 'fontsize', 20)
-title('80% Crossover rate, no mutation, with and without elitism  ', 'fontsize', 25);
+title('0.8 Crossover rate, no mutation  ', 'fontsize', 25);
 axis([0, 50, 0.0, 1.0]);
 xlabel('Generations','FontSize', 25);
 ylabel('Fitness','FontSize', 25);
-h_legend = legend('No elitism Best Fitness', 'No elitism Avg Fitness', 'With elitism Best Fitness', 'With elitism Avg Fitness','Location','NorthWest');
+h_legend = legend('No elitism Best Fitness', 'No elitism Avg Fitness', 'With elitism Best Fitness', 'With elitism Avg Fitness','Location','SouthEast');
 set(h_legend,'FontSize',15);
-print('-dpng', '-r200', filename);
-hold off;
+print('-dpng', '-r200', filename3);
+clf;
 
 hold on;
 plot(1:length(csv4(:,3)), csv4(:,3), 'b', 'LineWidth', 1.2);
@@ -82,11 +67,11 @@ plot(1:length(csv4(:,4)), csv4(:,4), '--b', 'LineWidth', 1.2);
 plot(1:length(csv8(:,3)), csv8(:,3), 'g', 'LineWidth', 1.2);
 plot(1:length(csv8(:,4)), csv8(:,4), '--g', 'LineWidth', 1.2);
 set(gca, 'fontsize', 20)
-title('80% Crossover rate, 80% mutation rate, with and without elitism  ', 'fontsize', 25);
+title('0.8 Crossover rate, 0.8 mutation rate  ', 'fontsize', 25);
 axis([0, 50, 0.0, 1.0]);
 xlabel('Generations','FontSize', 25);
 ylabel('Fitness','FontSize', 25);
-h_legend = legend('No elitism Best Fitness', 'No elitism Avg Fitness', 'With elitism Best Fitness', 'With elitism Avg Fitness','Location','NorthWest');
+h_legend = legend('No elitism Best Fitness', 'No elitism Avg Fitness', 'With elitism Best Fitness', 'With elitism Avg Fitness','Location','SouthEast');
 set(h_legend,'FontSize',15);
-print('-dpng', '-r200', filename);
-hold off;
+print('-dpng', '-r200', filename4);
+clf;
