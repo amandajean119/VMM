@@ -426,7 +426,7 @@ int crossover(ga * ga){
 	
 	int i, indexP1, indexP2, pcoreId;
 	int crossCounter = 0;
-	int nrNewPop = 0;
+	int nrNewPop = -1;
 	int satisfies = -1;
 	machine * newPopulation = (machine*) malloc(POPULATION*sizeof(machine));
         newPopulation[0] = ga->population[0]; // elite
@@ -446,7 +446,7 @@ int crossover(ga * ga){
 		p2 = &ga->population[indexP2];
 
 
-		if((p1->id != newPopulation[0].id) && (p2->id != newPopulation[0].id)){ // avoid elite      
+		//		if((p1->id != newPopulation[0].id) && (p2->id != newPopulation[0].id)){ // avoid elite      
 		// Children pointers
 
 		ch1 = (machine *) malloc(sizeof(machine));
@@ -661,7 +661,7 @@ int crossover(ga * ga){
 			newPopulation[++nrNewPop] = *ch2;
 		satisfies = -1;
 		crossCounter = 0;
-	    } // end if elite
+		//	    } // end if elite
         } // end while population
         
         freePopulation(ga->population, ga->populationSize);
@@ -688,7 +688,7 @@ int mutation(ga * ga){
 	for (i = 1; i < POPULATION; i++) {
 	    indiv = &ga->population[i];
 
-	    if(indiv->id != ga->bestMachineIndex){ // Do not mutate elite 
+	    //    if(indiv->id != ga->bestMachineIndex){ // Do not mutate elite 
         
 	        for (j = 0; j < VCORES; j++) {
 		      satisfies = -1;
@@ -746,7 +746,7 @@ int mutation(ga * ga){
 			counter++;
 		      } //end while
 		    } //end for vcores
-	     } // end of if elite
+		//	     } // end of if elite
 	} // end for population
 	
 	return 0;

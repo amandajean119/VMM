@@ -1,4 +1,3 @@
-Number of generations, Best Machine, Best fitness, Average fitness 
 0, 16, 0.447056, 0.218801
 1, 57, 0.667244, 0.354025
 2, 35, 0.689060, 0.352962

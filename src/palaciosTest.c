@@ -24,7 +24,7 @@
 #define MINPERIOD 1000
 #define POPULATION 100
 #define PCORES 3
-#define VCORES 12
+#define VCORES 6
 
 #define CROSSRATE 0.5
 #define MUTRATE 0.5
@@ -757,17 +757,18 @@ int printChromosome(machine * m, FILE * chromosomeFile){
 	int i,j;
 	for (i = 0; i < m->nrPcores; i++) {   
 		for (j = 0; j <  m->pcores[i].nrVCores ; ++j) { 
-			fprintf(chromosomeFile,"%d, %f, %d, %d, %f, %f, %d, %f, %f, %d\n", 
+			fprintf(chromosomeFile,"%d, %f, %d, %d, %d, %f, %f, %d, %d, %f, %f\n", 
 				m->id, 
 				m->fitness,
 				m->vm->tdf,
 				m->pcores[i].id,
+				m->pcores[i].speedKhz,
 				m->pcores[i].utilization/m->vm->tdf, 
 				m->pcores[i].maxUtilization, 
 				m->pcores[i].vcores[j].id,
+				m->pcores[i].vcores[j].speedKhz,
 				(float)m->pcores[i].vcores[j].slice,
-				(float)m->pcores[i].vcores[j].period,
-				m->pcores[i].vcores[j].pcore->id);
+				(float)m->pcores[i].vcores[j].period);
 		} //end for
 		
 	} // end for
@@ -837,7 +838,6 @@ int main(){
 	chromosomeFile = fopen("chromosomePalaciosTest.txt", "w");
 	
 	fprintf(fitnessFile, "%s", "Number of generations, Best Machine, Best fitness, Average fitness \n");
-	fprintf(chromosomeFile, "%s", "Machine number, Fitness, TDF, PHYSICAL CORE id, U, Umax, Vcore id, Slice, Period, Pcore\n");
 	
 	srand(time(NULL));
 
@@ -848,6 +848,8 @@ int main(){
         
 	fprintf(fitnessFile, "%d, %d, %f, %f\n", nrGen, ga->bestMachineIndex,ga->bestFitness, ga->avgFitness);
 	fprintf(chromosomeFile, "%s", "Generation 0\n");
+        fprintf(chromosomeFile, "%s", "Machine, Fitness, TDF, Pcore, Pcore Speed(Khz), U, Umax, Vcore, Vcore Speed(Khz), Slice, Period\n");
+	
 	for (i = 0; i < ga->populationSize; i++){ 
 		    if(ga->population[i].id == ga->bestMachineIndex)	
 	            	printChromosome(&(ga->population[i]), chromosomeFile);
@@ -868,6 +870,7 @@ int main(){
 	
         	fprintf(fitnessFile, "%d, %d, %f, %f\n", nrGen, ga->bestMachineIndex, ga->bestFitness, ga->avgFitness);
 		fprintf(chromosomeFile, "Generation %d\n", nrGen);
+                fprintf(chromosomeFile, "%s", "Machine, Fitness, TDF, Pcore, Pcore Speed(Khz), U, Umax, Vcore, Vcore Speed(Khz), Slice, Period\n");
 		printChromosome(&(ga->population[0]), chromosomeFile);
         
 		nrGen++;

@@ -1,0 +1,1074 @@
+early console in setup code
+[    0.000000] Initializing cgroup subsys cpuset
+[    0.000000] Initializing cgroup subsys cpu
+[    0.000000] Linux version 2.6.37 (root@localhost.localdomain) (gcc version 4.6.3 20120306 (Red Hat 4.6.3-2) (GCC) ) #1 SMP Tue Jan 29 17:46:14 EST 2013
+[    0.000000] Command line: movablecore=262144 hpet=disable debug earlyprintk=ttyS0,keep
+[    0.000000] BIOS-provided physical RAM map:
+[    0.000000]  BIOS-e820: 0000000000000000 - 000000000009f400 (usable)
+[    0.000000]  BIOS-e820: 000000000009f400 - 00000000000a0000 (reserved)
+[    0.000000]  BIOS-e820: 00000000000f0000 - 0000000000100000 (reserved)
+[    0.000000]  BIOS-e820: 0000000000100000 - 000000007fffd000 (usable)
+[    0.000000]  BIOS-e820: 000000007fffd000 - 0000000080000000 (reserved)
+[    0.000000]  BIOS-e820: 00000000fffc0000 - 0000000100000000 (reserved)
+[    0.000000] console [earlyser0] enabled
+[    0.000000] NX (Execute Disable) protection: active
+[    0.000000] DMI 2.4 present.
+[    0.000000] DMI: /Bochs, BIOS Bochs 01/01/2007
+[    0.000000] e820 update range: 0000000000000000 - 0000000000010000 (usable) ==> (reserved)
+[    0.000000] e820 remove range: 00000000000a0000 - 0000000000100000 (usable)
+[    0.000000] No AGP bridge found
+[    0.000000] last_pfn = 0x7fffd max_arch_pfn = 0x400000000
+[    0.000000] MTRR default type: write-back
+[    0.000000] MTRR fixed ranges enabled:
+[    0.000000]   00000-9FFFF write-back
+[    0.000000]   A0000-BFFFF uncachable
+[    0.000000]   C0000-FFFFF write-protect
+[    0.000000] MTRR variable ranges enabled:
+[    0.000000]   0 base 00E0000000 mask FFE0000000 uncachable
+[    0.000000]   1 disabled
+[    0.000000]   2 disabled
+[    0.000000]   3 disabled
+[    0.000000]   4 disabled
+[    0.000000]   5 disabled
+[    0.000000]   6 disabled
+[    0.000000]   7 disabled
+[    0.000000] x86 PAT enabled: cpu 0, old 0x7040600070406, new 0x7010600070106
+[    0.000000] found SMP MP-table at [ffff8800000fdad0] fdad0
+[    0.000000] Scanning 0 areas for low memory corruption
+[    0.000000] initial memory mapped : 0 - 20000000
+[    0.000000] init_memory_mapping: 0000000000000000-000000007fffd000
+[    0.000000]  0000000000 - 007fe00000 page 2M
+[    0.000000]  007fe00000 - 007fffd000 page 4k
+[    0.000000] kernel direct mapping tables up to 7fffd000 @ 1fffc000-20000000
+[    0.000000] RAMDISK: 7bbe4000 - 7fff0000
+[    0.000000] ACPI: RSDP 00000000000fda80 00014 (v00 BOCHS )
+[    0.000000] ACPI: RSDT 000000007fffd5a0 00034 (v01 BOCHS  BXPCRSDT 00000001 BXPC 00000001)
+[    0.000000] ACPI: FACP 000000007ffffe10 00074 (v01 BOCHS  BXPCFACP 00000001 BXPC 00000001)
+[    0.000000] ACPI: DSDT 000000007fffd870 02548 (v01   BXPC   BXDSDT 00000001 INTL 20100528)
+[    0.000000] ACPI: FACS 000000007ffffdc0 00040
+[    0.000000] ACPI: SSDT 000000007fffd710 00160 (v01 BOCHS  BXPCSSDT 00000001 BXPC 00000001)
+[    0.000000] ACPI: APIC 000000007fffd620 00082 (v01 BOCHS  BXPCAPIC 00000001 BXPC 00000001)
+[    0.000000] ACPI: HPET 000000007fffd5e0 00038 (v01 BOCHS  BXPCHPET 00000001 BXPC 00000001)
+[    0.000000] ACPI: Local APIC address 0xfee00000
+[    0.000000] No NUMA configuration found
+[    0.000000] Faking a node at 0000000000000000-000000007fffd000
+[    0.000000] Initmem setup node 0 0000000000000000-000000007fffd000
+[    0.000000]   NODE_DATA [000000007fff8000 - 000000007fffcfff]
+[    0.000000]  [ffffea0000000000-ffffea0001bfffff] PMD -> [ffff880079200000-ffff88007adfffff] on node 0
+[    0.000000] Zone PFN ranges:
+[    0.000000]   DMA      0x00000010 -> 0x00001000
+[    0.000000]   DMA32    0x00001000 -> 0x00100000
+[    0.000000]   Normal   empty
+[    0.000000] Movable zone start PFN for each node
+[    0.000000]   Node 0: 523264
+[    0.000000] early_node_map[2] active PFN ranges
+[    0.000000]     0: 0x00000010 -> 0x0000009f
+[    0.000000]     0: 0x00000100 -> 0x0007fffd
+[    0.000000] On node 0 totalpages: 524172
+[    0.000000]   DMA zone: 56 pages used for memmap
+[    0.000000]   DMA zone: 6 pages reserved
+[    0.000000]   DMA zone: 3921 pages, LIFO batch:0
+[    0.000000]   DMA32 zone: 7098 pages used for memmap
+[    0.000000]   DMA32 zone: 512070 pages, LIFO batch:31
+[    0.000000]   Movable zone: 14 pages used for memmap
+[    0.000000]   Movable zone: 1007 pages, LIFO batch:0
+[    0.000000] ACPI: PM-Timer IO Port: 0xb008
+[    0.000000] ACPI: Local APIC address 0xfee00000
+[    0.000000] ACPI: LAPIC (acpi_id[0x00] lapic_id[0x00] enabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x01] lapic_id[0x01] enabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x02] lapic_id[0x02] enabled)
+[    0.000000] ACPI: IOAPIC (id[0x03] address[0xfec00000] gsi_base[0])
+[    0.000000] IOAPIC[0]: apic_id 3, version 17, address 0xfec00000, GSI 0-23
+[    0.000000] ACPI: INT_SRC_OVR (bus 0 bus_irq 0 global_irq 2 dfl dfl)
+[    0.000000] ACPI: INT_SRC_OVR (bus 0 bus_irq 5 global_irq 5 high level)
+[    0.000000] ACPI: INT_SRC_OVR (bus 0 bus_irq 9 global_irq 9 high level)
+[    0.000000] ACPI: INT_SRC_OVR (bus 0 bus_irq 10 global_irq 10 high level)
+[    0.000000] ACPI: INT_SRC_OVR (bus 0 bus_irq 11 global_irq 11 high level)
+[    0.000000] ACPI: IRQ0 used by override.
+[    0.000000] ACPI: IRQ2 used by override.
+[    0.000000] ACPI: IRQ5 used by override.
+[    0.000000] ACPI: IRQ9 used by override.
+[    0.000000] ACPI: IRQ10 used by override.
+[    0.000000] ACPI: IRQ11 used by override.
+[    0.000000] Using ACPI (MADT) for SMP configuration information
+[    0.000000] ACPI: HPET id: 0x8086a201 base: 0xfed00000
+[    0.000000] SMP: Allowing 3 CPUs, 0 hotplug CPUs
+[    0.000000] nr_irqs_gsi: 40
+[    0.000000] PM: Registered nosave memory: 000000000009f000 - 00000000000a0000
+[    0.000000] PM: Registered nosave memory: 00000000000a0000 - 00000000000f0000
+[    0.000000] PM: Registered nosave memory: 00000000000f0000 - 0000000000100000
+[    0.000000] Allocating PCI resources starting at 80000000 (gap: 80000000:7ffc0000)
+[    0.000000] setup_percpu: NR_CPUS:256 nr_cpumask_bits:256 nr_cpu_ids:3 nr_node_ids:1
+[    0.000000] PERCPU: Embedded 26 pages/cpu @ffff88007b800000 s76992 r8192 d21312 u524288
+[    0.000000] pcpu-alloc: s76992 r8192 d21312 u524288 alloc=1*2097152
+[    0.000000] pcpu-alloc: [0] 0 1 2 - 
+[    0.000000] Built 1 zonelists in Node order, mobility grouping on.  Total pages: 516998
+[    0.000000] Policy zone: DMA32
+[    0.000000] Kernel command line: movablecore=262144 hpet=disable debug earlyprintk=ttyS0,keep
+[    0.000000] PID hash table entries: 4096 (order: 3, 32768 bytes)
+[    0.000000] Checking aperture...
+[    0.000000] No AGP bridge found
+[    0.000000] Calgary: detecting Calgary via BIOS EBDA area
+[    0.000000] Calgary: Unable to locate Rio Grande table in EBDA - bailing!
+[    0.000000] Memory: 1914656k/2097140k available (5755k kernel code, 452k absent, 182032k reserved, 5241k data, 70612k init)
+[    0.000000] SLUB: Genslabs=15, HWalign=64, Order=0-3, MinObjects=0, CPUs=3, Nodes=1
+[    0.000000] Hierarchical RCU implementation.
+[    0.000000] 	RCU dyntick-idle grace-period acceleration is enabled.
+[    0.000000] 	RCU-based detection of stalled CPUs is disabled.
+[    0.000000] NR_IRQS:16640 nr_irqs:704 16
+[    0.000000] Console: colour VGA+ 80x25
+[    0.000000] Initializing cgroup subsys cpuset
+[    0.000000] Initializing cgroup subsys cpu
+[    0.000000] Linux version 2.6.37 (root@localhost.localdomain) (gcc version 4.6.3 20120306 (Red Hat 4.6.3-2) (GCC) ) #1 SMP Tue Jan 29 17:46:14 EST 2013
+[    0.000000] Command line: movablecore=262144 hpet=disable debug earlyprintk=ttyS0,keep
+[    0.000000] BIOS-provided physical RAM map:
+[    0.000000]  BIOS-e820: 0000000000000000 - 000000000009f400 (usable)
+[    0.000000]  BIOS-e820: 000000000009f400 - 00000000000a0000 (reserved)
+[    0.000000]  BIOS-e820: 00000000000f0000 - 0000000000100000 (reserved)
+[    0.000000]  BIOS-e820: 0000000000100000 - 000000007fffd000 (usable)
+[    0.000000]  BIOS-e820: 000000007fffd000 - 0000000080000000 (reserved)
+[    0.000000]  BIOS-e820: 00000000fffc0000 - 0000000100000000 (reserved)
+[    0.000000] console [earlyser0] enabled
+[    0.000000] NX (Execute Disable) protection: active
+[    0.000000] DMI 2.4 present.
+[    0.000000] DMI: /Bochs, BIOS Bochs 01/01/2007
+[    0.000000] e820 update range: 0000000000000000 - 0000000000010000 (usable) ==> (reserved)
+[    0.000000] e820 remove range: 00000000000a0000 - 0000000000100000 (usable)
+[    0.000000] No AGP bridge found
+[    0.000000] last_pfn = 0x7fffd max_arch_pfn = 0x400000000
+[    0.000000] MTRR default type: write-back
+[    0.000000] MTRR fixed ranges enabled:
+[    0.000000]   00000-9FFFF write-back
+[    0.000000]   A0000-BFFFF uncachable
+[    0.000000]   C0000-FFFFF write-protect
+[    0.000000] MTRR variable ranges enabled:
+[    0.000000]   0 base 00E0000000 mask FFE0000000 uncachable
+[    0.000000]   1 disabled
+[    0.000000]   2 disabled
+[    0.000000]   3 disabled
+[    0.000000]   4 disabled
+[    0.000000]   5 disabled
+[    0.000000]   6 disabled
+[    0.000000]   7 disabled
+[    0.000000] x86 PAT enabled: cpu 0, old 0x7040600070406, new 0x7010600070106
+[    0.000000] found SMP MP-table at [ffff8800000fdad0] fdad0
+[    0.000000] Scanning 0 areas for low memory corruption
+[    0.000000] initial memory mapped : 0 - 20000000
+[    0.000000] init_memory_mapping: 0000000000000000-000000007fffd000
+[    0.000000]  0000000000 - 007fe00000 page 2M
+[    0.000000]  007fe00000 - 007fffd000 page 4k
+[    0.000000] kernel direct mapping tables up to 7fffd000 @ 1fffc000-20000000
+[    0.000000] RAMDISK: 7bbe4000 - 7fff0000
+[    0.000000] ACPI: RSDP 00000000000fda80 00014 (v00 BOCHS )
+[    0.000000] ACPI: RSDT 000000007fffd5a0 00034 (v01 BOCHS  BXPCRSDT 00000001 BXPC 00000001)
+[    0.000000] ACPI: FACP 000000007ffffe10 00074 (v01 BOCHS  BXPCFACP 00000001 BXPC 00000001)
+[    0.000000] ACPI: DSDT 000000007fffd870 02548 (v01   BXPC   BXDSDT 00000001 INTL 20100528)
+[    0.000000] ACPI: FACS 000000007ffffdc0 00040
+[    0.000000] ACPI: SSDT 000000007fffd710 00160 (v01 BOCHS  BXPCSSDT 00000001 BXPC 00000001)
+[    0.000000] ACPI: APIC 000000007fffd620 00082 (v01 BOCHS  BXPCAPIC 00000001 BXPC 00000001)
+[    0.000000] ACPI: HPET 000000007fffd5e0 00038 (v01 BOCHS  BXPCHPET 00000001 BXPC 00000001)
+[    0.000000] ACPI: Local APIC address 0xfee00000
+[    0.000000] No NUMA configuration found
+[    0.000000] Faking a node at 0000000000000000-000000007fffd000
+[    0.000000] Initmem setup node 0 0000000000000000-000000007fffd000
+[    0.000000]   NODE_DATA [000000007fff8000 - 000000007fffcfff]
+[    0.000000]  [ffffea0000000000-ffffea0001bfffff] PMD -> [ffff880079200000-ffff88007adfffff] on node 0
+[    0.000000] Zone PFN ranges:
+[    0.000000]   DMA      0x00000010 -> 0x00001000
+[    0.000000]   DMA32    0x00001000 -> 0x00100000
+[    0.000000]   Normal   empty
+[    0.000000] Movable zone start PFN for each node
+[    0.000000]   Node 0: 523264
+[    0.000000] early_node_map[2] active PFN ranges
+[    0.000000]     0: 0x00000010 -> 0x0000009f
+[    0.000000]     0: 0x00000100 -> 0x0007fffd
+[    0.000000] On node 0 totalpages: 524172
+[    0.000000]   DMA zone: 56 pages used for memmap
+[    0.000000]   DMA zone: 6 pages reserved
+[    0.000000]   DMA zone: 3921 pages, LIFO batch:0
+[    0.000000]   DMA32 zone: 7098 pages used for memmap
+[    0.000000]   DMA32 zone: 512070 pages, LIFO batch:31
+[    0.000000]   Movable zone: 14 pages used for memmap
+[    0.000000]   Movable zone: 1007 pages, LIFO batch:0
+[    0.000000] ACPI: PM-Timer IO Port: 0xb008
+[    0.000000] ACPI: Local APIC address 0xfee00000
+[    0.000000] ACPI: LAPIC (acpi_id[0x00] lapic_id[0x00] enabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x01] lapic_id[0x01] enabled)
+[    0.000000] ACPI: LAPIC (acpi_id[0x02] lapic_id[0x02] enabled)
+[    0.000000] ACPI: IOAPIC (id[0x03] address[0xfec00000] gsi_base[0])
+[    0.000000] IOAPIC[0]: apic_id 3, version 17, address 0xfec00000, GSI 0-23
+[    0.000000] ACPI: INT_SRC_OVR (bus 0 bus_irq 0 global_irq 2 dfl dfl)
+[    0.000000] ACPI: INT_SRC_OVR (bus 0 bus_irq 5 global_irq 5 high level)
+[    0.000000] ACPI: INT_SRC_OVR (bus 0 bus_irq 9 global_irq 9 high level)
+[    0.000000] ACPI: INT_SRC_OVR (bus 0 bus_irq 10 global_irq 10 high level)
+[    0.000000] ACPI: INT_SRC_OVR (bus 0 bus_irq 11 global_irq 11 high level)
+[    0.000000] ACPI: IRQ0 used by override.
+[    0.000000] ACPI: IRQ2 used by override.
+[    0.000000] ACPI: IRQ5 used by override.
+[    0.000000] ACPI: IRQ9 used by override.
+[    0.000000] ACPI: IRQ10 used by override.
+[    0.000000] ACPI: IRQ11 used by override.
+[    0.000000] Using ACPI (MADT) for SMP configuration information
+[    0.000000] ACPI: HPET id: 0x8086a201 base: 0xfed00000
+[    0.000000] SMP: Allowing 3 CPUs, 0 hotplug CPUs
+[    0.000000] nr_irqs_gsi: 40
+[    0.000000] PM: Registered nosave memory: 000000000009f000 - 00000000000a0000
+[    0.000000] PM: Registered nosave memory: 00000000000a0000 - 00000000000f0000
+[    0.000000] PM: Registered nosave memory: 00000000000f0000 - 0000000000100000
+[    0.000000] Allocating PCI resources starting at 80000000 (gap: 80000000:7ffc0000)
+[    0.000000] setup_percpu: NR_CPUS:256 nr_cpumask_bits:256 nr_cpu_ids:3 nr_node_ids:1
+[    0.000000] PERCPU: Embedded 26 pages/cpu @ffff88007b800000 s76992 r8192 d21312 u524288
+[    0.000000] pcpu-alloc: s76992 r8192 d21312 u524288 alloc=1*2097152
+[    0.000000] pcpu-alloc: [0] 0 1 2 - 
+[    0.000000] Built 1 zonelists in Node order, mobility grouping on.  Total pages: 516998
+[    0.000000] Policy zone: DMA32
+[    0.000000] Kernel command line: movablecore=262144 hpet=disable debug earlyprintk=ttyS0,keep
+[    0.000000] PID hash table entries: 4096 (order: 3, 32768 bytes)
+[    0.000000] Checking aperture...
+[    0.000000] No AGP bridge found
+[    0.000000] Calgary: detecting Calgary via BIOS EBDA area
+[    0.000000] Calgary: Unable to locate Rio Grande table in EBDA - bailing!
+[    0.000000] Memory: 1914656k/2097140k available (5755k kernel code, 452k absent, 182032k reserved, 5241k data, 70612k init)
+[    0.000000] SLUB: Genslabs=15, HWalign=64, Order=0-3, MinObjects=0, CPUs=3, Nodes=1
+[    0.000000] Hierarchical RCU implementation.
+[    0.000000] 	RCU dyntick-idle grace-period acceleration is enabled.
+[    0.000000] 	RCU-based detection of stalled CPUs is disabled.
+[    0.000000] NR_IRQS:16640 nr_irqs:704 16
+[    0.000000] Console: colour VGA+ 80x25
+[    0.000000] console [tty0] enabled
+[    0.000000] allocated 20971520 bytes of page_cgroup
+[    0.000000] please try 'cgroup_disable=memory' option if you don't want memory cgroups
+[    0.000000] Fast TSC calibration using PIT
+[    0.000000] Detected 999.998 MHz processor.
+[    0.000004] Calibrating delay loop (skipped), value calculated using timer frequency.. 1999.99 BogoMIPS (lpj=9999980)
+[    0.000057] pid_max: default: 32768 minimum: 301
+[    0.000142] Security Framework initialized
+[    0.000213] AppArmor: AppArmor initialized
+[    0.001245] Dentry cache hash table entries: 262144 (order: 9, 2097152 bytes)
+[    0.005917] Inode-cache hash table entries: 131072 (order: 8, 1048576 bytes)
+[    0.008057] Mount-cache hash table entries: 256
+[    0.008408] Initializing cgroup subsys ns
+[    0.008429] ns_cgroup deprecated: consider using the 'clone_children' flag without the ns_cgroup.
+[    0.008469] Initializing cgroup subsys cpuacct
+[    0.008510] Initializing cgroup subsys memory
+[    0.008548] Initializing cgroup subsys devices
+[    0.008571] Initializing cgroup subsys freezer
+[    0.008594] Initializing cgroup subsys net_cls
+[    0.008617] Initializing cgroup subsys blkio
+[    0.008698] mce: CPU supports 10 MCE banks
+[    0.008722] Performance Events: Broken PMU hardware detected, software events only.
+[    0.008793] ACPI: Core revision 20101013
+[    0.015532] ftrace: allocating 21754 entries in 86 pages
+[    0.020053] Setting APIC routing to flat
+[    0.020263] ..TIMER: vector=0x30 apic1=0 pin1=2 apic2=-1 pin2=-1
+[    0.120995] CPU0: AMD QEMU Virtual CPU version 0.15.1 stepping 03
+[    0.130000] Booting Node   0, Processors  #1
+[    0.010000] calibrate_delay_direct() failed to get a good estimate for loops_per_jiffy.
+[    0.010000] Probably due to long platform interrupts. Consider using "lpj=" boot option.
+[    0.810229]  #2 Ok.
+[    0.010000] calibrate_delay_direct() failed to get a good estimate for loops_per_jiffy.
+[    0.010000] Probably due to long platform interrupts. Consider using "lpj=" boot option.
+[    1.273008] Brought up 3 CPUs
+[    1.273078] Total of 3 processors activated (6184.46 BogoMIPS).
+[    1.310190] devtmpfs: initialized
+[    1.324278] regulator: core version 0.5
+[    1.324433] regulator: dummy: 
+[    1.324456] Time:  4:12:32  Date: 04/26/13
+[    1.324579] NET: Registered protocol family 16
+[    1.324956] ACPI: bus type pci registered
+[    1.325180] PCI: Using configuration type 1 for base access
+[    1.325430] mtrr: your CPUs had inconsistent variable MTRR settings
+[    1.325459] mtrr: your CPUs had inconsistent MTRRdefType settings
+[    1.325487] mtrr: probably your BIOS does not setup all CPUs.
+[    1.325514] mtrr: corrected configuration.
+[    1.328541] bio: create slab <bio-0> at 0
+[    1.331812] ACPI: EC: Look up EC in DSDT
+[    1.475844] ACPI: Interpreter enabled
+[    1.475865] ACPI: (supports S0 S5)
+[    1.475916] ACPI: Using IOAPIC for interrupt routing
+[    1.484298] ACPI Exception: AE_NOT_FOUND, Evaluating _PRW (20101013/scan-723)
+[    1.494349] ACPI: No dock devices found.
+[    1.494373] PCI: Ignoring host bridge windows from ACPI; if necessary, use "pci=use_crs" and report a bug
+[    1.494459] ACPI: PCI Root Bridge [PCI0] (domain 0000 [bus 00-ff])
+[    1.494679] pci_root PNP0A03:00: host bridge window [io  0x0000-0x0cf7] (ignored)
+[    1.494718] pci_root PNP0A03:00: host bridge window [io  0x0d00-0xffff] (ignored)
+[    1.494757] pci_root PNP0A03:00: host bridge window [mem 0x000a0000-0x000bffff] (ignored)
+[    1.494798] pci_root PNP0A03:00: host bridge window [mem 0xe0000000-0xfebfffff] (ignored)
+[    1.494849] pci 0000:00:00.0: [8086:1237] type 0 class 0x000600
+[    1.494913] pci 0000:00:01.0: [8086:7000] type 0 class 0x000601
+[    1.494980] pci 0000:00:01.1: [8086:7010] type 0 class 0x000101
+[    1.495026] pci 0000:00:01.1: reg 20: [io  0xc000-0xc00f]
+[    1.495079] pci 0000:00:01.3: [8086:7113] type 0 class 0x000680
+[    1.495135] pci 0000:00:01.3: quirk: [io  0xb000-0xb03f] claimed by PIIX4 ACPI
+[    1.495174] pci 0000:00:01.3: quirk: [io  0xb100-0xb10f] claimed by PIIX4 SMB
+[    1.495227] pci 0000:00:02.0: [1013:00b8] type 0 class 0x000300
+[    1.495264] pci 0000:00:02.0: reg 10: [mem 0xf0000000-0xf1ffffff pref]
+[    1.495301] pci 0000:00:02.0: reg 14: [mem 0xf2000000-0xf2000fff]
+[    1.495347] pci 0000:00:02.0: reg 30: [mem 0xf2010000-0xf201ffff pref]
+[    1.495397] pci 0000:00:03.0: [10ec:8139] type 0 class 0x000200
+[    1.495433] pci 0000:00:03.0: reg 10: [io  0xc100-0xc1ff]
+[    1.495466] pci 0000:00:03.0: reg 14: [mem 0xf2020000-0xf20200ff]
+[    1.495512] pci 0000:00:03.0: reg 30: [mem 0xf2030000-0xf203ffff pref]
+[    1.495581] ACPI: PCI Interrupt Routing Table [\_SB_.PCI0._PRT]
+[    1.513383] ACPI: PCI Interrupt Link [LNKA] (IRQs 5 *10 11)
+[    1.513584] ACPI: PCI Interrupt Link [LNKB] (IRQs 5 *10 11)
+[    1.513796] ACPI: PCI Interrupt Link [LNKC] (IRQs 5 10 *11)
+[    1.513998] ACPI: PCI Interrupt Link [LNKD] (IRQs 5 10 *11)
+[    1.514200] ACPI: PCI Interrupt Link [LNKS] (IRQs 9) *0
+[    1.514294] HEST: Table is not found!
+[    1.514494] vgaarb: device added: PCI:0000:00:02.0,decodes=io+mem,owns=io+mem,locks=none
+[    1.514533] vgaarb: loaded
+[    1.515232] SCSI subsystem initialized
+[    1.515289] libata version 3.00 loaded.
+[    1.515289] usbcore: registered new interface driver usbfs
+[    1.515289] usbcore: registered new interface driver hub
+[    1.515289] usbcore: registered new device driver usb
+[    1.515289] wmi: Mapper loaded
+[    1.515289] PCI: Using ACPI for IRQ routing
+[    1.515289] PCI: pci_cache_line_size set to 64 bytes
+[    1.515289] reserve RAM buffer: 000000000009f400 - 000000000009ffff 
+[    1.515289] reserve RAM buffer: 000000007fffd000 - 000000007fffffff 
+[    1.515289] NetLabel: Initializing
+[    1.515289] NetLabel:  domain hash size = 128
+[    1.515289] NetLabel:  protocols = UNLABELED CIPSOv4
+[    1.515289] NetLabel:  unlabeled traffic allowed by default
+[    1.541860] AppArmor: AppArmor Filesystem Enabled
+[    1.541899] pnp: PnP ACPI init
+[    1.541961] ACPI: bus type pnp registered
+[    1.542029] pnp 00:00: [bus 00-ff]
+[    1.542052] pnp 00:00: [io  0x0cf8-0x0cff]
+[    1.542077] pnp 00:00: [io  0x0000-0x0cf7 window]
+[    1.542105] pnp 00:00: [io  0x0d00-0xffff window]
+[    1.542133] pnp 00:00: [mem 0x000a0000-0x000bffff window]
+[    1.542164] pnp 00:00: [mem 0xe0000000-0xfebfffff window]
+[    1.542343] pnp 00:00: Plug and Play ACPI device, IDs PNP0a03 (active)
+[    1.542623] pnp 00:01: [io  0x0070-0x0071]
+[    1.542650] pnp 00:01: [irq 8]
+[    1.542671] pnp 00:01: [io  0x0072-0x0077]
+[    1.542816] pnp 00:01: Plug and Play ACPI device, IDs PNP0b00 (active)
+[    1.542924] pnp 00:02: [io  0x0060]
+[    1.542946] pnp 00:02: [io  0x0064]
+[    1.542971] pnp 00:02: [irq 1]
+[    1.543114] pnp 00:02: Plug and Play ACPI device, IDs PNP0303 (active)
+[    1.543223] pnp 00:03: [irq 12]
+[    1.543365] pnp 00:03: Plug and Play ACPI device, IDs PNP0f13 (active)
+[    1.543475] pnp 00:04: [io  0x03f2-0x03f5]
+[    1.543499] pnp 00:04: [io  0x03f7]
+[    1.543524] pnp 00:04: [irq 6]
+[    1.543545] pnp 00:04: [dma 2]
+[    1.543678] pnp 00:04: Plug and Play ACPI device, IDs PNP0700 (active)
+[    1.543839] pnp 00:05: [io  0x0378-0x037f]
+[    1.543867] pnp 00:05: [irq 7]
+[    1.544007] pnp 00:05: Plug and Play ACPI device, IDs PNP0400 (active)
+[    1.544169] pnp 00:06: [io  0x03f8-0x03ff]
+[    1.544196] pnp 00:06: [irq 4]
+[    1.544332] pnp 00:06: Plug and Play ACPI device, IDs PNP0501 (active)
+[    1.544685] pnp 00:07: [mem 0xfed00000-0xfed003ff]
+[    1.544861] pnp 00:07: Plug and Play ACPI device, IDs PNP0103 (active)
+[    1.545281] pnp: PnP ACPI: found 8 devices
+[    1.545303] ACPI: ACPI bus type pnp unregistered
+[    1.557176] Switching to clocksource acpi_pm
+[    1.641739] pci_bus 0000:00: resource 0 [io  0x0000-0xffff]
+[    1.641770] pci_bus 0000:00: resource 1 [mem 0x00000000-0xffffffffff]
+[    1.641894] NET: Registered protocol family 2
+[    1.642331] IP route cache hash table entries: 65536 (order: 7, 524288 bytes)
+[    1.645792] TCP established hash table entries: 262144 (order: 10, 4194304 bytes)
+[    1.652546] TCP bind hash table entries: 65536 (order: 8, 1048576 bytes)
+[    1.653889] TCP: Hash tables configured (established 262144 bind 65536)
+[    1.653919] TCP reno registered
+[    1.653958] UDP hash table entries: 1024 (order: 3, 32768 bytes)
+[    1.654060] UDP-Lite hash table entries: 1024 (order: 3, 32768 bytes)
+[    1.654436] NET: Registered protocol family 1
+[    1.654481] pci 0000:00:00.0: Limiting direct PCI/PCI transfers
+[    1.654513] pci 0000:00:01.0: PIIX3: Enabling Passive Release
+[    1.654550] pci 0000:00:01.0: Activating ISA DMA hang workarounds
+[    1.654596] pci 0000:00:02.0: Boot video device
+[    1.654626] PCI: CLS 0 bytes, default 64
+[    1.909924] Trying to unpack rootfs image as initramfs...
+[    4.073024] Freeing initrd memory: 69680k freed
+[    4.138991] Scanning for low memory corruption every 60 seconds
+[    4.139417] audit: initializing netlink socket (disabled)
+[    4.139452] type=2000 audit(1366949553.129:1): initialized
+[    4.206119] HugeTLB registered 2 MB page size, pre-allocated 0 pages
+[    4.215565] VFS: Disk quotas dquot_6.5.2
+[    4.215872] Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+[    4.218883] fuse init (API version 7.15)
+[    4.219300] msgmni has been set to 3875
+[    4.220153] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 253)
+[    4.220188] io scheduler noop registered
+[    4.220209] io scheduler deadline registered
+[    4.220418] io scheduler cfq registered (default)
+[    4.220787] pci_hotplug: PCI Hot Plug PCI Core version: 0.5
+[    4.220900] pciehp: PCI Express Hot Plug Controller Driver version: 0.4
+[    4.221411] input: Power Button as /devices/LNXSYSTM:00/LNXPWRBN:00/input/input0
+[    4.221450] ACPI: Power Button [PWRF]
+[    4.223688] ACPI: acpi_idle registered with cpuidle
+[    4.264248] ERST: Table is not found!
+[    4.264626] hpet_acpi_add: no address or irqs in _CRS
+[    4.264677] Linux agpgart interface v0.103
+[    4.264822] Serial: 8250/16550 driver, 32 ports, IRQ sharing enabled
+[    4.284995] serial8250: ttyS0 at I/O 0x3f8 (irq = 4) is a 16550A
+[    4.680531] 00:06: ttyS0 at I/O 0x3f8 (irq = 4) is a 16550A
+[    4.686224] brd: module loaded
+[    4.688681] loop: module loaded
+[    4.689201] ata_piix 0000:00:01.1: version 2.13
+[    4.689271] ata_piix 0000:00:01.1: setting latency timer to 64
+[    4.690491] scsi0 : ata_piix
+[    4.690809] scsi1 : ata_piix
+[    4.691009] ata1: PATA max MWDMA2 cmd 0x1f0 ctl 0x3f6 bmdma 0xc000 irq 14
+[    4.691043] ata2: PATA max MWDMA2 cmd 0x170 ctl 0x376 bmdma 0xc008 irq 15
+[    4.692589] Fixed MDIO Bus: probed
+[    4.692742] PPP generic driver version 2.4.2
+[    4.692889] tun: Universal TUN/TAP device driver, 1.6
+[    4.692914] tun: (C) 1999-2004 Max Krasnyansky <maxk@qualcomm.com>
+[    4.693216] ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+[    4.693292] ohci_hcd: USB 1.1 'Open' Host Controller (OHCI) Driver
+[    4.693354] uhci_hcd: USB Universal Host Controller Interface driver
+[    4.693714] PNP: PS/2 Controller [PNP0303:KBD,PNP0f13:MOU] at 0x60,0x64 irq 1,12
+[    4.694271] serio: i8042 KBD port at 0x60,0x64 irq 1
+[    4.694303] serio: i8042 AUX port at 0x60,0x64 irq 12
+[    4.694540] mice: PS/2 mouse device common for all mice
+[    4.694804] rtc_cmos 00:01: RTC can wake from S4
+[    4.695280] input: AT Translated Set 2 keyboard as /devices/platform/i8042/serio0/input/input1
+[    4.700197] rtc_cmos 00:01: rtc core: registered rtc_cmos as rtc0
+[    4.700236] rtc0: alarms up to one day, 114 bytes nvram
+[    4.700673] device-mapper: uevent: version 1.0.3
+[    4.701044] device-mapper: ioctl: 4.18.0-ioctl (2010-06-29) initialised: dm-devel@redhat.com
+[    4.701245] device-mapper: multipath: version 1.1.1 loaded
+[    4.701271] device-mapper: multipath round-robin: version 1.0.0 loaded
+[    4.701737] cpuidle: using governor ladder
+[    4.701759] cpuidle: using governor menu
+[    4.702974] TCP cubic registered
+[    4.703567] NET: Registered protocol family 10
+[    4.704928] lo: Disabled Privacy Extensions
+[    4.705885] NET: Registered protocol family 17
+[    4.705940] Registering the dns_resolver key type
+[    4.706000] powernow-k8: Processor cpuid 623 not supported
+[    4.710018] powernow-k8: Processor cpuid 623 not supported
+[    4.720016] powernow-k8: Processor cpuid 623 not supported
+[    4.720385] PM: Hibernation image not present or could not be loaded.
+[    4.720429] registered taskstats version 1
+[    4.720729]   Magic number: 9:530:212
+[    4.730027] rtc_cmos 00:01: setting system clock to 2013-04-26 04:12:38 UTC (1366949558)
+[    4.730065] BIOS EDD facility v0.16 2004-Jun-25, 0 devices found
+[    4.730093] EDD information not available.
+[    4.850211] ata2.01: NODEV after polling detection
+[    4.850267] ata2.00: ATAPI: QEMU DVD-ROM, 0.15.1, max UDMA/100
+[    4.850357] ata2.00: configured for MWDMA2
+[    4.850738] scsi 1:0:0:0: CD-ROM            QEMU     QEMU DVD-ROM     0.15 PQ: 0 ANSI: 5
+[    4.851500] sr0: scsi3-mmc drive: 4x/4x xa/form2 tray
+[    4.851525] cdrom: Uniform CD-ROM driver Revision: 3.20
+[    4.851932] sr 1:0:0:0: Attached scsi CD-ROM sr0
+[    4.852154] sr 1:0:0:0: Attached scsi generic sg0 type 5
+[    4.865641] Freeing unused kernel memory: 70612k freed
+[    4.902061] Write protecting the kernel read-only data: 10240k
+[    4.940019] Freeing unused kernel memory: 372k freed
+[    4.947133] Freeing unused kernel memory: 1624k freed
+Apr 26 04:12:39 (none) syslog.info syslogd started: BusyBox v1.15.0
+Apr 26 04:12:39 (none) daemon.info init: starting pid 69, tty '': '/bin/cttyhack /bin/sh'
+Apr 26 04:12:51 (none) user.info kernel: [   17.390326] palacios (pcore 0): palacios_init starting - calling init_v3
+Apr 26 04:12:51 (none) user.info kernel: [   17.390345] palacios (pcore 0): Registering Device: LAPIC
+Apr 26 04:12:51 (none) user.info kernel: [   17.390359] palacios (pcore 0): Registering Device: IOAPIC
+Apr 26 04:12:51 (none) user.info kernel: [   17.390373] palacios (pcore 0): Registering Device: MPTABLE
+Apr 26 04:12:51 (none) user.info kernel: [   17.390388] palacios (pcore 0): Registering Device: 8254_PIT
+Apr 26 04:12:51 (none) user.info kernel: [   17.390402] palacios (pcore 0): Registering Device: 8259A
+Apr 26 04:12:51 (none) user.info kernel: [   17.390417] palacios (pcore 0): Registering Device: BOCHS_DEBUG
+Apr 26 04:12:51 (none) user.info kernel: [   17.390432] palacios (pcore 0): Registering Device: GENERIC
+Apr 26 04:12:51 (none) user.info kernel: [   17.390447] palacios (pcore 0): Registering Device: i440FX
+Apr 26 04:12:51 (none) user.info kernel: [   17.390461] palacios (pcore 0): Registering Device: IDE
+Apr 26 04:12:51 (none) user.info kernel: [   17.390475] palacios (pcore 0): Registering Device: SERIAL
+Apr 26 04:12:51 (none) user.info kernel: [   17.390489] palacios (pcore 0): Registering Device: KEYBOARD
+Apr 26 04:12:51 (none) user.info kernel: [   17.390505] palacios (pcore 0): Registering Device: LNX_VIRTIO_BALLOON
+Apr 26 04:12:51 (none) user.info kernel: [   17.390522] palacios (pcore 0): Registering Device: LNX_VIRTIO_BLK
+Apr 26 04:12:51 (none) user.info kernel: [   17.390538] palacios (pcore 0): Registering Device: NVRAM
+Apr 26 04:12:51 (none) user.info kernel: [   17.390552] palacios (pcore 0): Registering Device: OS_DEBUG
+Apr 26 04:12:51 (none) user.info kernel: [   17.390566] palacios (pcore 0): Registering Device: PCI
+Apr 26 04:12:51 (none) user.info kernel: [   17.390580] palacios (pcore 0): Registering Device: PIIX3
+Apr 26 04:12:51 (none) user.info kernel: [   17.390595] palacios (pcore 0): Registering Device: DISK_MODEL
+Apr 26 04:12:51 (none) user.info kernel: [   17.390610] palacios (pcore 0): Registering Device: TMPDISK
+Apr 26 04:12:51 (none) user.info kernel: [   17.390624] palacios (pcore 0): Registering Device: RAMDISK
+Apr 26 04:12:51 (none) user.info kernel: [   17.390639] palacios (pcore 0): Registering Device: NETDISK
+Apr 26 04:12:51 (none) user.info kernel: [   17.390654] palacios (pcore 0): Registering Device: FILEDISK
+Apr 26 04:12:51 (none) user.info kernel: [   17.390669] palacios (pcore 0): Registering Device: CGA_VIDEO
+Apr 26 04:12:51 (none) user.info kernel: [   17.390684] palacios (pcore 0): Registering Device: CURSES_CONSOLE
+Apr 26 04:12:51 (none) user.info kernel: [   17.390702] palacios (pcore 0): Registering Shadow Paging Impl (VTLB)
+Apr 26 04:12:51 (none) user.info kernel: [   17.390718] palacios (pcore 0): Registering Shadow Paging Impl (SHADOW_CACHE)
+Apr 26 04:12:51 (none) user.info kernel: [   17.390734] palacios (pcore 0): DEBUG: Initializing cpu_mapper
+Apr 26 04:12:51 (none) user.info kernel: [   17.390749] palacios (pcore 0): DEBUG: Registering cpu_mapper (default)
+Apr 26 04:12:51 (none) user.info kernel: [   17.390765] palacios (pcore 0): DEBUG: Initializing scheduler
+Apr 26 04:12:51 (none) user.info kernel: [   17.390782] palacios (pcore 0): DEBUG: Registering Scheduler (host)
+Apr 26 04:12:51 (none) user.info kernel: [   17.390799] palacios (pcore 0): Registering Extension (EDF Scheduler)
+Apr 26 04:12:51 (none) user.info kernel: [   17.390816] palacios (pcore 0): DEBUG: Sched. Creating (edf) scheduler
+Apr 26 04:12:51 (none) user.info kernel: [   17.390830] palacios (pcore 0): DEBUG: Registering Scheduler (edf)
+Apr 26 04:12:51 (none) user.info kernel: [   17.390847] palacios (pcore 0): Registering Extension (cpu_mapper for EDF Scheduler)
+Apr 26 04:12:51 (none) user.info kernel: [   17.390867] palacios (pcore 0): DEBUG: mapper. Creating (edf) cpu_mapper
+Apr 26 04:12:51 (none) user.info kernel: [   17.390882] palacios (pcore 0): DEBUG: Registering cpu_mapper (edf)
+Apr 26 04:12:51 (none) user.info kernel: [   17.390Apr 26 04:12:51 (none) user.info kernel: [   17.410398] palacios (pcore 0): Initializing VMM extensions on cpu 2
+Apr 26 04:12:51 (none) user.info kernel: [   17.422812] palacios (pcore 2): SVM is available and  enabled.
+Apr 26 04:12:51 (none) user.info kernel: [   17.422825] palacios (pcore 2): DEBUG: Machine is SVM Capable
+Apr 26 04:12:51 (none) user.info kernel: [   17.422837] palacios (pcore 2): SVM Enabled
+Apr 26 04:12:51 (none) user.info kernel: [   17.422850] palacios (pcore 2): SVM Nested Paging not supported
+Apr 26 04:12:52 (none) user.err kernel: [   17.430002] serial8250: too much work for irq4
+Apr 26 04:12:53 (none) user.debug kernel: [   19.219010] palacios (pcore 0): tmp_ext=ffffffffa00c0400
+Apr 26 04:12:53 (none) user.info kernel: [   19.219021] palacios (pcore 0): Registering Linux Extension (CONSOLE)
+Apr 26 04:12:53 (none) user.info kernel: [   19.219034] palacios (pcore 0): DEBUG: V3 console inited
+Apr 26 04:12:53 (none) user.debug kernel: [   19.219045] palacios (pcore 0): tmp_ext=ffffffffa00c0480
+Apr 26 04:12:53 (none) user.info kernel: [   19.219056] palacios (pcore 0): Registering Linux Extension (FILE_INTERFACE)
+Apr 26 04:12:53 (none) user.info kernel: [   19.219071] palacios (pcore 0): V3 file interface intialized
+Apr 26 04:12:53 (none) user.debug kernel: [   19.219082] palacios (pcore 0): tmp_ext=ffffffffa00c05c0
+Apr 26 04:12:53 (none) user.info kernel: [   19.219094] palacios (pcore 0): Registering Linux Extension (STREAM_INTERFACE)
+Apr 26 04:12:53 (none) user.info kernel: [   19.219108] palacios (pcore 0): DEBUG: V3 stream inited
+Apr 26 04:12:53 (none) user.debug kernel: [   19.219119] palacios (pcore 0): tmp_ext=ffffffffa00c0680
+Apr 26 04:12:53 (none) user.info kernel: [   19.219130] palacios (pcore 0): Registering Linux Extension (SOCKET_INTERFACE)
+Apr 26 04:12:53 (none) user.info kernel: [   19.219144] palacios (pcore 0): DEBUG: V3 sockets inited
+Apr 26 04:12:53 (none) user.info kernel: [   19.908554] palacios (pcore 0): intializing V3 Control device
+Apr 26 04:12:53 (none) user.debug kernel: [   19.908567] palacios (pcore 0): Creating V3 Control device: Major 251, Minor 33
+Apr 26 04:12:53 (none) user.info kernel: [   19.910701] palacios (pcore 0): /proc/v3vee/v3-guests successfully created
+Apr 26 04:12:53 (none) user.info kernel: [   19.910716] palacios (pcore 0): /proc/v3vee/v3-mem successfully added
+Apr 26 04:13:00 (none) user.info kernel: [   26.420030] Offlined Pages 32768
+Apr 26 04:13:02 (none) user.info kernel: [   28.190028] Offlined Pages 32768
+Apr 26 04:13:03 (none) user.info kernel: [   29.910028] memory offlining 18000 to 20000 failed
+Apr 26 04:13:05 (none) user.info kernel: [   31.590027] Offlined Pages 32768
+Apr 26 04:13:07 (none) user.info kernel: [   33.250035] Offlined Pages 32768
+Apr 26 04:13:08 (none) user.info kernel: [   35.090035] Offlined Pages 32768
+Apr 26 04:13:10 (none) user.info kernel: [   36.900027] Offlined Pages 32768
+Apr 26 04:13:12 (none) user.info kernel: [   38.597990] Offlined Pages 32768
+Apr 26 04:13:14 (none) user.info kernel: [   40.420026] Offlined Pages 32768
+Apr 26 04:13:15 (none) user.info kernel: [   42.100035] Offlined Pages 32768
+Apr 26 04:13:17 (none) user.info kernel: [   44.030027] Offlined Pages 32768
+Apr 26 04:13:17 (none) user.debug kernel: [   44.031678] palacios (pcore 0): V3 IOCTL 50
+Apr 26 04:13:17 (none) user.debug kernel: [   44.031688] palacios (pcore 0): Adding 262144 pages to Palacios memory
+Apr 26 04:13:17 (none) user.debug kernel: [   44.031702] palacios (pcore 0): Managing 1024MB of memory starting at 536870912 (512MB)
+Apr 26 04:13:26 (none) user.debug kernel: [   52.755708] palacios (pcore 2): V3 IOCTL 12
+Apr 26 04:13:26 (none) user.info kernel: [   52.755717] palacios (pcore 2): Palacios: Creating V3 Guest...
+Apr 26 04:13:26 (none) user.debug kernel: [   52.755730] palacios (pcore 2): Palacios: Allocating kernel memory for guest image (5247604 bytes)
+Apr 26 04:13:26 (none) user.info kernel: [   52.760890] palacios (pcore 2): Registering Linux Extension (FILE_INTERFACE)
+Apr 26 04:13:26 (none) user.info kernel: [   52.760904] palacios (pcore 2): Registering Linux Extension (STREAM_INTERFACE)
+Apr 26 04:13:26 (none) user.info kernel: [   52.760920] palacios (pcore 2): cfg data at ffffc90000bca000
+Apr 26 04:13:26 (none) user.info kernel: [   52.760935] palacios (pcore 2): Handling Palacios Image Format, Version 0x1
+Apr 26 04:13:26 (none) user.info kernel: [   52.761645] palacios (pcore 2): Number of files in cfg: 1
+Apr 26 04:13:26 (none) user.info kernel: [   52.761661] palacios (pcore 2): File index=0 id=boot-cd
+Apr 26 04:13:26 (none) user.info kernel: [   52.761679] palacios (pcore 2): Storing file data offset = 4724, size=5242880
+Apr 26 04:13:26 (none) user.info kernel: [   52.761695] palacios (pcore 2): file data at ffffc90000bcb274
+Apr 26 04:13:26 (none) user.info kernel: [   52.761708] palacios (pcore 2): Checking file data integrity...
+Apr 26 04:13:26 (none) user.info kernel: [   53.033306] palacios (pcore 2): File data OK
+Apr 26 04:13:26 (none) user.info kernel: [   53.033317] palacios (pcore 2): Keying file to name
+Apr 26 04:13:26 (none) user.info kernel: [   53.033331] palacios (pcore 2): Iterating to next file
+Apr 26 04:13:26 (none) user.info kernel: [   53.033343] palacios (pcore 2): Configuration parsed successfully
+Apr 26 04:13:26 (none) user.info kernel: [   53.033358] palacios (pcore 2): Configuring 6 cores
+Apr 26 04:13:26 (none) user.info kernel: [   53.033375] palacios (pcore 2 vm alloc): Preconfiguration
+Apr 26 04:13:26 (none) user.info kernel: [   53.033391] palacios (pcore 2): DEBUG: Memory=256
+Apr 26 04:13:26 (none) user.info kernel: [   53.033403] palacios (pcore 2): DEBUG: Alignment defaulted to 4KB.
+Apr 26 04:13:26 (none) user.info kernel: [   53.033420] palacios (pcore 2): DEBUG: Alignment for 268435456 bytes of memory computed as 0x1000
+Apr 26 04:13:26 (none) user.info kernel: [   53.033438] palacios (pcore 2 vm alloc): DEBUG: Initializing MSR map.
+Apr 26 04:13:26 (none) user.debug kernel: [   53.033458] palacios (pcore 2): Allocating 65536 pages (align=4096)
+Apr 26 04:13:26 (none) user.debug kernel: [   53.033471] palacios (pcore 2): 	 Start idx 0 (base_addr=0000000020000000)
+Apr 26 04:13:26 (none) user.info kernel: [   53.148589] palacios (pcore 2 vm alloc): Initialization of Shadow Paging implementation
+Apr 26 04:13:26 (none) user.info kernel: [   53.148605] palacios (pcore 2 vm alloc): VTLB initialization
+Apr 26 04:13:26 (none) user.info kernel: [   53.148627] palacios (pcore 2 vm alloc): Time dilated from host time by a factor of 3/1 in guest.
+Apr 26 04:13:26 (none) user.info kernel: [   53.148660] palacios (pcore 2 vm alloc): DEBUG: updating MSR map for msr 0xc0000103
+Apr 26 04:13:26 (none) user.info kernel: [   53.148677] palacios (pcore 2 vm alloc): DEBUG: updating MSR map for msr 0x10
+Apr 26 04:13:26 (none) user.info kernel: [   53.148694] palacios (pcore 2 vm alloc): GUEST_INFO_HCALL=3000
+Apr 26 04:13:26 (none) user.info kernel: [   53.148705] palacios (pcore 2): cpu_khz is 999998
+Apr 26 04:13:26 (none) user.info kernel: [   53.148720] palacios (pcore 2): DEBUG: CPU_KHZ = 999998, schedule_freq=00000000000000fa
+Apr 26 04:13:26 (none) user.info kernel: [   53.148734] palacios (pcore 2): cpu_khz is 999998
+Apr 26 04:13:26 (none) user.info kernel: [   53.148746] palacios (pcore 2 vm alloc): Per core configuration
+Apr 26 04:13:26 (none) user.info kernel: [   53.148763] palacios (pcore 2 vm alloc vcore 0): DEBUG: Paging mode specified as shadow
+Apr 26 04:13:26 (none) user.info kernel: [   53.148780] palacios (pcore 2 vm alloc vcore 0): Setting paging mode to SHADOW
+Apr 26 04:13:26 (none) user.info kernel: [   53.148796] palacios (pcore 2 vm alloc vcore 0): VTLB local initialization
+Apr 26 04:13:26 (none) user.info kernel: [   53.148809] palacios (pcore 2): cpu_khz is 999998
+Apr 26 04:13:26 (none) user.info kernel: [   53.148833] palacios (pcore 2 vm alloc vcore 0): ERROR at palacios/src/palacios/vmm_time.c(494): WARNING: Cannot use reqested passthrough TSC with clock or time modification also requested.
+Apr 26 04:13:26 (none) user.info kernel: [   53.148876] palacios (pcore 2 vm alloc vcore 1): DEBUG: Paging mode specified as shadow
+Apr 26 04:13:26 (none) user.info kernel: [   53.148893] palacios (pcore 2 vm alloc vcore 1): Setting paging mode to SHADOW
+Apr 26 04:13:26 (none) user.info kernel: [   53.148909] palacios (pcore 2 vm alloc vcore 1): VTLB local initialization
+Apr 26 04:13:26 (none) user.info kernel: [   53.148922] palacios (pcore 2): cpu_khz is 999998
+Apr 26 04:13:26 (none) user.info kernel: [   53.148946] palacios (pcore 2 vm alloc vcore 1): ERROR at palacios/src/palacios/vmm_time.c(494): WARNING: Cannot use reqested passthrough TSC with clock or time modification also requested.
+Apr 26 04:13:26 (none) user.info kernel: [   53.148997] palacios (pcore 2 vm alloc vcore 2): DEBUG: Paging mode specified as shadow
+Apr 26 04:13:26 (none) user.info kernel: [   53.149014] palacios (pcore 2 vm alloc vcore 2): Setting paging mode to SHADOW
+Apr 26 04:13:26 (none) user.info kernel: [   53.149030] palacios (pcore 2 vm alloc vcore 2): VTLB local initialization
+Apr 26 04:13:26 (none) user.info kernel: [   53.149043] palacios (pcore 2): cpu_khz is 999998
+Apr 26 04:13:26 (none) user.info kernel: [   53.149067] palacios (pcore 2 vm alloc vcore 2): ERROR at palacios/src/palacios/vmm_time.c(494): WARNING: Cannot use reqested passthrough TSC with clock or time modification also requested.
+Apr 26 04:13:26 (none) user.info kernel: [   53.149117] palacios (pcore 2 vm alloc vcore 3): DEBUG: Paging mode specified as shadow
+Apr 26 04:13:26 (none) user.info kernel: [   53.149134] palacios (pcore 2 vm alloc vcore 3): Setting paging mode to SHADOW
+Apr 26 04:13:26 (none) user.info kernel: [   53.149150] palacios (pcore 2 vm alloc vcore 3): VTLB local initialization
+Apr 26 04:13:26 (none) user.info kernel: [   53.149163] palacios (pcore 2): cpu_khz is 999998
+Apr 26 04:13:26 (none) user.info kernel: [   53.149186] palacios (pcore 2 vm alloc vcore 3): ERROR at palacios/src/palacios/vmm_time.c(494): WARNING: Cannot use reqested passthrough TSC with clock or time modification also requested.
+Apr 26 04:13:26 (none) user.info kernel: [   53.149229] palacios (pcore 2 vm alloc vcore 4): DEBUG: Paging mode specified as shadow
+Apr 26 04:13:26 (none) user.info kernel: [   53.149246] palacios (pcore 2 vm alloc vcore 4): Setting paging mode to SHADOW
+Apr 26 04:13:26 (none) user.info kernel: [   53.149263] palacios (pcore 2 vm alloc vcore 4): VTLB local initialization
+Apr 26 04:13:26 (none) user.info kernel: [   53.149276] palacios (pcore 2): cpu_khz is 999998
+Apr 26 04:13:26 (none) user.info kernel: [   53.149299] palacios (pcore 2 vm alloc vcore 4): ERROR at palacios/src/palacios/vmm_time.c(494): WARNING: Cannot use reqested passthrough TSC with clock or time modification also requested.
+Apr 26 04:13:26 (none) user.info kernel: [   53.149342] palacios (pcore 2 vm alloc vcore 5): DEBUG: Paging mode specified as shadow
+Apr 26 04:13:26 (none) user.info kernel: [   53.149359] palacios (pcore 2 vm alloc vcore 5): Setting paging mode to SHADOW
+Apr 26 04:13:26 (none) user.info kernel: [   53.149376] palacios (pcore 2 vm alloc vcore 5): VTLB local initialization
+Apr 26 04:13:26 (none) user.info kernel: [   53.149389] palacios (pcore 2): cpu_khz is 999998
+Apr 26 04:13:26 (none) user.info kernel: [   53.149412] palacios (pcore 2 vm alloc vcore 5): ERROR at palacios/src/palacios/vmm_time.c(494): WARNING: Cannot use reqested passthrough TSC with clock or time modification also requested.
+Apr 26 04:13:26 (none) user.info kernel: [   53.149452] palacios (pcore 2 vm alloc): Post Configuration
+Apr 26 04:13:26 (none) user.info kernel: [   53.149542] palacios (pcore 2 vm alloc): configuring device 8259A
+Apr 26 04:13:26 (none) user.info kernel: [   53.149569] palacios (pcore 2 vm alloc): configuring device KEYBOARD
+Apr 26 04:13:26 (none) user.info kernel: [   53.149592] palacios (pcore 2 vm alloc): configuring device 8254_PIT
+Apr 26 04:13:26 (none) user.info kernel: [   53.149672] palacios (pcore 2 vm alloc): configuring device BOCHS_DEBUG
+Apr 26 04:13:26 (none) user.info kernel: [   53.149689] palacios (pcore 2 vm alloc): DEBUG: Creating Bochs Debug Device
+Apr 26 04:13:26 (none) user.info kernel: [   53.149723] palacios (pcore 2 vm alloc): configuring device OS_DEBUG
+Apr 26 04:13:26 (none) user.info kernel: [   53.149739] palacios (pcore 2 vm alloc): DEBUG: Creating OS Debug Device
+Apr 26 04:13:26 (none) user.info kernel: [   53.149761] palacios (pcore 2 vm alloc): configuring device MPTABLE
+Apr 26 04:13:26 (none) user.info kernel: [   53.149798] palacios (pcore 2 vm alloc): Constructing mptable for 6 cores at ffff8800200fcc00
+Apr 26 04:13:26 (none) user.info kernel: [   53.149820] palacios (pcore 2): MPtable size: 564
+Apr 26 04:13:26 (none) user.info kernel: [   53.149856] palacios (pcore 2 vm alloc): configuring device LAPIC
+Apr 26 04:13:26 (none) user.info kernel: [   53.149913] palacios (pcore 2 vm alloc): configuring device IOAPIC
+Apr 26 04:13:26 (none) user.info kernel: [   53.149938] palacios (pcore 2 vm alloc): configuring device PCI
+Apr 26 04:13:26 (none) user.info kernel: [   53.149969] palacios (pcore 2 vm alloc): configuring device i440FX
+Apr 26 04:13:26 (none) user.info kernel: [   53.149996] palacios (pcore 2 vm alloc): ERROR at palacios/src/palacios/vmm_io.c(154): Could not insert IO hook for port 3320 (0xcf8)
+Apr 26 04:13:26 (none) user.info kernel: [   53.150038] palacios (pcore 2 vm alloc): ERROR at palacios/src/palacios/vmm_io.c(154): Could not insert IO hook for port 3324 (0xcfc)
+Apr 26 04:13:26 (none) user.info kernel: [   53.150066] palacios (pcore 2 vm alloc): ERROR at palacios/src/palacios/vmm_io.c(154): Could not insert IO hook for port 3321 (0xcf9)
+Apr 26 04:13:26 (none) user.info kernel: [   53.150094] palacios (pcore 2 vm alloc): ERROR at palacios/src/palacios/vmm_io.c(154): Could not insert IO hook for port 3325 (0xcfd)
+Apr 26 04:13:26 (none) user.info kernel: [   53.150122] palacios (pcore 2 vm alloc): ERROR at palacios/src/palacios/vmm_io.c(154): Could not insert IO hook for port 3322 (0xcfa)
+Apr 26 04:13:26 (none) user.info kernel: [   53.150150] palacios (pcore 2 vm alloc): ERROR at palacios/src/palacios/vmm_io.c(154): Could not insert IO hook for port 3326 (0xcfe)
+Apr 26 04:13:26 (none) user.info kernel: [   53.150178] palacios (pcore 2 vm alloc): ERROR at palacios/src/palacios/vmm_io.c(154): Could not insert IO hook for port 3323 (0xcfb)
+Apr 26 04:13:26 (none) user.info kernel: [   53.150206] palacios (pcore 2 vm alloc): ERROR at palacios/src/palacios/vmm_io.c(154): Could not insert IO hook for port 3327 (0xcff)
+Apr 26 04:13:26 (none) user.info kernel: [   53.150228] palacios (pcore 2): Scanning for Capabilities
+Apr 26 04:13:26 (none) user.info kernel: [   53.150242] palacios (pcore 2): Scanning for Capabilities (cap_offset=0)
+Apr 26 04:13:26 (none) user.info kernel: [   53.150256] palacios (pcore 2): Caps scanned
+Apr 26 04:13:26 (none) user.info kernel: [   53.150278] palacios (pcore 2 vm alloc): configuring device PIIX3
+Apr 26 04:13:26 (none) user.info kernel: [   53.150296] palacios (pcore 2 vm alloc): DEBUG: Created PIIX3
+Apr 26 04:13:26 (none) user.info kernel: [   53.150312] palacios (pcore 2): Scanning for Capabilities
+Apr 26 04:13:26 (none) user.info kernel: [   53.150326] palacios (pcore 2): Scanning for Capabilities (cap_offset=0)
+Apr 26 04:13:26 (none) user.info kernel: [   53.150339] palacios (pcore 2): Caps scanned
+Apr 26 04:13:26 (none) user.info kernel: [   53.150362] palacios (pcore 2 vm alloc): configuring device IDE
+Apr 26 04:13:26 (none) user.info kernel: [   53.150424] palacios (pcore 2): Scanning for Capabilities
+Apr 26 04:13:26 (none) user.info kernel: [   53.150438] palacios (pcore 2): Scanning for Capabilities (cap_offset=0)
+Apr 26 04:13:26 (none) user.info kernel: [   53.150452] palacios (pcore 2): Caps scanned
+Apr 26 04:13:26 (none) user.info kernel: [   53.150505] palacios (pcore 2 vm alloc): configuring device RAMDISK
+Apr 26 04:13:26 (none) user.info kernel: [   53.150535] palacios (pcore 2 vm alloc): configuring device CGA_VIDEO
+Apr 26 04:13:26 (none) user.debug kernel: [   53.150553] palacios (pcore 2): Allocating 32 pages (align=4096)
+Apr 26 04:13:26 (none) user.debug kernel: [   53.150566] palacios (pcore 2): 	 Start idx 0 (base_addr=0000000020000000)
+Apr 26 04:13:26 (none) user.info kernel: [   53.153303] palacios (pcore 2 vm alloc): configuring device CURSES_CONSOLE
+Apr 26 04:13:26 (none) user.info kernel: [   53.153320] palacios (pcore 2): Guest initialized virtual console (Guest=alloc)
+Apr 26 04:13:26 (none) user.info kernel: [   53.153340] palacios (pcore 2 vm alloc): configuring device NVRAM
+Apr 26 04:13:26 (none) user.info kernel: [   53.153373] palacios (pcore 2 vm alloc): configuring device GENERIC
+Apr 26 04:13:26 (none) user.info kernel: [   53.153633] palacios (pcore 2 vm alloc): 16 devices registered with manager
+Apr 26 04:13:26 (none) user.info kernel: [   53.153647] palacios (pcore 2 vm alloc): Device: generic
+Apr 26 04:13:26 (none) user.info kernel: [   53.153660] palacios (pcore 2 vm alloc): Device: nvram
+Apr 26 04:13:26 (none) user.info kernel: [   53.153673] palacios (pcore 2 vm alloc): Device: curses
+Apr 26 04:13:26 (none) user.info kernel: [   53.153685] palacios (pcore 2 vm alloc): Device: cga
+Apr 26 04:13:26 (none) user.info kernel: [   53.153698] palacios (pcore 2 vm alloc): Device: CD0
+Apr 26 04:13:26 (none) user.info kernel: [   53.153710] palacios (pcore 2 vm alloc): Device: ide
+Apr 26 04:13:26 (none) user.info kernel: [   53.153723] palacios (pcore 2 vm alloc): Device: southbridge
+Apr 26 04:13:26 (none) user.info kernel: [   53.153736] palacios (pcore 2 vm alloc): Device: northbridge
+Apr 26 04:13:26 (none) user.info kernel: [   53.153749] palacios (pcore 2 vm alloc): Device: pci0
+Apr 26 04:13:26 (none) user.info kernel: [   53.153762] palacios (pcore 2 vm alloc): Device: ioapic
+Apr 26 04:13:26 (none) user.info kernel: [   53.153774] palacios (pcore 2 vm alloc): Device: apic
+Apr 26 04:13:26 (none) user.info kernel: [   53.153787] palacios (pcore 2 vm alloc): Device: os debug
+Apr 26 04:13:26 (none) user.info kernel: [   53.153801] palacios (pcore 2 vm alloc): Device: bochs debug
+Apr 26 04:13:26 (none) user.info kernel: [   53.153813] palacios (pcore 2 vm alloc): Device: PIT
+Apr 26 04:13:26 (none) user.info kernel: [   53.153826] palacios (pcore 2 vm alloc): Device: keyboard
+Apr 26 04:13:26 (none) user.info kernel: [   53.153839] palacios (pcore 2 vm alloc): Device: PIC
+Apr 26 04:13:26 (none) user.info kernel: [   53.153857] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0x1b) (read=0xffffffffa0065839) (write=0xffffffffa0065897)
+Apr 26 04:13:26 (none) user.info kernel: [   53.153881] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0010055) (read=0x          (null)) (write=0xffffffffa00233fc)
+Apr 26 04:13:26 (none) user.info kernel: [   53.153905] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000101) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.153929] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000100) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.153953] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0x176) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.153976] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0x175) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.153999] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0x174) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.154023] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000083) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.154047] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000102) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.154071] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000084) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.154095] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000082) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.154119] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000081) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.154144] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0010114) (read=0xffffffffa00101b5) (write=0xffffffffa00101e1)
+Apr 26 04:13:26 (none) user.info kernel: [   53.154169] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000080) (read=0xffffffffa0010048) (write=0xffffffffa004311a)
+Apr 26 04:13:26 (none) user.info kernel: [   53.154193] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0010055) (read=0x          (null)) (write=0xffffffffa00233fc)
+Apr 26 04:13:26 (none) user.info kernel: [   53.154217] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000101) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.154241] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000100) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.154265] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0x176) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.154288] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0x175) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.154311] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0x174) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.154335] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000083) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.154359] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000102) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.154383] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000084) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.154407] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000082) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.154431] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000081) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.154456] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0010114) (read=0xffffffffa00101b5) (write=0xffffffffa00101e1)
+Apr 26 04:13:26 (none) user.info kernel: [   53.154480] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000080) (read=0xffffffffa0010048) (write=0xffffffffa004311a)
+Apr 26 04:13:26 (none) user.info kernel: [   53.154505] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0010055) (read=0x          (null)) (write=0xffffffffa00233fc)
+Apr 26 04:13:26 (none) user.info kernel: [   53.154529] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000101) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.154553] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000100) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.154577] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0x176) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.154600] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0x175) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.154623] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0x174) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.154646] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000083) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.154671] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000102) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.154695] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000084) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.154719] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000082) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.154743] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000081) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.154767] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0010114) (read=0xffffffffa00101b5) (write=0xffffffffa00101e1)
+Apr 26 04:13:26 (none) user.info kernel: [   53.154792] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000080) (read=0xffffffffa0010048) (write=0xffffffffa004311a)
+Apr 26 04:13:26 (none) user.info kernel: [   53.154817] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0010055) (read=0x          (null)) (write=0xffffffffa00233fc)
+Apr 26 04:13:26 (none) user.info kernel: [   53.154841] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000101) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.154865] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000100) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.154888] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0x176) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.154912] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0x175) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.154935] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0x174) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.154958] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000083) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.154982] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000102) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.155006] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000084) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.155030] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000082) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.155055] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000081) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.155079] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0010114) (read=0xffffffffa00101b5) (write=0xffffffffa00101e1)
+Apr 26 04:13:26 (none) user.info kernel: [   53.155104] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000080) (read=0xffffffffa0010048) (write=0xffffffffa004311a)
+Apr 26 04:13:26 (none) user.info kernel: [   53.155129] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0010055) (read=0x          (null)) (write=0xffffffffa00233fc)
+Apr 26 04:13:26 (none) user.info kernel: [   53.155153] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000101) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.155177] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000100) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.155200] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0x176) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.155224] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0x175) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.155247] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0x174) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.155270] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000083) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.155294] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000102) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.155318] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000084) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.155342] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000082) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.155366] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000081) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.155391] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0010114) (read=0xffffffffa00101b5) (write=0xffffffffa00101e1)
+Apr 26 04:13:26 (none) user.info kernel: [   53.155416] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000080) (read=0xffffffffa0010048) (write=0xffffffffa004311a)
+Apr 26 04:13:26 (none) user.info kernel: [   53.155441] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0010055) (read=0x          (null)) (write=0xffffffffa00233fc)
+Apr 26 04:13:26 (none) user.info kernel: [   53.155465] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000101) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.155489] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000100) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.155512] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0x176) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.155535] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0x175) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.155559] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0x174) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.155582] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000083) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.155606] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000102) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.155630] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000084) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.155654] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000082) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.155678] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000081) (read=0x          (null)) (write=0x          (null))
+Apr 26 04:13:26 (none) user.info kernel: [   53.155703] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0010114) (read=0xffffffffa00101b5) (write=0xffffffffa00101e1)
+Apr 26 04:13:26 (none) user.info kernel: [   53.155728] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000080) (read=0xffffffffa0010048) (write=0xffffffffa004311a)
+Apr 26 04:13:26 (none) user.info kernel: [   53.155753] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0xc0000103) (read=0xffffffffa00320f0) (write=0xffffffffa0032174)
+Apr 26 04:13:26 (none) user.info kernel: [   53.155777] palacios (pcore 2 vm alloc): MSR HOOK (MSR=0x10) (read=0xffffffffa00321f0) (write=0xffffffffa003227b)
+Apr 26 04:13:26 (none) user.info kernel: [   53.155798] palacios (pcore 2 vm alloc): No performance tuning tree - using defaults
+Apr 26 04:13:26 (none) user.info kernel: [   53.155814] palacios (pcore 2 vm alloc): Memory Layout (all cores):
+Apr 26 04:13:26 (none) user.info kernel: [   53.155834] palacios (pcore 2 vm alloc): Base Region (all cores):  0x          (null) - 0x000000000fffffff -> 0x0000000020000000
+Apr 26 04:13:26 (none) user.info kernel: [   53.155859] palacios (pcore 2 vm alloc): 0:  0x00000000000a0000 - 0x00000000000bffff -> 0x0000000030000000
+Apr 26 04:13:26 (none) user.info kernel: [   53.155881] palacios (pcore 2 vm alloc): 	(flags=0x15) (core=0xffff) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.155903] palacios (pcore 2 vm alloc): 1:  0x00000000fec00000 - 0x00000000fec00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.155925] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0xffff) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.155947] palacios (pcore 2 vm alloc): 2:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.155969] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x0) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.155991] palacios (pcore 2 vm alloc): 3:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156013] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x1) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156035] palacios (pcore 2 vm alloc): 4:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156056] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x2) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156078] palacios (pcore 2 vm alloc): 5:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156100] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x3) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156122] palacios (pcore 2 vm alloc): 6:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156144] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x4) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156166] palacios (pcore 2 vm alloc): 7:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156188] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x5) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156205] palacios (pcore 2 vm alloc): Memory Layout (all cores):
+Apr 26 04:13:26 (none) user.info kernel: [   53.156225] palacios (pcore 2 vm alloc): Base Region (all cores):  0x          (null) - 0x000000000fffffff -> 0x0000000020000000
+Apr 26 04:13:26 (none) user.info kernel: [   53.156249] palacios (pcore 2 vm alloc): 0:  0x00000000000a0000 - 0x00000000000bffff -> 0x0000000030000000
+Apr 26 04:13:26 (none) user.info kernel: [   53.156272] palacios (pcore 2 vm alloc): 	(flags=0x15) (core=0xffff) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156294] palacios (pcore 2 vm alloc): 1:  0x00000000fec00000 - 0x00000000fec00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156316] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0xffff) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156338] palacios (pcore 2 vm alloc): 2:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156360] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x0) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156382] palacios (pcore 2 vm alloc): 3:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156403] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x1) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156426] palacios (pcore 2 vm alloc): 4:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156447] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x2) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156469] palacios (pcore 2 vm alloc): 5:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156491] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x3) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156513] palacios (pcore 2 vm alloc): 6:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156535] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x4) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156557] palacios (pcore 2 vm alloc): 7:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156578] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x5) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156595] palacios (pcore 2 vm alloc): Memory Layout (all cores):
+Apr 26 04:13:26 (none) user.info kernel: [   53.156616] palacios (pcore 2 vm alloc): Base Region (all cores):  0x          (null) - 0x000000000fffffff -> 0x0000000020000000
+Apr 26 04:13:26 (none) user.info kernel: [   53.156640] palacios (pcore 2 vm alloc): 0:  0x00000000000a0000 - 0x00000000000bffff -> 0x0000000030000000
+Apr 26 04:13:26 (none) user.info kernel: [   53.156662] palacios (pcore 2 vm alloc): 	(flags=0x15) (core=0xffff) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156685] palacios (pcore 2 vm alloc): 1:  0x00000000fec00000 - 0x00000000fec00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156707] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0xffff) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156729] palacios (pcore 2 vm alloc): 2:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156751] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x0) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156773] palacios (pcore 2 vm alloc): 3:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156794] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x1) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156816] palacios (pcore 2 vm alloc): 4:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156838] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x2) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156860] palacios (pcore 2 vm alloc): 5:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156882] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x3) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156904] palacios (pcore 2 vm alloc): 6:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156925] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x4) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156947] palacios (pcore 2 vm alloc): 7:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156969] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x5) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.156986] palacios (pcore 2 vm alloc): Memory Layout (all cores):
+Apr 26 04:13:26 (none) user.info kernel: [   53.157006] palacios (pcore 2 vm alloc): Base Region (all cores):  0x          (null) - 0x000000000fffffff -> 0x0000000020000000
+Apr 26 04:13:26 (none) user.info kernel: [   53.157031] palacios (pcore 2 vm alloc): 0:  0x00000000000a0000 - 0x00000000000bffff -> 0x0000000030000000
+Apr 26 04:13:26 (none) user.info kernel: [   53.157053] palacios (pcore 2 vm alloc): 	(flags=0x15) (core=0xffff) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157075] palacios (pcore 2 vm alloc): 1:  0x00000000fec00000 - 0x00000000fec00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157097] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0xffff) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157120] palacios (pcore 2 vm alloc): 2:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157141] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x0) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157163] palacios (pcore 2 vm alloc): 3:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157185] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x1) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157207] palacios (pcore 2 vm alloc): 4:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157229] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x2) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157251] palacios (pcore 2 vm alloc): 5:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157272] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x3) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157295] palacios (pcore 2 vm alloc): 6:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157316] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x4) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157338] palacios (pcore 2 vm alloc): 7:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157360] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x5) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157377] palacios (pcore 2 vm alloc): Memory Layout (all cores):
+Apr 26 04:13:26 (none) user.info kernel: [   53.157397] palacios (pcore 2 vm alloc): Base Region (all cores):  0x          (null) - 0x000000000fffffff -> 0x0000000020000000
+Apr 26 04:13:26 (none) user.info kernel: [   53.157422] palacios (pcore 2 vm alloc): 0:  0x00000000000a0000 - 0x00000000000bffff -> 0x0000000030000000
+Apr 26 04:13:26 (none) user.info kernel: [   53.157444] palacios (pcore 2 vm alloc): 	(flags=0x15) (core=0xffff) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157466] palacios (pcore 2 vm alloc): 1:  0x00000000fec00000 - 0x00000000fec00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157488] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0xffff) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157511] palacios (pcore 2 vm alloc): 2:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157532] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x0) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157554] palacios (pcore 2 vm alloc): 3:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157576] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x1) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157598] palacios (pcore 2 vm alloc): 4:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157620] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x2) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157642] palacios (pcore 2 vm alloc): 5:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157663] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x3) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157685] palacios (pcore 2 vm alloc): 6:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157707] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x4) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157729] palacios (pcore 2 vm alloc): 7:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157751] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x5) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157768] palacios (pcore 2 vm alloc): Memory Layout (all cores):
+Apr 26 04:13:26 (none) user.info kernel: [   53.157788] palacios (pcore 2 vm alloc): Base Region (all cores):  0x          (null) - 0x000000000fffffff -> 0x0000000020000000
+Apr 26 04:13:26 (none) user.info kernel: [   53.157813] palacios (pcore 2 vm alloc): 0:  0x00000000000a0000 - 0x00000000000bffff -> 0x0000000030000000
+Apr 26 04:13:26 (none) user.info kernel: [   53.157835] palacios (pcore 2 vm alloc): 	(flags=0x15) (core=0xffff) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157857] palacios (pcore 2 vm alloc): 1:  0x00000000fec00000 - 0x00000000fec00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157879] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0xffff) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157901] palacios (pcore 2 vm alloc): 2:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157923] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x0) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157945] palacios (pcore 2 vm alloc): 3:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157967] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x1) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.157989] palacios (pcore 2 vm alloc): 4:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.158010] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x2) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.158032] palacios (pcore 2 vm alloc): 5:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.158054] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x3) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.158076] palacios (pcore 2 vm alloc): 6:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.158098] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x4) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.158120] palacios (pcore 2 vm alloc): 7:  0x00000000fee00000 - 0x00000000fee00fff -> 0x          (null)
+Apr 26 04:13:26 (none) user.info kernel: [   53.158141] palacios (pcore 2 vm alloc): 	(flags=0x0) (core=0x5) (unhandled = 0xffffffffa00388f5)
+Apr 26 04:13:26 (none) user.info kernel: [   53.158158] palacios (pcore 2 vm alloc): Configuration successfull
+Apr 26 04:13:26 (none) user.info kernel: [   53.158173] palacios (pcore 2 vm alloc): CORE 0 RIP=000000000000fff0
+Apr 26 04:13:26 (none) user.notice kernel: [   53.158188] palacios (pcore 2): Creating VM device: Major 251, Minor 0
+Apr 26 04:13:26 (none) user.info kernel: [   53.158200] palacios (pcore 2): Adding VM device
+Apr 26 04:13:26 (none) user.notice kernel: [   53.158918] palacios (pcore 2): palacios: vm created at /dev/v3-vm0
+Apr 26 04:13:32 (none) user.info kernel: [   59.070400] palacios (pcore 1): V3 IOCTL 25
+Apr 26 04:13:32 (none) user.notice kernel: [   59.070409] palacios (pcore 1): palacios: launching vm
+Apr 26 04:13:32 (none) user.info kernel: [   59.070423] palacios (pcore 1 vm alloc): V3 --  Starting VM (6 cores)
+Apr 26 04:13:32 (none) user.info kernel: [   59.070438] palacios (pcore 1 vm alloc): CORE 0 RIP=000000000000fff0
+Apr 26 04:13:32 (none) user.info kernel: [   59.070454] palacios (pcore 1 vm alloc): DEBUG: EDF Sched. Initializing EDF Scheduling 
+Apr 26 04:13:32 (none) user.info kernel: [   59.070473] palacios (pcore 1 vm alloc): DEBUG: EDF Sched. priv_data_init. Available cores 3
+Apr 26 04:13:32 (none) user.info kernel: [   59.070492] palacios (pcore 1 vm alloc): DEBUG: EDF Sched. priv_data_init. Initializing logical core 0
+Apr 26 04:13:32 (none) user.info kernel: [   59.070512] palacios (pcore 1 vm alloc): DEBUG: EDF Sched. priv_data_init. Initializing logical core 1
+Apr 26 04:13:32 (none) user.info kernel: [   59.070532] palacios (pcore 1 vm alloc): DEBUG: EDF Sched. priv_data_init. Initializing logical core 2
+Apr 26 04:13:32 (none) user.info kernel: [   59.070550] palacios (pcore 1 vm alloc): DEBUG: mapper. default_mapper_init
+Apr 26 04:13:32 (none) user.info kernel: [   59.070573] palacios (pcore 1 vm alloc): DEBUG: Starting virtual core 0 on logical core 0
+Apr 26 04:13:32 (none) user.info kernel: [   59.070597] palacios (pcore 1 vm alloc): DEBUG: run: core=0, func=0xffffffffa0008694, arg=0xffff8800778d0b40, name=alloc-0
+Apr 26 04:13:32 (none) user.info kernel: [   59.070670] palacios (pcore 1 vm alloc): DEBUG: Starting virtual core 1 on logical core 0
+Apr 26 04:13:36 (none) user.info kernel: [   59.070694] palacios (pcore 1 vm alloc): DEBUG: run: core=0, func=0xffffffffa0008694, arg=0xffff8800778d0f60, name=alloc-1
+Apr 26 04:13:43 (none) user.info kernel: [   59.070754] palacios (pcore 0 vm alloc vcore 0): DEBUG: EDF Sched. Initializing vcore 0
+Apr 26 04:13:44 (none) user.info kernel: [   59.070788] palacios (pcore 0 vm alloc vcore 0): DEBUG: EDF Sched. run_next_core. vcpu_id 0, logical id 0, Total time 0, Miss_deadlines 0, slice_overuses 0 extra_time 0, thread (ffff88007f628000)
+Apr 26 04:13:46 (none) user.info kernel: [   59.070828] palacios (pcore 1 vm alloc): DEBUG: Starting virtual core 2 on logical core 1
+Apr 26 04:13:49 (none) user.info kernel: [   59.070852] palacios (pcore 1 vm alloc): DEBUG: run: core=1, func=0xffffffffa0008694, arg=0xffff8800778d1380, name=alloc-2
+Apr 26 04:13:53 (none) user.info kernel: [   59.070916] palacios (pcore 0 vm alloc vcore 1): DEBUG: EDF Sched. Initializing vcore 1
+Apr 26 04:13:58 (none) user.info kernel: [   59.070952] palacios (pcore 0 vm alloc vcore 0): DEBUG: EDF Sched. run_next_core. vcpu_id 0, logical id 0, Total time 0, Miss_deadlines 0, slice_overuses 0 extra_time 0, thread (ffff88007f628000)
+Apr 26 04:14:02 (none) user.info kernel: [   59.070988] palacios (pcore 0 vm alloc vcore 0): DEBUG: virtual core 0 (on logical core 0): in start_core (RIP=000000000000fff0)
+Apr 26 04:14:04 (none) user.info kernel: [   59.072643] palacios (pcore 0 vm alloc vcore 0): BOCHSCONSOLE> rombios.c,v 1.16 2008/08/14 20:04:33 cuizheng Exp $
+Apr 26 04:14:07 (none) user.info kernel: [   59.072679] palacios (pcore 0 vm alloc vcore 0): DEBUG: BOCHSINFO> rombios.c,v 1.16 2008/08/14 20:04:33 cuizheng Exp $
+Apr 26 04:14:09 (none) user.info kernel: [   59.073385] palacios (pcore 0 vm alloc vcore 0): BOCHSCONSOLE>rombios: keyboard_init
+Apr 26 04:14:10 (none) user.info kernel: [   59.073417] palacios (pcore 0 vm alloc vcore 0): DEBUG: BOCHSINFO>rombios: keyboard_init
+Apr 26 04:14:10 (none) user.info kernel: [   59.074529] palacios (pcore 0 vm alloc vcore 0): BOCHSCONSOLE>keyboard init done.
+Apr 26 04:14:10 (none) user.info kernel: [   59.076527] palacios (pcore 0 vm alloc vcore 0): BOCHSCONSOLE>VGABios $Id: vgabios.c,v 1.1 2007/11/29 20:26:38 pdinda Exp $^M
+Apr 26 04:14:10 (none) user.info kernel: [   59.076569] palacios (pcore 0): ERROR at palacios/src/devices/cga.c(580): Video dac_pelmask_write: not implemented
+Apr 26 04:14:10 (none) user.info kernel: [   59.090621] palacios (pcore 1 vm alloc): DEBUG: Starting virtual core 3 on logical core 1
+Apr 26 04:14:10 (none) user.info kernel: [   59.100011] palacios (pcore 1 vm alloc): DEBUG: run: core=1, func=0xffffffffa0008694, arg=0xffff8800778d17a0, name=alloc-3
+Apr 26 04:14:10 (none) user.info kernel: [   59.107658] palacios (pcore 1 vm alloc vcore 2): DEBUG: EDF Sched. Initializing vcore 2
+Apr 26 04:14:10 (none) user.info kernel: [   59.107698] palacios (pcore 1 vm alloc vcore 2): DEBUG: EDF Sched. run_next_core. vcpu_id 2, logical id 1, Total time 0, Miss_deadlines 0, slice_overuses 0 extra_time 0, thread (ffff880077948000)
+Apr 26 04:14:10 (none) user.info kernel: [   59.107765] palacios (pcore 1 vm alloc): DEBUG: Starting virtual core 4 on logical core 2
+Apr 26 04:14:10 (none) user.info kernel: [   59.107789] palacios (pcore 1 vm alloc): DEBUG: run: core=2, func=0xffffffffa0008694, arg=0xffff8800778d1bc0, name=alloc-4
+Apr 26 04:14:10 (none) user.info kernel: [   59.107834] palacios (pcore 1 vm alloc vcore 3): DEBUG: EDF Sched. Initializing vcore 3
+Apr 26 04:14:10 (none) user.info kernel: [   59.107876] palacios (pcore 1 vm alloc vcore 2): DEBUG: EDF Sched. run_next_core. vcpu_id 2, logical id 1, Total time 0, Miss_deadlines 0, slice_overuses 0 extra_time 0, thread (ffff880077948000)AApr 26 04:14:10 (none) user.info kernel: [   67.172753] palacios (pcore 2 vm alloc vcore 4): DEBUG: EDF Sched. run_next_core. vcpu_id 4, logical id 2, Total time 2925450, Miss_deadlines 1538375, slice_overuses 5 extra_time 293562, thread (ffff88007794ada0)
+Apr 26 04:14:10 (none) user.info kernel: [   67.250339] palacios (pcore 0 vm alloc vcore 1): DEBUG: EDF Sched. run_next_core. vcpu_id 1, logical id 0, Total time 3695481, Miss_deadlines 835230, slice_overuses 4 extra_time 1222661, thread (ffff88007f62c470)
+Apr 26 04:14:10 (none) user.info kernel: [   67.871629] palacios (pcore 0 vm alloc vcore 0): DEBUG: EDF Sched. run_next_core. vcpu_id 0, logical id 0, Total time 4440653, Miss_deadlines 12311, slice_overuses 5 extra_time 66008, thread (ffff88007f628000)
+Apr 26 04:14:10 (none) user.info kernel: [   67.950040] palacios (pcore 2 vm alloc vcore 5): DEBUG: EDF Sched. run_next_core. vcpu_id 5, logical id 2, Total time 5032794, Miss_deadlines 2129048, slice_overuses 5 extra_time 28998, thread (ffff88007f5bc470)
+Apr 26 04:14:10 (none) user.info kernel: [   67.956087] palacios (pcore 1 vm alloc vcore 3): DEBUG: EDF Sched. run_next_core. vcpu_id 3, logical id 1, Total time 2917340, Miss_deadlines 1713855, slice_overuses 3 extra_time 17295, thread (ffff8800779496d0)
+Apr 26 04:14:10 (none) user.info kernel: [   68.537893] palacios (pcore 1 vm alloc vcore 2): DEBUG: EDF Sched. run_next_core. vcpu_id 2, logical id 1, Total time 5855949, Miss_deadlines 3062652, slice_overuses 5 extra_time 19689, thread (ffff880077948000)
+Apr 26 04:14:10 (none) user.info kernel: [   68.784060] palacios (pcore 2 vm alloc vcore 4): DEBUG: EDF Sched. run_next_core. vcpu_id 4, logical id 2, Total time 3692678, Miss_deadlines 1722687, slice_overuses 6 extra_time 622142, thread (ffff88007794ada0)
+Apr 26 04:14:10 (none) user.info kernel: [   68.790244] palacios (pcore 0 vm alloc vcore 1): DEBUG: EDF Sched. run_next_core. vcpu_id 1, logical id 0, Total time 4315117, Miss_deadlines 917335, slice_overuses 5 extra_time 1224092, thread (ffff88007f62c470)
+Apr 26 04:14:10 (none) user.info kernel: [   69.222757] palacios (pcore 2 vm alloc vcore 5): DEBUG: EDF Sched. run_next_core. vcpu_id 5, logical id 2, Total time 5866760, Miss_deadlines 2564921, slice_overuses 5 extra_time 28998, thread (ffff88007f5bc470)
+Apr 26 04:14:10 (none) user.info kernel: [   69.499600] palacios (pcore 0 vm alloc vcore 0): DEBUG: EDF Sched. run_next_core. vcpu_id 0, logical id 0, Total time 5359214, Miss_deadlines 16345, slice_overuses 6 extra_time 109640, thread (ffff88007f628000)
+Apr 26 04:14:10 (none) user.info kernel: [   69.510658] palacios (pcore 1 vm alloc vcore 3): DEBUG: EDF Sched. run_next_core. vcpu_id 3, logical id 1, Total time 3499094, Miss_deadlines 2038863, slice_overuses 4 extra_time 19040, thread (ffff8800779496d0)
+Apr 26 04:14:10 (none) user.info kernel: [   70.056778] palacios (pcore 2 vm alloc vcore 4): DEBUG: EDF Sched. run_next_core. vcpu_id 4, logical id 2, Total time 4131326, Miss_deadlines 1946971, slice_overuses 6 extra_time 622142, thread (ffff88007794ada0)
+Apr 26 04:14:10 (none) user.info kernel: [   70.099282] palacios (pcore 1 vm alloc vcore 2): DEBUG: EDF Sched. run_next_core. vcpu_id 2, logical id 1, Total time 6828659, Miss_deadlines 3540740, slice_overuses 5 extra_time 19689, thread (ffff880077948000)
+Apr 26 04:14:12 (none) user.info kernel: [   70.489624] palacios (pcore 0 vm alloc vcore 1): DEBUG: EDF Sched. run_next_core. vcpu_id 1, logical id 0, Total time 5024421, Miss_deadlines 1138715, slice_overuses 6 extra_time 1315191, thread (ffff88007f62c470)
+Apr 26 04:14:24 (none) user.info kernel: [   70.522212] palacios (pcore 2 vm alloc vcore 5): DEBUG: EDF Sched. run_next_core. vcpu_id 5, logical id 2, Total time 6700726, Miss_deadlines 3066304, slice_overuses 5 extra_time 28998, thread (ffff88007f5bc470)
+Apr 26 04:14:34 (none) user.info kernel: [   71.072046] palacios (pcore 1 vm alloc vcore 3): DEBUG: EDF Sched. run_next_core. vcpu_id 3, logical id 1, Total time 4087665, Miss_deadlines 2376437, slice_overuses 5 extra_time 27602, thread (ffff8800779496d0)
+Apr 26 04:14:37 (none) user.info kernel: [   71.107880] palacios (pcore 0 vm alloc vcore 0): DEBUG: EDF Sched. run_next_core. vcpu_id 0, logical id 0, Total time 6349183, Miss_deadlines 18219, slice_overuses 7 extra_time 224680, thread (ffff88007f628000)
+Apr 26 04:14:40 (none) user.info kernel: [   71.360051] palacios (pcore 2 vm alloc vcore 4): DEBUG: EDF Sched. run_next_core. vcpu_id 4, logical id 2, Total time 4596710, Miss_deadlines 2216155, slice_overuses 7 extra_time 648878, thread (ffff88007794ada0)
+Apr 26 04:14:46 (none) user.info kernel: [   71.391609] palacios (pcore 0 vm alloc vcore 0): BOCHSCONSOLE>*** int 15h function AX=EC00, BX=0002 not yet supported!
+Apr 26 04:14:49 (none) user.info kernel: [   71.391646] palacios (pcore 0 vm alloc vcore 0): DEBUG: BOCHSINFO>*** int 15h function AX=EC00, BX=0002 not yet supported!
+Apr 26 04:14:51 (none) user.info kernel: [   71.392882] palacios (pcore 0 vm alloc vcore 0): BOCHSCONSOLE>KBD: unsupported int 16h function 03
+Apr 26 04:14:52 (none) user.info kernel: [   71.392916] palacios (pcore 0 vm alloc vcore 0): DEBUG: BOCHSINFO>KBD: unsupported int 16h function 03
+Apr 26 04:14:52 (none) user.info kernel: [   71.394479] palacios (pcore 0 vm alloc vcore 0): BOCHSCONSOLE>*** int 15h function AX=E980, BX=0000 not yet supported!
+Apr 26 04:14:52 (none) user.info kernel: [   71.394516] palacios (pcore 0 vm alloc vcore 0): DEBUG: BOCHSINFO>*** int 15h function AX=E980, BX=0000 not yet supported!
+Apr 26 04:14:52 (none) user.info kernel: [   71.394559] palacios (pcore 0): ERROR at palacios/src/devices/cga.c(580): Video dac_pelmask_write: not implemented
+Apr 26 04:14:52 (none) user.info kernel: [   71.462618] palacios (pcore 0 vm alloc vcore 0): DEBUG: MSR write for msr 0xc0000080
+Apr 26 04:14:52 (none) user.info kernel: [   71.652106] palacios (pcore 1 vm alloc vcore 2): DEBUG: EDF Sched. run_next_core. vcpu_id 2, logical id 1, Total time 7801369, Miss_deadlines 4310020, slice_overuses 5 extra_time 19689, thread (ffff880077948000)
+Apr 26 04:14:52 (nonApr 26 04:14:52 (none) user.info kernel: [   81.041756] palacios (pcore 1 vm alloc vcore 2): DEBUG: EDF Sched. run_next_core. vcpu_id 2, logical id 1, Total time 13687145, Miss_deadlines 8002025, slice_overuses 10 extra_time 69205, thread (ffff880077948000)
+Apr 26 04:14:52 (none) user.info kernel: [   81.250054] palacios (pcore 2 vm alloc vcore 4): DEBUG: EDF Sched. run_next_core. vcpu_id 4, logical id 2, Total time 8546256, Miss_deadlines 3933544, slice_overuses 11 extra_time 1527888, thread (ffff88007794ada0)
+Apr 26 04:14:52 (none) user.info kernel: [   81.687460] palacios (pcore 0 vm alloc vcore 1): DEBUG: EDF Sched. run_next_core. vcpu_id 1, logical id 0, Total time 9633619, Miss_deadlines 2459717, slice_overuses 12 extra_time 1596954, thread (ffff88007f62c470)
+Apr 26 04:14:52 (none) user.info kernel: [   81.690036] palacios (pcore 2 vm alloc vcore 5): DEBUG: EDF Sched. run_next_core. vcpu_id 5, logical id 2, Total time 13426150, Miss_deadlines 6112364, slice_overuses 12 extra_time 82694, thread (ffff88007f5bc470)
+Apr 26 04:14:52 (none) user.info kernel: [   82.037014] palacios (pcore 1 vm alloc vcore 3): DEBUG: EDF Sched. run_next_core. vcpu_id 3, logical id 1, Total time 8151759, Miss_deadlines 4863405, slice_overuses 7 extra_time 31633, thread (ffff8800779496d0)
+Apr 26 04:14:52 (none) user.info kernel: [   82.306301] palacios (pcore 0 vm alloc vcore 0): DEBUG: EDF Sched. run_next_core. vcpu_id 0, logical id 0, Total time 12899314, Miss_deadlines 93611, slice_overuses 14 extra_time 650308, thread (ffff88007f628000)
+Apr 26 04:14:52 (none) user.info kernel: [   82.438535] palacios (pcore 0): ERROR at palacios/src/devices/cga.c(580): Video dac_pelmask_write: not implemented
+Apr 26 04:14:52 (none) user.info kernel: [   82.524057] palacios (pcore 2 vm alloc vcore 4): DEBUG: EDF Sched. run_next_core. vcpu_id 4, logical id 2, Total time 8986188, Miss_deadlines 4127036, slice_overuses 12 extra_time 1529172, thread (ffff88007794ada0)
+Apr 26 04:14:52 (none) user.info kernel: [   82.670041] palacios (pcore 1 vm alloc vcore 2): DEBUG: EDF Sched. run_next_core. vcpu_id 2, logical id 1, Total time 14682348, Miss_deadlines 8568531, slice_overuses 11 extra_time 91698, thread (ffff880077948000)
+Apr 26 04:14:52 (none) user.info kernel: [   82.978097] palacios (pcore 2 vm alloc vcore 5): DEBUG: EDF Sched. run_next_core. vcpu_id 5, logical id 2, Total time 14260116, Miss_deadlines 6588140, slice_overuses 12 extra_time 82694, thread (ffff88007f5bc470)
+Apr 26 04:14:52 (none) user.info kernel: [   83.188910] palacios (pcore 0 vm alloc vcore 1): DEBUG: EDF Sched. run_next_core. vcpu_id 1, logical id 0, Total time 10252408, Miss_deadlines 2634936, slice_overuses 13 extra_time 1597538, thread (ffff88007f62c470)
+Apr 26 04:14:52 (none) user.info kernel: [   83.644738] palacios (pcore 1 vm alloc vcore 3): DEBUG: EDF Sched. run_next_core. vcpu_id 3, logical id 1, Total time 8774743, Miss_deadlines 5266927, slice_overuses 8 extra_time 74608, thread (ffff8800779496d0)
+Apr 26 04:14:52 (none) user.info kernel: [   83.812117] palacios (pcore 2 vm alloc vcore 4): DEBUG: EDF Sched. run_next_core. vcpu_id 4, logical id 2, Total time 9433560, Miss_deadlines 4337520, slice_overuses 13 extra_time 1537896, thread (ffff88007794ada0)
+Apr 26 04:14:55 (none) user.info kernel: [   83.838804] palacios (pcore 0 vm alloc vcore 0): DEBUG: EDF Sched. run_next_core. vcpu_id 0, logical id 0, Total time 13781869, Miss_deadlines 111461, slice_overuses 15 extra_time 657934, thread (ffff88007f628000)
+Apr 26 04:15:08 (none) user.info kernel: [   84.248058] palacios (pcore 1 vm alloc vcore 2): DEBUG: EDF Sched. run_next_core. vcpu_id 2, logical id 1, Total time 15656989, Miss_deadlines 8940847, slice_overuses 12 extra_time 93629, thread (ffff880077948000)
+Apr 26 04:15:11 (none) user.info kernel: [   84.580053] palacios (pcore 2 vm alloc vcore 5): DEBUG: EDF Sched. run_next_core. vcpu_id 5, logical id 2, Total time 15094082, Miss_deadlines 7075427, slice_overuses 12 extra_time 82694, thread (ffff88007f5bc470)
+Apr 26 04:15:13 (none) user.info kernel: [   85.146625] palacios (pcore 0 vm alloc vcore 1): DEBUG: EDF Sched. run_next_core. vcpu_id 1, logical id 0, Total time 10870613, Miss_deadlines 2834724, slice_overuses 13 extra_time 1597538, thread (ffff88007f62c470)
+Apr 26 04:15:18 (none) user.info kernel: [   85.225439] palacios (pcore 1 vm alloc vcore 3): DEBUG: EDF Sched. run_next_core. vcpu_id 3, logical id 1, Total time 9366471, Miss_deadlines 5514517, slice_overuses 9 extra_time 86327, thread (ffff8800779496d0)
+Apr 26 04:15:20 (none) user.info kernel: [   85.473465] palacios (pcore 2 vm alloc vcore 4): DEBUG: EDF Sched. run_next_core. vcpu_id 4, logical id 2, Total time 10165282, Miss_deadlines 4603460, slice_overuses 14 extra_time 1830970, thread (ffff88007794ada0)
+Apr 26 04:15:24 (none) user.info kernel: [   85.779093] palacios (pcore 0 vm alloc vcore 0): DEBUG: EDF Sched. run_next_core. vcpu_id 0, logical id 0, Total time 15073500, Miss_deadlines 123418, slice_overuses 16 extra_time 1074636, thread (ffff88007f628000)
+Apr 26 04:15:26 (none) user.info kernel: [   85.805499] palacios (pcore 1 vm alloc vcore 2): DEBUG: EDF Sched. run_next_core. vcpu_id 2, logical id 1, Total time 16634314, Miss_deadlines 9587094, slice_overuses 13 extra_time 98244, thread (ffff880077948000)
+Apr 26 04:15:30 (none) user.info kernel: [   85.951626] palacios (pcore 2 vm alloc vcore 5): DEBUG: EDF Sched. run_next_core. vcpu_id 5, logical id 2, Total time 15987439, Miss_deadlines 7475065, slice_overuses 13 extra_time 142085, thread (ffff88007f5bc470)
+Apr 26 04:15:31 (none) user.info kernel: [   86.298917] palacios (pcore 0 vm alloc vcore 0): Palacios: Unhandled MSR Read (MSR=0x179) - returning zero
+Apr 26 04:15:35 (none) user.info kernel: [   86.313166] palacios (pcore 0 vm alloc vcore 0): Palacios: Unhandled MSR Read (MSR=0x179) - returning zero
+Apr 26 04:15:38 (none) user.info kernel: [   86.313204] palacios (pcore 0 vm alloc vcore 0): Palacios: Unhandled MSR Read (MSR=0x17a) - returning zero
+Apr 26 04:15:40 (none) user.info kernel: [   86.313274] palacios (pcore 0 vm alloc vcore 0): Palacios: Unhandled MSR Read (MSR=0x179) - returning zero
+Apr 26 04:15:43 (none) user.info kernel: [   86.314709] palacios (pcore 0 vm alloc vcore 0): DEBUG: MSR write for msr 0xc0010004
+Apr 26 04:15:45 (none) user.info kernel: [   86.314732] palacios (pcore 0 vm alloc vcore 0): Palacios: Unhandled MSR Write (MSR=0xc0010004) - ignored
+Apr 26 04:15:48 (none) user.info kernel: [   86.314771] palacios (pcore 0 vm alloc vcore 0): Palacios: Unhandled MSR Read (MSR=0xc0010004) - returning zero
+Apr 26 04:15:51 (none) user.info kernel: [   86.346210] palacios (pcore 0 vm alloc vcore 0): ERROR at palacios/src/devices/apic.c(1457): apic 0: core 0: Attempting to write to read only register 0000000000000030 (error)
+Apr 26 04:15:52 (none) user.info kernel: [   86.660070] palacios (pcore 0 vm alloc vcore 1): DEBUG: EDF Sched. run_next_core. vcpu_id 1, logical id 0, Total time 11503028, Miss_deadlines 3076499, slice_overuses 14 extra_time 1611748, thread (ffff88007f62c470)
+Apr 26 04:15:52 (none) user.info kernel: [   86.778265] palacios (pcore 1 vm alloc vcore 3): DEBUG: EDF Sched. run_next_core. vcpu_id 3, logical id 1, Total time 9946480, Miss_deadlines 5971688, slice_overuses 9 extra_time 86327, thread (ffff8800779496d0)
+Apr 26 04:15:54 (none) user.info kernel: [   86.790063] palacios (pcore 2 vm alloc vcore 4): DEBUG: EDF Sched. run_next_core. vcpu_id 4, logical id 2, Total time 10612613, Miss_deadlines 4863406, slice_overuses 15 extra_time 1839653, thread (ffff88007794ada0)
+Apr 26 04:15:55 (none) user.info kernel: [   87.298727] palacios (pcore 0 vm alloc vcore 0): DEBUG: EDF Sched. run_next_core. vcpu_id 0, logical id 0, Total time 15954421, Miss_deadlines 137320, slice_overuses 17 extra_time 1080628, thread (ffff88007f628000)
+Apr 26 04:15:55 (none) user.info kernel: [   87.329234] palacios (pcore 2 vm alloc vcore 5): DEBUG: EDF Sched. run_next_core. vcpu_id 5, logical id 2, Total time 16825822, Miss_deadlines 7902859, slice_overuses 14 extra_time 146502, thread (ffff88007f5bc470)
+Apr 26 04:15:55 (none) user.info kernel: [   87.358326] palacios (pcore 1 vm alloc vcore 2): DEBUG: EDF Sched. run_next_core. vcpu_id 2, logical id 1, Total time 17607024, Miss_deadlines 10162678, slice_overuses 13 extra_time 98244, thread (ffff880077948000)
+Apr 26 04:15:56 (none) user.info kernel: [   88.163254] palacios (pcore 2 vm alloc vcore 4): DEBUG: EDF Sched. run_next_core. vcpu_id 4, logical id 2, Total time 11142544, Miss_deadlines 5030991, slice_overuses 16 extra_time 1930936, thread (ffff88007794ada0)
+Apr 26 04:15:56 (none) user.info kernel: [   88.180062] palacios (pcore 0 vm alloc vcore 1): DEBUG: EDF Sched. run_next_core. vcpu_id 1, logical id 0, Total time 12122931, Miss_deadlines 3281067, slice_overuses 15 extra_time 1613446, thread (ffff88007f62c470)
+Apr 26 04:15:57 (none) user.info kernel: [   88.377127] palacios (pcore 1 vm alloc vcore 3): DEBUG: EDF Sched. run_next_core. vcpu_id 3, logical id 1, Total time 10526489, Miss_deadlines 6431244, slice_overuses 9 extra_time 86327, thread (ffff8800779496d0)
+Apr 26 04:15:57 (none) user.info kernel: [   88.720060] palacios (pcore 2 vm alloc vcore 5): DEBUG: EDF Sched. run_next_core. vcpu_id 5, logical id 2, Total time 17659788, Miss_deadlines 8142230, slice_overuses 14 extra_time 146502, thread (ffff88007f5bc470)
+Apr 26 04:15:58 (none) user.info kernel: [   89.006675] palacios (pcore 1 vm alloc vcore 2): DEBUG: EDF Sched. run_next_core. vcpu_id 2, logical id 1, Total time 18610147, Miss_deadlines 10824758, slice_overuses 14 extra_time 128657, thread (ffff880077948000)
+Apr 26 04:15:58 (none) user.info kernel: [   89.258627] palacios (pcore 0 vm alloc vcore 0): DEBUG: EDF Sched. run_next_core. vcpu_id 0, logical id 0, Total time 16834453, Miss_deadlines 137470, slice_overuses 18 extra_time 1085731, thread (ffff88007f628000)
+Apr 26 04:15:59 (none) user.info kernel: [   89.558065] palacios (pcore 2 vm alloc vcore 4): DEBUG: EDF Sched. run_next_core. vcpu_id 4, logical id 2, Total time 11659259, Miss_deadlines 5347993, slice_overuses 17 extra_time 2009003, thread (ffff88007794ada0)
+Apr 26 04:16:00 (none) user.info kernel: [   89.979441] palacios (pcore 1 vm alloc vcore 3): DEBUG: EDF Sched. run_next_core. vcpu_id 3, logical id 1, Total time 11155985, Miss_deadlines 6796075, slice_overuses 10 extra_time 135814, thread (ffff8800779496d0)
+Apr 26 04:16:00 (none) user.info kernel: [   89.996763] palacios (pcore 2 vm alloc vcore 5): DEBUG: EDF Sched. run_next_core. vcpu_id 5, logical id 2, Total time 18497738, Miss_deadlines 8616989, slice_overuses 15 extra_time 150486, thread (ffff88007f5bc470)
+Apr 26 04:16:01 (none) user.info kernel: [   90.548785] palacios (pcore 0 vm alloc vcore 1): DEBUG: EDF Sched. run_next_core. vcpu_id 1, logical id 0, Total time 13201438, Miss_deadlines 3478485, slice_overuses 16 extra_time 2073748, thread (ffff88007f62c470)
+Apr 26 04:16:02 (none) user.info kernel: [   90.585730] palacios (pcore 1 vm alloc vcore 2): DEBUG: EDF Sched. run_next_core. vcpu_id 2, logical id 1, Total time 19582857, Miss_deadlines 11127553, slice_overuses 14 extra_time 128657, thread (ffff880077948000)
+Apr 26 04:16:03 (none) user.info kernel: [   90.860058] palacios (pcore 2 vm alloc vcore 4): DEBUG: EDF Sched. run_next_core. vcpu_id 4, logical id 2, Total time 12097907, Miss_deadlines 5660312, slice_overuses 17 extra_time 2009003, thread (ffff88007794ada0)
+Apr 26 04:16:04 (none) user.info kernel: [   91.313830] palacios (pcore 2 vm alloc vcore 5): DEBUG: EDF Sched. run_next_core. vcpu_id 5, logical id 2, Total time 19334860, Miss_deadlines 9068956, slice_overuses 16 extra_time 153642, thread (ffff88007f5bc470)
+Apr 26 04:16:05 (none) user.info kernel: [   91.466084] palacios (pcore 0 vm alloc vcore 0): DEBUG: EDF Sched. run_next_core. vcpu_id 0, logical id 0, Total time 18123175, Miss_deadlines 137799, slice_overuses 19 extra_time 1499524, thread (ffff88007f628000)
+Apr 26 04:16:05 (none) user.info kernel: [   91.558496] palacios (pcore 1 vm alloc vcore 3): DEBUG: EDF Sched. run_next_core. vcpu_id 3, logical id 1, Total time 11762221, Miss_deadlines 7272038, slice_overuses 11 extra_time 162041, thread (ffff8800779496d0)
+Apr 26 04:16:06 (none) user.info kernel: [   92.154024] palacios (pcore 2 vm alloc vcore 4): DEBUG: EDF Sched. run_next_core. vcpu_id 4, logical id 2, Total time 12547859, Miss_deadlines 5821501, slice_overuses 18 extra_time 2020307, thread (ffff88007794ada0)
+Apr 26 04:16:07 (none) user.info kernel: [   92.170215] palacios (pcore 1 vm alloc vcore 2): DEBUG: EDF Sched. run_next_core. vcpu_id 2, logical id 1, Total time 20555567, Miss_deadlines 11654044, slice_overuses 14 extra_time 128657, thread (ffff880077948000)
+Apr 26 04:16:07 (none) user.info kernel: [   92.364928] palacios (pcore 0 vm alloc vcore 1): DEBUG: EDF Sched. run_next_core. vcpu_id 1, logical id 0, Total time 14118682, Miss_deadlines 3650086, slice_overuses 17 extra_time 2372787, thread (ffff88007f62c470)
+Apr 26 04:16:08 (none) user.info kernel: [   92.870035] palacios (pcore 2 vm alloc vcore 5): DEBUG: EDF Sched. run_next_core. vcpu_id 5, logical id 2, Total time 20168826, Miss_deadlines 9493625, slice_overuses 16 extra_time 153642, thread (ffff88007f5bc470)
+Apr 26 04:16:08 (none) user.info kernel: [   92.994025] palacios (pcore 0 vm alloc vcore 0): DEBUG: EDF Sched. run_next_core. vcpu_id 0, logical id 0, Total time 19021963, Miss_deadlines 137883, slice_overuses 20 extra_time 1523383, thread (ffff88007f628000)
+Apr 26 04:16:09 (none) user.info kernel: [   93.142981] palacios (pcore 1 vm alloc vcore 3): DEBUG: EDF Sched. run_next_core. vcpu_id 3, logical id 1, Total time 12373887, Miss_deadlines 7755964, slice_overuses 12 extra_time 193698, thread (ffff8800779496d0)
+Apr 26 04:16:10 (none) user.info kernel: [   93.704056] palacios (pcore 2 vm alloc vcore 4): DEBUG: EDF Sched. run_next_core. vcpu_id 4, logical id 2, Total time 13235339, Miss_deadlines 5998695, slice_overuses 19 extra_time 2269139, thread (ffff88007794ada0)
+Apr 26 04:16:11 (none) user.info kernel: [   93.736815] palacios (pcore 1 vm alloc vcore 2): DEBUG: EDF Sched. run_next_core. vcpu_id 2, logical id 1, Total time 21528277, Miss_deadlines 12389981, slice_overuses 14 extra_time 128657, thread (ffff880077948000)
+Apr 26 04:16:12 (none) user.info kernel: [   94.143676] palacios (pcore 0 vm alloc vcore 1): DEBUG: EDF Sched. run_next_core. vcpu_id 1, logical id 0, Total time 14743728, Miss_deadlines 3792343, slice_overuses 18 extra_time 2379628, thread (ffff88007f62c470)
+Apr 26 04:16:12 (none) user.info kernel: [   94.150036] palacios (pcore 2 vm alloc vcore 5): DEBUG: EDF Sched. run_next_core. vcpu_id 5, logical id 2, Total time 21002792, Miss_deadlines 9827136, slice_overuses 16 extra_time 153642, thread (ffff88007f5bc470)
+Apr 26 04:16:13 (none) user.info kernel: [   94.720041] palacios (pcore 1 vm alloc vcore 3): DEBUG: EDF Sched. run_next_core. vcpu_id 3, logical id 1, Total time 12960882, Miss_deadlines 8295002, slice_overuses 13 extra_time 200684, thread (ffff8800779496d0)
+Apr 26 04:16:14 (none) user.info kernel: [   94.770061] palacios (pcore 0 vm alloc vcore 0): DEBUG: EDF Sched. run_next_core. vcpu_id 0, logical id 0, Total time 20165601, Miss_deadlines 137925, slice_overuses 21 extra_time 1792092, thread (ffff88007f628000)
+Apr 26 04:16:15 (none) user.info kernel: [   95.018999] palacios (pcore 2 vm alloc vcore 4): DEBUG: EDF Sched. run_next_core. vcpu_id 4, logical id 2, Total time 13681269, Miss_deadlines 6189765, slice_overuses 20 extra_time 2276421, thread (ffff88007794ada0)
+Apr 26 04:16:16 (none) user.info kernel: [   95.310047] palacios (pcore 1 vm alloc vcore 2): DEBUG: EDF Sched. run_next_core. vcpu_id 2, logical id 1, Total time 22501451, Miss_deadlines 13126872, slice_overuses 15 extra_time 129121, thread (ffff880077948000)
+Apr 26 04:16:17 (none) user.info kernel: [   95.460033] palacios (pcore 2 vm alloc vcore 5): DEBUG: EDF Sched. run_next_core. vcpu_id 5, logical id 2, Total time 21871700, Miss_deadlines 10315925, slice_overuses 17 extra_time 188584, thread (ffff88007f5bc470)
+Apr 26 04:16:18 (none) user.info kernel: [   95.680002] palacios (pcore 0 vm alloc vcore 1): DEBUG: EDF Sched. run_next_core. vcpu_id 1, logical id 0, Total time 15370026, Miss_deadlines 4038304, slice_overuses 19 extra_time 2387721, thread (ffff88007f62c470)
+Apr 26 04:16:19 (none) user.info kernel: [   96.282813] palacios (pcore 1 vm alloc vcore 3): DEBUG: EDF Sched. run_next_core. vcpu_id 3, logical id 1, Total time 13550817, Miss_deadlines 8748179, slice_overuses 14 extra_time 210610, thread (ffff8800779496d0)
+Apr 26 04:16:19 (none) user.info kernel: [   96.304016] palacios (pcore 2 vm alloc vcore 4): DEBUG: EDF Sched. run_next_core. vcpu_id 4, logical id 2, Total time 14122253, Miss_deadlines 6453025, slice_overuses 21 extra_time 2278757, thread (ffff88007794ada0)
+Apr 26 04:16:20 (none) user.info kernel: [   96.923668] palacios (pcore 1 vm alloc vcore 2): DEBUG: EDF Sched. run_next_core. vcpu_id 2, logical id 1, Total time 23474161, Miss_deadlines 13811357, slice_overuses 15 extra_time 129121, thread (ffff880077948000)
+Apr 26 04:16:21 (none) user.info kernel: [   97.025090] palacios (pcore 2 vm alloc vcore 5): DEBUG: EDF Sched. run_next_core. vcpu_id 5, logical id 2, Total time 22705666, Miss_deadlines 10776041, slice_overuses 17 extra_time 188584, thread (ffff88007f5bc470)
+Apr 26 04:16:22 (none) user.info kernel: [   97.860048] palacios (pcore 2 vm alloc vcore 4): DEBUG: EDF Sched. run_next_core. vcpu_id 4, logical id 2, Total time 14843274, Miss_deadlines 6613400, slice_overuses 22 extra_time 2561130, thread (ffff88007794ada0)
+Apr 26 04:16:22 (none) user.info kernel: [   97.897080] palacios (pcore 1 vm alloc vcore 3): DEBUG: EDF Sched. run_next_core. vcpu_id 3, logical id 1, Total time 14191619, Miss_deadlines 9078722, slice_overuses 15 extra_time 271403, thread (ffff8800779496d0)
+Apr 26 04:16:22 (none) user.info kernel: [   98.384650] palacios (pcore 2 vm alloc vcore 5): DEBUG: EDF Sched. run_next_core. vcpu_id 5, logical id 2, Total time 23540569, Miss_deadlines 11274114, slice_overuses 18 extra_time 189521, thread (ffff88007f5bc470)
+Apr 26 04:16:24 (none) user.info kernel: [   98.513554] palacios (pcore 1 vm alloc vcore 2): DEBUG: EDF Sched. run_next_core. vcpu_id 2, logical id 1, Total time 24447516, Miss_deadlines 14191691, slice_overuses 16 extra_time 129766, thread (ffff880077948000)
+Apr 26 04:16:24 (none) user.info kernel: [   99.224498] palacios (pcore 2 vm alloc vcore 4): DEBUG: EDF Sched. run_next_core. vcpu_id 4, logical id 2, Total time 15367825, Miss_deadlines 6613401, slice_overuses 23 extra_time 2647033, thread (ffff88007794ada0)
+Apr 26 04:16:25 (none) user.info kernel: [   99.489459] palacios (pcore 1 vm alloc vcore 3): DEBUG: EDF Sched. run_next_core. vcpu_id 3, logical id 1, Total time 14804513, Miss_deadlines 9184004, slice_overuses 16 extra_time 304288, thread (ffff8800779496d0)
+Apr 26 04:16:26 (none) user.info kernel: [   99.800043] palacios (pcore 2 vm alloc vcore 5): DEBUG: EDF Sched. run_next_core. vcpu_id 5, logical id 2, Total time 24375907, Miss_deadlines 11504616, slice_overuses 19 extra_time 190893, thread (ffff88007f5bc470)
+Apr 26 04:16:26 (none) user.info kernel: [  100.069520] palacios (pcore 1 vm alloc vcore 2): DEBUG: EDF Sched. run_next_core. vcpu_id 2, logical id 1, Total time 25423364, Miss_deadlines 14997504, slice_overuses 17 extra_time 132904, thread (ffff880077948000)
+Apr 26 04:16:27 (none) user.info kernel: [  100.640032] palacios (pcore 2 vm alloc vcore 4): DEBUG: EDF Sched. run_next_core. vcpu_id 4, logical id 2, Total time 15933323, Miss_deadlines 6817455, slice_overuses 24 extra_time 2773883, thread (ffff88007794ada0)
+Apr 26 04:16:27 (none) user.info kernel: [  101.042287] palacios (pcore 1 vm alloc vcore 3): DEBUG: EDF Sched. run_next_core. vcpu_id 3, logical id 1, Total time 15384522, Miss_deadlines 9673665, slice_overuses 16 extra_time 304288, thread (ffff8800779496d0)
+Apr 26 04:16:28 (none) user.info kernel: [  101.197719] palacios (pcore 2 vm alloc vcore 5): DEBUG: EDF Sched. run_next_core. vcpu_id 5, logical id 2, Total time 25215841, Miss_deadlines 11776700, slice_overuses 20 extra_time 196861, thread (ffff88007f5bc470)
+Apr 26 04:16:28 (none) user.info kernel: [  101.622348] palacios (pcore 1 vm alloc vcore 2): DEBUG: EDF Sched. run_next_core. vcpu_id 2, logical id 1, Total time 26396074, Miss_deadlines 15794237, slice_overuses 17 extra_time 132904, thread (ffff880077948000)
+Apr 26 04:16:29 (none) user.info kernel: [  102.031740] palacios (pcore 2 vm alloc vcore 4): DEBUG: EDF Sched. run_next_core. vcpu_id 4, logical id 2, Total time 16473290, Miss_deadlines 7107175, slice_overuses 25 extra_time 2875202, thread (ffff88007794ada0)
+Apr 26 04:16:30 (none) user.info kernel: [  102.480040] palacios (pcore 2 vm alloc vcore 5): DEBUG: EDF Sched. run_next_core. vcpu_id 5, logical id 2, Total time 26049807, Miss_deadlines 12123131, slice_overuses 20 extra_time 196861, thread (ffff88007f5bc470)
+Apr 26 04:16:32 (none) user.info kernel: [  102.595115] palacios (pcore 1 vm alloc vcore 3): DEBUG: EDF Sched. run_next_core. vcpu_id 3, logical id 1, Total time 15964531, Miss_deadlines 10187530, slice_overuses 16 extra_time 304288, thread (ffff8800779496d0)
+Apr 26 04:16:33 (none) user.info kernel: [  103.180043] palacios (pcore 1 vm alloc vcore 2): DEBUG: EDF Sched. run_next_core. vcpu_id 2, logical id 1, Total time 27368784, Miss_deadlines 16643900, slice_overuses 17 extra_time 132904, thread (ffff880077948000)
+Apr 26 04:16:33 (none) user.info kernel: [  103.322640] palacios (pcore 2 vm alloc vcore 4): DEBUG: EDF Sched. run_next_core. vcpu_id 4, logical id 2, Total time 16921539, Miss_deadlines 7474288, slice_overuses 26 extra_time 2884803, thread (ffff88007794ada0)
+Apr 26 04:16:34 (none) user.info kernel: [  103.769019] palacios (pcore 2 vm alloc vcore 5): DEBUG: EDF Sched. run_next_core. vcpu_id 5, logical id 2, Total time 26889750, Miss_deadlines 12732722, slice_overuses 21 extra_time 202838, thread (ffff88007f5bc470)
+Apr 26 04:16:35 (none) user.info kernel: [  104.152809] palacios (pcore 1 vm alloc vcore 3): DEBUG: EDF Sched. run_next_core. vcpu_id 3, logical id 1, Total time 16549391, Miss_deadlines 10638727, slice_overuses 17 extra_time 309139, thread (ffff8800779496d0)
+Apr 26 04:16:36 (none) user.info kernel: [  104.605595] palacios (pcore 2 vm alloc vcore 4): DEBUG: EDF Sched. run_next_core. vcpu_id 4, logical id 2, Total time 17367868, Miss_deadlines 7702486, slice_overuses 27 extra_time 2892484, thread (ffff88007794ada0)
+Apr 26 04:16:36 (none) user.info kernel: [  104.850044] palacios (pcore 1 vm alloc vcore 2): DEBUG: EDF Sched. run_next_core. vcpu_id 2, logical id 1, Total time 28341494, Miss_deadlines 17517906, slice_overuses 17 extra_time 132904, thread (ffff880077948000)
+Apr 26 04:16:36 (none) user.info kernel: [  105.340022] palacios (pcore 2 vm alloc vcore 5): DEBUG: EDF Sched. run_next_core. vcpu_id 5, logical id 2, Total time 27726241, Miss_deadlines 13277849, slice_overuses 22 extra_time 205363, thread (ffff88007f5bc470)
+Apr 26 04:16:37 (none) user.info kernel: [  105.822811] palacios (pcore 1 vm alloc vcore 3): DEBUG: EDF Sched. run_next_core. vcpu_id 3, logical id 1, Total time 17246573, Miss_deadlines 11092736, slice_overuses 18 extra_time 426312, thread (ffff8800779496d0)
+Apr 26 04:16:38 (none) user.info kernel: [  106.180023] palacios (pcore 2 vm alloc vcore 4): DEBUG: EDF Sched. run_next_core. vcpu_id 4, logical id 2, Total time 18099966, Miss_deadlines 8003256, slice_overuses 28 extra_time 3185934, thread (ffff88007794ada0)
+Apr 26 04:16:39 (none) user.info kernel: [  106.430577] palacios (pcore 1 vm alloc vcore 2): DEBUG: EDF Sched. run_next_core. vcpu_id 2, logical id 1, Total time 29314204, Miss_deadlines 18142106, slice_overuses 17 extra_time 132904, thread (ffff880077948000)
+Apr 26 04:16:40 (none) user.info kernel: [  106.618723] palacios (pcore 2 vm alloc vcore 5): DEBUG: EDF Sched. run_next_core. vcpu_id 5, logical id 2, Total time 28561953, Miss_deadlines 13659442, slice_overuses 23 extra_time 207109, thread (ffff88007f5bc470)
+Apr 26 04:16:41 (none) user.info kernel: [  107.404939] palacios (pcore 1 vm alloc vcore 3): DEBUG: EDF Sched. run_next_core. vcpu_id 3, logical id 1, Total time 17854286, Miss_deadlines 11702533, slice_overuses 19 extra_time 454016, thread (ffff8800779496d0)
+Apr 26 04:16:41 (none) user.info kernel: [  107.452756] palacios (pcore 2 vm alloc vcore 4): DEBUG: EDF Sched. run_next_core. vcpu_id 4, logical id 2, Total time 18538614, Miss_deadlines 8225970, slice_overuses 28 extra_time 3185934, thread (ffff88007794ada0)
+Apr 26 04:16:42 (none) user.info kernel: [  107.891454] palacios (pcore 2 vm alloc vcore 5): DEBUG: EDF Sched. run_next_core. vcpu_id 5, logical id 2, Total time 29395919, Miss_deadlines 14009020, slice_overuses 23 extra_time 207109, thread (ffff88007f5bc470)
+Apr 26 04:16:43 (none) user.info kernel: [  107.985000] palacios (pcore 1 vm alloc vcore 2): DEBUG: EDF Sched. run_next_core. vcpu_id 2, logical id 1, Total time 30288509, Miss_deadlines 19049901, slice_overuses 18 extra_time 134499, thread (ffff880077948000)
+Apr 26 04:16:44 (none) user.err kernel: [   96.310001] serial8250: too much work for irq4
+Apr 26 04:16:45 (none) user.warn kernel: [  108.687762] Clocksource tsc unstable (delta = 9373963221 ns)
+Apr 26 04:16:46 (none) user.info kernel: [  108.719797] palacios (pcore 0 vm alloc vcore 0): DEBUG: EDF Sched. run_next_core. vcpu_id 0, logical id 0, Total time 21066762, Miss_deadlines 137995, slice_overuses 22 extra_time 1818324, thread (ffff88007f628000)
+Apr 26 04:16:47 (none) user.info kernel: [  108.725474] palacios (pcore 2 vm alloc vcore 4): DEBUG: EDF Sched. run_next_core. vcpu_id 4, logical id 2, Total time 18977262, Miss_deadlines 8469351, slice_overuses 28 extra_time 3185934, thread (ffff88007794ada0)
+Apr 26 04:16:48 (none) user.info kernel: [  108.957766] palacios (pcore 1 vm alloc vcore 3): DEBUG: EDF Sched. run_next_core. vcpu_id 3, logical id 1, Total time 18434295, Miss_deadlines 12263574, slice_overuses 19 extra_time 454016, thread (ffff8800779496d0)
+Apr 26 04:16:48 (none) user.info kernel: [  109.351390] palacios (pcore 0): ERROR at palacios/src/devices/apic.c(869):  Warning: core 1 is not in INIT state (mode = 1), ignored (assuming this is the deassert)
+Apr 26 04:16:49 (none) user.info kernel: [  109.351561] palacios (pcore 0 vm alloc vcore 1): DEBUG: Resetting SVM Guest CPU 1
+Apr 26 04:16:50 (none) user.info kernel: [  109.352360] palacios (pcore 0): ERROR at palacios/src/devices/apic.c(892):  core 1 is not in SIPI state (mode = 2), ignored!
+Apr 26 04:16:51 (none) user.info kernel: [  109.537827] palacios (pcore 1 vm alloc vcore 2): DEBUG: EDF Sched. run_next_core. vcpu_id 2, logical id 1, Total time 31261219, Miss_deadlines 19829515, slice_overuses 18 extra_time 134499, thread (ffff880077948000)
+Apr 26 04:16:52 (none) user.info kernel: [  109.560048] palacios (pcore 2 vm alloc vcore 5): DEBUG: EDF Sched. run_next_core. vcpu_id 5, logical id 2, Total time 30229885, Miss_deadlines 14578902, slice_overuses 23 extra_time 207109, thread (ffff88007f5bc470)
+Apr 26 04:16:52 (none) user.info kernel: [  109.600054] palacios (pcore 0 vm alloc vcore 1): DEBUG: EDF Sched. run_next_core. vcpu_id 1, logical id 0, Total time 28378175, Miss_deadlines 4236766, slice_overuses 20 extra_time 14777665, thread (ffff88007f62c470)
+Apr 26 04:16:53 (none) user.info kernel: [  109.600287] palacios (pcore 0 vm alloc vcore 1): DEBUG: MSR write for msr 0xc0000080
+Apr 26 04:16:54 (none) user.info kernel: [  109.600510] palacios (pcore 0 vm alloc vcore 1): DEBUG: MSR write for msr 0xc0000080
+Apr 26 04:16:55 (none) user.info kernel: [  110.300038] palacios (pcore 0 vm alloc vcore 0): DEBUG: EDF Sched. run_next_core. vcpu_id 0, logical id 0, Total time 21946964, Miss_deadlines 139374, slice_overuses 23 extra_time 1823597, thread (ffff88007f628000)
+Apr 26 04:16:55 (none) user.info kernel: [  110.394069] palacios (pcore 2 vm alloc vcore 4): DEBUG: EDF Sched. run_next_core. vcpu_id 4, logical id 2, Total time 19741754, Miss_deadlines 8637961, slice_overuses 29 extra_time 3511778, thread (ffff88007794ada0)
+Apr 26 04:16:56 (none) user.info kernel: [  110.510594] palacios (pcore 1 vm alloc vcore 3): DEBUG: EDF Sched. run_next_core. vcpu_id 3, logical id 1, Total time 19014304, Miss_deadlines 12795364, slice_overuses 19 extra_time 454016, thread (ffff8800779496d0)
+Apr 26 04:16:57 (none) user.info kernel: [  110.832767] palacios (pcore 2 vm alloc vcore 5): DEBUG: EDF Sched. run_next_core. vcpu_id 5, logical id 2, Total time 31063851, Miss_deadlines 14917154, slice_overuses 23 extra_time 207109, thread (ffff88007f5bc470)
+Apr 26 04:16:57 (none) user.info kernel: [  111.184082] palacios (pcore 1 vm alloc vcore 2): DEBUG: EDF Sched. run_next_core. vcpu_id 2, logical id 1, Total time 32233929, Miss_deadlines 20463018, slice_overuses 18 extra_time 134499, thread (ffff880077948000)
+Apr 26 04:16:58 (none) user.info kernel: [  111.676285] palacios (pcore 2 vm alloc vcore 4): DEBUG: EDF Sched. run_next_core. vcpu_id 4, logical id 2, Total time 20180402, Miss_deadlines 8907847, slice_overuses 29 extra_time 3511778, thread (ffff88007794ada0)
+Apr 26 04:16:59 (none) user.info kernel: [  111.850063] palacios (pcore 0 vm alloc vcore 1): DEBUG: EDF Sched. run_next_core. vcpu_id 1, logical id 0, Total time 29078105, Miss_deadlines 4237206, slice_overuses 21 extra_time 14859390, thread (ffff88007f62c470)
+Apr 26 04:16:59 (none) user.info kernel: [  112.159877] palacios (pcore 1 vm alloc vcore 3): DEBUG: EDF Sched. run_next_core. vcpu_id 3, logical id 1, Total time 19687739, Miss_deadlines 13237314, slice_overuses 20 extra_time 547442, thread (ffff8800779496d0)
+Apr 26 04:17:00 (none) user.info kernel: [  112.270044] palacios (pcore 2 vm alloc vcore 5): DEBUG: EDF Sched. run_next_core. vcpu_id 5, logical id 2, Total time 31907314, Miss_deadlines 15509780, slice_overuses 24 extra_time 216606, thread (ffff88007f5bc470)
+Apr 26 04:17:00 (none) user.info kernel: [  112.501162] palacios (pcore 0 vm alloc vcore 0): DEBUG: EDF Sched. run_next_core. vcpu_id 0, logical id 0, Total time 23496928, Miss_deadlines 139374, slice_overuses 24 extra_time 2498632, thread (ffff88007f628000)
+Apr 26 04:17:01 (none) user.info kernel: [  112.768517] palacios (pcore 1 vm alloc vcore 2): DEBUG: EDF Sched. run_next_core. vcpu_id 2, logical id 1, Total time 33209668, Miss_deadlines 20739122, slice_overuses 19 extra_time 137528, thread (ffff880077948000)
+Apr 26 04:17:02 (none) user.info kernel: [  113.120036] palacios (pcore 2 vm alloc vcore 4): DEBUG: EDF Sched. run_next_core. vcpu_id 4, logical id 2, Total time 20774109, Miss_deadlines 9137396, slice_overuses 30 extra_time 3666837, thread (ffff88007794ada0)
+Apr 26 04:17:03 (none) user.info kernel: [  113.394167] palacios (pcore 0 vm alloc vcore 1): DEBUG: EDF Sched. run_next_core. vcpu_id 1, logical id 0, Total time 29698019, Miss_deadlines 4237285, slice_overuses 22 extra_time 14861099, thread (ffff88007f62c470)
+Apr 26 04:17:03 (none) user.info kernel: [  113.658024] palacios (pcore 2 vm alloc vcore 5): DEBUG: EDF Sched. run_next_core. vcpu_id 5, logical id 2, Total time 32752076, Miss_deadlines 15723203, slice_overuses 25 extra_time 227402, thread (ffff88007f5bc470)
+Apr 26 04:17:04 (none) user.info kernel: [  113.750035] palacios (pcore 1 vm alloc vcore 3): DEBUG: EDF Sched. run_next_core. vcpu_id 3, logical id 1, Total time 20296326, Miss_deadlines 13548947, slice_overuses 21 extra_time 576020, thread (ffff8800779496d0)
+Apr 26 04:17:05 (none) user.info kernel: [  114.057123] palacios (pcore 0 vm alloc vcore 0): DEBUG: EDF Sched. run_next_core. vcpu_id 0, logical id 0, Total time 24373552, Miss_deadlines 139455, slice_overuses 25 extra_time 2500327, thread (ffff88007f628000)
+Apr 26 04:17:05 (none) user.info kernel: [  114.360036] palacios (pcore 1 vm alloc vcore 2): DEBUG: EDF Sched. run_next_core. vcpu_id 2, logical id 1, Total time 34191130, Miss_deadlines 21203279, slice_overuses 20 extra_time 146280, thread (ffff880077948000)
+Apr 26 04:17:06 (none) user.info kernel: [  114.500016] palacios (pcore 2 vm alloc vcore 4): DEBUG: EDF Sched. run_next_core. vcpu_id 4, logical id 2, Total time 21274042, Miss_deadlines 9381482, slice_overuses 31 extra_time 3728122, thread (ffff88007794ada0)
+Apr 26 04:17:07 (none) user.info kernel: [  114.944512] palacios (pcore 0 vm alloc vcore 1): DEBUG: EDF Sched. run_next_core. vcpu_id 1, logical id 0, Total time 30343826, Miss_deadlines 4237354, slice_overuses 23 extra_time 14888701, thread (ffff88007f62c470)
+Apr 26 04:17:08 (none) user.info kernel: [  114.960046] palacios (pcore 2 vm alloc vcore 5): DEBUG: EDF Sched. run_next_core. vcpu_id 5, logical id 2, Total time 33591297, Miss_deadlines 16155872, slice_overuses 26 extra_time 232657, thread (ffff88007f5bc470)
+Apr 26 04:17:09 (none) user.info kernel: [  115.332803] palacios (pcore 1 vm alloc vcore 3): DEBUG: EDF Sched. run_next_core. vcpu_id 3, logical id 1, Total time 20896273, Miss_deadlines 13971631, slice_overuses 22 extra_time 595958, thread (ffff8800779496d0)
+Apr 26 04:17:10 (none) user.info kernel: [  115.580000] palacios (pcore 0 vm alloc vcore 0): DEBUG: EDF Sched. run_next_core. vcpu_id 0, logical id 0, Total time 25256400, Miss_deadlines 139541, slice_overuses 26 extra_time 2508246, thread (ffff88007f628000)
+Apr 26 04:17:11 (none) user.info kernel: [  115.794067] palacios (pcore 2 vm alloc vcore 4): DEBUG: EDF Sched. run_next_core. vcpu_id 4, logical id 2, Total time 21721037, Miss_deadlines 9628267, slice_overuses 32 extra_time 3736469, thread (ffff88007794ada0)
+Apr 26 04:17:11 (none) user.info kernel: [  115.912864] palacios (pcore 1 vm alloc vcore 2): DEBUG: EDF Sched. run_next_core. vcpu_id 2, logical id 1, Total time 35163840, Miss_deadlines 21922593, slice_overuses 20 extra_time 146280, thread (ffff880077948000)
+Apr 26 04:17:12 (none) user.info kernel: [  116.232765] palacios (pcore 2 vm alloc vcore 5): DEBUG: EDF Sched. run_next_core. vcpu_id 5, logical id 2, Total time 34425263, Miss_deadlines 16626023, slice_overuses 26 extra_time 232657, thread (ffff88007f5bc470)
+Apr 26 04:17:13 (none) user.info kernel: [  116.466772] palacios (pcore 0 vm alloc vcore 1): DEBUG: EDF Sched. run_next_core. vcpu_id 1, logical id 0, Total time 30971522, Miss_deadlines 4237441, slice_overuses 24 extra_time 14898192, thread (ffff88007f62c470)
+Apr 26 04:17:14 (none) user.info kernel: [  116.890039] palacios (pcore 1 vm alloc vcore 3): DEBUG: EDF Sched. run_next_core. vcpu_id 3, logical id 1, Total time 21476282, Miss_deadlines 14405737, slice_overuses 22 extra_time 595958, thread (ffff8800779496d0)
+Apr 26 04:17:15 (none) user.info kernel: [  117.080054] palacios (pcore 2 vm alloc vcore 4): DEBUG: EDF Sched. run_next_core. vcpu_id 4, logical id 2, Total time 22159685, Miss_deadlines 9877744, slice_overuses 32 extra_time 3736469, thread (ffff88007794ada0)
+Apr 26 04:17:16 (none) user.info kernel: [  117.100029] palacios (pcore 0 vm alloc vcore 0): DEBUG: EDF Sched. run_next_core. vcpu_id 0, logical id 0, Total time 26136003, Miss_deadlines 139626, slice_overuses 27 extra_time 2512920, thread (ffff88007f628000)
+Apr 26 04:17:16 (none) user.info kernel: [  117.470099] palacios (pcore 1 vm alloc vcore 2): DEBUG: EDF Sched. run_next_core. vcpu_id 2, logical id 1, Total time 36140958, Miss_deadlines 22582606, slice_overuses 21 extra_time 150688, thread (ffff880077948000)
+Apr 26 04:17:17 (none) user.info kernel: [  117.819302] palacios (pcore 2 vm alloc vcore 5): DEBUG: EDF Sched. run_next_core. vcpu_id 5, logical id 2, Total time 35263036, Miss_deadlines 17039712, slice_overuses 27 extra_time 236464, thread (ffff88007f5bc470)
+Apr 26 04:17:19 (none) user.info kernel: [  118.009080] palacios (pcore 0 vm alloc vcore 1): DEBUG: EDF Sched. run_next_core. vcpu_id 1, logical id 0, Total time 31594730, Miss_deadlines 4237516, slice_overuses 25 extra_time 14903195, thread (ffff88007f62c470)
+Apr 26 04:17:19 (none) user.info kernel: [  118.490039] palacios (pcore 1 vm alloc vcore 3): DEBUG: EDF Sched. run_next_core. vcpu_id 3, logical id 1, Total time 22056291, Miss_deadlines 14832492, slice_overuses 22 extra_time 595958, thread (ffff8800779496d0)
+Apr 26 04:17:20 (none) user.info kernel: [  118.656231] palacios (pcore 2 vm alloc vcore 4): DEBUG: EDF Sched. run_next_core. vcpu_id 4, logical id 2, Total time 22898879, Miss_deadlines 10155136, slice_overuses 33 extra_time 4037015, thread (ffff88007794ada0)
+Apr 26 04:17:21 (none) user.info kernel: [  118.670037] palacios (pcore 0 vm alloc vcore 0): DEBUG: EDF Sched. run_next_core. vcpu_id 0, logical id 0, Total time 27035047, Miss_deadlines 139693, slice_overuses 28 extra_time 2537035, thread (ffff88007f628000)
+Apr 26 04:17:22 (none) user.info kernel: [  119.094930] palacios (pcore 2 vm alloc vcore 5): DEBUG: EDF Sched. run_next_core. vcpu_id 5, logical id 2, Total time 36099909, Miss_deadlines 17519691, slice_overuses 28 extra_time 239371, thread (ffff88007f5bc470)
+Apr 26 04:17:23 (none) user.info kernel: [  119.106456] palacios (pcore 1 vm alloc vcore 2): DEBUG: EDF Sched. run_next_core. vcpu_id 2, logical id 1, Total time 37160840, Miss_deadlines 23208771, slice_overuses 22 extra_time 197860, thread (ffff880077948000)
+Apr 26 04:17:24 (none) user.info kernel: [  119.557212] palacios (pcore 0 vm alloc vcore 1): DEBUG: EDF Sched. run_next_core. vcpu_id 1, logical id 0, Total time 32255635, 
