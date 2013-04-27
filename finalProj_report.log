@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  21 APR 2013 15:31
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  27 APR 2013 17:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -116,7 +116,17 @@ Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
 Package: setspace 2000/12/01 6.7 Contributed and Supported LaTeX2e package
 
 Package: `setspace' 6.7 <2000/12/01>
-) (./finalProj_report.aux)
+) (./finalProj_report.aux
+
+LaTeX Warning: Label `fig:fig10' multiply defined.
+
+
+LaTeX Warning: Label `fig:fig10' multiply defined.
+
+
+LaTeX Warning: Label `fig:fig10' multiply defined.
+
+)
 \openout1 = `finalProj_report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
@@ -131,8 +141,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 25.
 LaTeX Font Info:    ... okay on input line 25.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 25.
 LaTeX Font Info:    ... okay on input line 25.
-
-(/usr/local/texlive/2011/texmf-dist/tex/context/base/supp-pdf.mkii
+ (/usr/local/texlive/2011/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count93
 \scratchdimen=\dimen115
@@ -235,38 +244,74 @@ File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 26.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 33.
+(Font)              <10.95> on input line 36.
  [1
 
 {/usr/local/texlive/2011/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
 
-(./finalProj_report.bbl) [4] (./finalProj_report.aux) ) 
+<figures/fitness0mut0cross.png, id=24, 578.16pt x 433.62pt>
+File: figures/fitness0mut0cross.png Graphic file (type png)
+
+<use figures/fitness0mut0cross.png>
+Package pdftex.def Info: figures/fitness0mut0cross.png used on input line 98.
+(pdftex.def)             Requested size: 288.78816pt x 132.39616pt.
+ [4]
+<figures/fitness0mut08cross.png, id=28, 578.16pt x 433.62pt>
+File: figures/fitness0mut08cross.png Graphic file (type png)
+
+<use figures/fitness0mut08cross.png>
+Package pdftex.def Info: figures/fitness0mut08cross.png used on input line 105.
+
+(pdftex.def)             Requested size: 288.78816pt x 132.39616pt.
+
+<figures/fitness08mut0cross.png, id=29, 578.16pt x 433.62pt>
+File: figures/fitness08mut0cross.png Graphic file (type png)
+
+<use figures/fitness08mut0cross.png>
+Package pdftex.def Info: figures/fitness08mut0cross.png used on input line 112.
+
+(pdftex.def)             Requested size: 288.78816pt x 132.39616pt.
+
+<figures/fitness08mut08cross.png, id=30, 578.16pt x 433.62pt>
+File: figures/fitness08mut08cross.png Graphic file (type png)
+
+<use figures/fitness08mut08cross.png>
+Package pdftex.def Info: figures/fitness08mut08cross.png used on input line 119
+.
+(pdftex.def)             Requested size: 288.78816pt x 132.39616pt.
+ [5 <./figures/fitness0mut0cross.png (PNG copy)> <./figures/fitness0mut08cross.
+png (PNG copy)> <./figures/fitness08mut0cross.png (PNG copy)>] (./finalProj_rep
+ort.bbl) [6 <./figures/fitness08mut08cross.png (PNG copy)>] (./finalProj_report
+.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
 Here is how much of TeX's memory you used:
- 2190 strings out of 493633
- 31599 string characters out of 3143378
- 95919 words of memory out of 3000000
- 5469 multiletter control sequences out of 15000+200000
+ 2220 strings out of 493633
+ 32337 string characters out of 3143378
+ 95966 words of memory out of 3000000
+ 5493 multiletter control sequences out of 15000+200000
  8542 words of font info for 30 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
- 38i,6n,32p,1112b,274s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/local/texlive/2011
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2011/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2011/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2011/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2011/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2011/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2011/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2011/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2011/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2011/texmf-dist/font
-s/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2011/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2011/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2011/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmti10.pfb>
-Output written on finalProj_report.pdf (4 pages, 157625 bytes).
+ 38i,6n,32p,1101b,274s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
+></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
+</usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
+/usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></u
+sr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr
+/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/l
+ocal/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/loc
+al/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local
+/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/te
+xlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texli
+ve/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texliv
+e/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/
+2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on finalProj_report.pdf (6 pages, 278245 bytes).
 PDF statistics:
- 69 PDF objects out of 1000 (max. 8388607)
- 49 compressed objects within 1 object stream
+ 79 PDF objects out of 1000 (max. 8388607)
+ 53 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
