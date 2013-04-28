@@ -22,7 +22,7 @@ plot(1:length(csv1(:,4)), csv1(:,4), '--b', 'LineWidth', 1.2);
 plot(1:length(csv5(:,3)), csv5(:,3), 'g', 'LineWidth', 1.2);
 plot(1:length(csv5(:,4)), csv5(:,4), '--g', 'LineWidth', 1.2);
 set(gca, 'fontsize', 20)
-title('No Crossover, no mutation  ', 'fontsize', 25);
+title('0.1 Crossover rate, 0.1 mutation rate ', 'fontsize', 25);
 axis([0, 50, 0.0, 1.0]);
 xlabel('Generations','FontSize', 25);
 ylabel('Fitness','FontSize', 25);
@@ -37,7 +37,7 @@ plot(1:length(csv2(:,4)), csv2(:,4), '--b', 'LineWidth', 1.2);
 plot(1:length(csv6(:,3)), csv6(:,3), 'g', 'LineWidth', 1.2);
 plot(1:length(csv6(:,4)), csv6(:,4), '--g', 'LineWidth', 1.2);
 set(gca, 'fontsize', 20)
-title('No Crossover, 0.8 mutation rate  ', 'fontsize', 25);
+title('0.1 Crossover rate, 0.8 mutation rate  ', 'fontsize', 25);
 axis([0, 50, 0.0, 1.0]);
 xlabel('Generations','FontSize', 25);
 ylabel('Fitness','FontSize', 25);
@@ -52,7 +52,7 @@ plot(1:length(csv3(:,4)), csv3(:,4), '--b', 'LineWidth', 1.2);
 plot(1:length(csv7(:,3)), csv7(:,3), 'g', 'LineWidth', 1.2);
 plot(1:length(csv7(:,4)), csv7(:,4), '--g', 'LineWidth', 1.2);
 set(gca, 'fontsize', 20)
-title('0.8 Crossover rate, no mutation  ', 'fontsize', 25);
+title('0.8 Crossover rate, 0.1 mutation rate  ', 'fontsize', 25);
 axis([0, 50, 0.0, 1.0]);
 xlabel('Generations','FontSize', 25);
 ylabel('Fitness','FontSize', 25);

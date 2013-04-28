@@ -26,7 +26,7 @@
 #define PCORES 50
 #define VCORES 650
 
-#define CROSSRATE 1.0
+#define CROSSRATE 0.9
 #define MUTRATE 0.2
 
 

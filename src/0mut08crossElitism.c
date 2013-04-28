@@ -27,7 +27,7 @@
 #define VCORES 650
 
 #define CROSSRATE 0.2
-#define MUTRATE 1.0
+#define MUTRATE 0.9
 
 
 int freeMachine(machine * m){
