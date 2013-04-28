@@ -1,4 +1,11 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{Bellard:2005}
+F.~Bellard.
+\newblock Qemu, a fast and portable dynamic translator.
+\newblock In {\em Proceedings of the annual conference on USENIX Annual
+  Technical Conference}, ATEC '05, pages 41--41, Berkeley, CA, USA, 2005.
+  USENIX Association.
 
 \bibitem{Dall:78}
 S.~Dall and C.~Liu.
@@ -28,10 +35,29 @@ O.~Mondragon and P.~Bridges.
 \newblock Emulation of large scale high performance systems through vmms.
 \newblock {\em 9th Annual UNM Computer Science Symposium}, 2013.
 
+\bibitem{Omara2010}
+F.~A. Omara and M.~M. Arafa.
+\newblock Genetic algorithms for task scheduling problem.
+\newblock {\em J. Parallel Distrib. Comput.}, 70(1):13--22, Jan. 2010.
+
 \bibitem{Zapata:05}
 O.~Pereira and P.~Mejia.
 \newblock Edf and rm multiprocessor scheduling algorithms: Survey and
   performance evaluation.
 \newblock {\em Queue}, 2005.
+
+\bibitem{Shahid94}
+A.~Shahid, M.~S.~T. Benten, and S.~M. Sait.
+\newblock Gsa: scheduling and allocation using genetic algorithm.
+\newblock In {\em Proceedings of the conference on European design automation},
+  EURO-DAC '94, pages 84--89, Los Alamitos, CA, USA, 1994. IEEE Computer
+  Society Press.
+
+\bibitem{Wu04anincremental}
+A.~S. Wu, H.~Yu, S.~Jin, K.~chi Lin, and G.~Schiavone.
+\newblock An incremental genetic algorithm approach to multiprocessor
+  scheduling.
+\newblock {\em IEEE Transactions on Parallel and Distributed Systems},
+  15:824--834, 2004.
 
 \end{thebibliography}

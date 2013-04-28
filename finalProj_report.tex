@@ -1,4 +1,4 @@
-\title{Final Project Proposal \\ Allocation of Tasks on Real-Time Multiprocessor Systems using Genetic Algorithms}
+\title{Final Project\\ Allocation of Tasks on Real-Time Multiprocessor Systems using Genetic Algorithms}
 
 \author{ Oscar Mondragon, and  
 Amanda Minnich \\
@@ -21,6 +21,7 @@ University of New Mexico\\
 \usepackage{tabularx}
 \usepackage{siunitx}
 \usepackage{setspace}
+\usepackage{cite}
 \singlespacing
 
 
@@ -29,7 +30,7 @@ University of New Mexico\\
 \doublespacing
 
 \section{Author Contributions}
-Both Mondragon and Minnich worked extensively on the code, meeting daily to work on all steps of the coding process. Mondragon spent additional time debugging, since he was more familiar with C. Mondragon also generated the smaller chromosome and tested it in Palacios Virtual Machine Monitor. Minnich generated the figures and tables. They each ran half of the experiments. Mondragon wrote the Introduction, and Minnich wrote the Methods, Results, and Conclusion.
+Both Mondragon and Minnich worked extensively on the code, meeting daily to work on all steps of the coding process. Mondragon spent additional time debugging, since he was more familiar with C. Mondragon also generated the smaller chromosome and tested it in Palacios Virtual Machine Monitor. Minnich generated the figures and tables. They each ran half of the experiments. Mondragon wrote the Introduction, the results of the Palacios experiment and the Related Work, and Minnich wrote the Methods, Results, and Conclusion.
 
 \section{Introduction}
 
@@ -73,7 +74,7 @@ Since optimizing the allocation of tasks on real-time multiprocessors systems is
 
 \section{Methods}
 
-Our program is written in C, so that it easily interfaces with existing virtualization software. We input the number of machines in the population, the number of generations for the algorithm to run, and the number of virtual cores in the virtual machine. Our experiments were all run with 50 physical cores and 650 virtual cores. We select random values in a fixed range for the maximum utilization value for each physical core and the CPU speed for both the physical and virtual cores. These values are fixed across the different machines in the population: for example in every machine physical core number 1 will have the same (initially random) maximum utilization and speed values. Our chromosome consists of a TDF for the virtual machine, slice and period values for every core of every virtual machine, and an allocation matching of a virtual core to a physical core for every virtual core. We created structs to represent physical cores, virtual cores, the virtual machine, an overall machine which corresponds to an individual in the population, and the population itself, which had 100 individuals for all experiments. This was necessary because of the hierarchical nature of this system. 
+Our program consits of around 900 lines of C code. We chose that programming language because it easily interfaces with existing virtualization software. We input the number of machines in the population, the number of generations for the algorithm to run, and the number of virtual cores in the virtual machine. Our experiments were all run with 50 physical cores and 650 virtual cores. We select random values in a fixed range for the maximum utilization value for each physical core and the CPU speed for both the physical and virtual cores. These values are fixed across the different machines in the population: for example in every machine physical core number 1 will have the same (initially random) maximum utilization and speed values. Our chromosome consists of a TDF for the virtual machine, slice and period values for every core of every virtual machine, and an allocation matching of a virtual core to a physical core for every virtual core. We created structs to represent physical cores, virtual cores, the virtual machine, an overall machine which corresponds to an individual in the population, and the population itself, which had 100 individuals for all experiments. This was necessary because of the hierarchical nature of this system. 
 
 While writing this program, we took inspiration from the genetic algorithms from Project 2, but due to the nature of the problem modifications in implementation were necessary. Like standard genetic algorithms, our chromosome parameters receive random initial values, and over the course of the experiment they undergo selection, crossover, and mutation, along with a fitness evaluation at the end of each round. We used tournament selection, with and without elitism. When elitism was present, the elite individual did not undergo crossover or mutation. That individual could however be picked during selection again to participate in these processes. We implemented standard 1-pt crossover, where a random crossover point is picked and two parents swap chromosome values at this point. For our mutation function, we re-assigned random parameter values for the virtual core parameters. We did not mutate the TDF, due to difficulties with constraint checking. This did not seem to have a large effect on the outcome of the experiment. 
 
@@ -83,13 +84,13 @@ Once we got the genetic algorithm working, we ran 8 experiments to explore high 
 
 We also did a smaller-scale run of our genetic algorithm and tested the top-performing chromosome values in the Palacios Virtual Machine Monitor, which is a free software package that Oscar currently works with~\cite{Mondragon:13}. As mention above, our genetic algorithm attempts to generate a suitable allocation configuration oriented to maximize the utilization of the physical CPUs when the Earliest Deadline Scheduler (EDF) is used. This scheduler has been previously implemented in Palacios VMM as part of Mondragon's research and was used to validate our results.
 
-We kept all of the same parameters of the previous test cases, but reduced the number of physical cores to 3 and the number of virtual cores to 6. Both mutation and crossover rates were set to 0.5 and elitism was used. Given to the complexity of the installation, and configuration of Palacios VMM and its VM guests, the Palacios code is not provided. The complete installation and setting was done on Mondragon's personal computer; if required, it can be shown in operation on those machines. In addition, the Palacios log file is provided in our turned in materials.
+We kept all of the same parameters of the previous test cases, but reduced the number of physical cores to 3 and the number of virtual cores to 6. Both mutation and crossover rates were set to 0.5 and elitism was used. For this experiment the 2.6.37 linux kernel was compiled into a bootable ISO image. This image was installed whithin a QEMU~\cite{Bellard:2005} emulated machine, and Palacios was executed embedded in that linux distribution. In QEMU options, 3 physical cores were specified and the amount of RAM memory was set to 2048 MB. To get the palacios logs outside QEMU, the option -serial was used. For the guest configuration, the parameters specified in the chromosome, such as TDF, slice, period, and allocated cpu (target CPU) were written in the VM XML config file. This XML file was used to generate the VM by using the guest\_creator tool provided by Palacios. Given to the complexity of the installation, and configuration of Palacios VMM and its VM guests, the Palacios code is not provided. The complete installation and setting was done on Mondragon's personal computer; if required, it can be shown in operation on those machines. In addition, the Palacios log file is provided in our turned in materials.
 
 \section{Results}
 
 Our results for the performance of this program were quite positive, even for a large number of virtual cores. There was substantial improvement in fitness values no matter what the set of algorithm parameters were, with average fitness values increasing from 0.2 to 0.4, and the best fitness values increasing from 0.4 to 0.8. Since the purpose of genetic algorithms is to generate at least one high fitness individual, we feel that the doubling in fitness of the best individual is quite significant, even if there was an overall lower change in average fitness values. Furthermore, this evolution happened very early on. We ran 50 generations in each experiment for thoroughness, but most of the evolution happened by 10 generations. This makes this algorithm more practical for actual use, as 10 generations run very quickly. Thus it is reasonable to hope that researchers could use this code to assist in virtual core allocation, as it works well and runs quickly. 
 
-It is clear from the figures belong that crossover and mutation rates do not have a large effect on the efficacy of this genetic algorithm. This suggests that the fitness landscape of this type of allocation is smooth, with a distinct maximum. 
+It is clear from the figures~\ref{fig:fig1} and~\ref{fig:fig2} that crossover and mutation rates do not have a large effect on the efficacy of this genetic algorithm. This suggests that the fitness landscape of this type of allocation is smooth, with a distinct maximum. 
 
 \begin{figure}[H]
  \centering
@@ -105,52 +106,52 @@ It is clear from the figures belong that crossover and mutation rates do not hav
   \label{fig:fig2}  
 \end{figure}
 
-In genetic algorithms, elitism and mutation have a clear relationship: if the mutation rate is low, elitism is often unnecessary, but if it is high, it is quite important. we wanted to explore this relationship, so we ran two experiments, one with a high crossover rate and mutation, and one with a high mutation rate and no crossover. When there is no mutation, elitism seems to be detrimental, with a best fitness value oof just above 0.6, while the run without elitism gets to around 0.8. 
-
-\begin{figure}[H]
- \centering
-  \includegraphics[width=0.6\textwidth,height=0.2\textheight]{figures/fitness0mut08cross.png}
-  \caption{Best and average fitness curves with and without elitism with a 0.8 crossover rate and no mutation}
-  \label{fig:fig2}  
-\end{figure}
+In genetic algorithms, elitism and mutation have a clear relationship: if the mutation rate is low, elitism is often unnecessary, but if it is high, it is quite important. we wanted to explore this relationship, so we ran two experiments, one with a high crossover rate and no mutation (See Figure ~\ref{fig:fig3}), and one with a high mutation rate and no crossover (See Figure ~\ref{fig:fig4}). When there is no mutation, elitism seems to be detrimental, with a best fitness value of just above 0.6, while the run without elitism gets to around 0.8. 
 
 With a high mutation rate, elitism does indeed prove essential. Although initially the run without elitism is performing better, the high mutation rate causes the best-performing chromosome to be lost, resulting in a steep drop in both the best and average fitness values.
  
 \begin{figure}[H]
  \centering
-  \includegraphics[width=0.6\textwidth,height=0.2\textheight]{figures/fitness08mut0crossDrop.png}
-  \caption{Best and average fitness curves with and without elitism with no crossover and a 0.8 mutation rate. This figure highlights the danger in having a high mutation rate and no elitism.}
+  \includegraphics[width=0.6\textwidth,height=0.2\textheight]{figures/fitness0mut08cross.png}
+  \caption{Best and average fitness curves with and without elitism with a 0.8 crossover rate and no mutation}
   \label{fig:fig3}  
 \end{figure}
 
-To tease out whether crossover or mutation was more important, we ran experiments with a high mutation rate and low crossover rate, and a high crossover rate and low mutation rate. 
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=0.6\textwidth,height=0.2\textheight]{figures/fitness08mut0crossDrop.png}
+  \caption{Best and average fitness curves with and without elitism with no crossover and a 0.8 mutation rate. This figure highlights the danger in having a high mutation rate and no elitism.}
+  \label{fig:fig4}  
+\end{figure}
+
+To tease out whether crossover or mutation was more important, we ran experiments with a high mutation rate and low crossover rate (See Figure ~\ref{fig:fig5}), and a high crossover rate and low mutation rate (See Figure ~\ref{fig:fig6}). 
 
 \begin{figure}[H]
  \centering
   \includegraphics[width=0.6\textwidth,height=0.2\textheight]{figures/fitness08mut01cross.png}
   \caption{Best and average fitness curves with and without elitism with a 0.1 crossover rate and a 0.8 mutation rate}
-  \label{fig:fig4}  
+  \label{fig:fig5}  
 \end{figure}
 
 \begin{figure}[H]
  \centering
   \includegraphics[width=0.6\textwidth,height=0.2\textheight]{figures/fitness01mut08cross.png}
   \caption{Best and average fitness curves with and without elitism with a 0.8 crossover rate and a 0.1 mutation rate}
-  \label{fig:fig2}  
+  \label{fig:fig6}  
 \end{figure}
 
 These plots show very similar performance, although again we found that with a high mutation rate elitism is necessary, and with a high crossover rate but low mutation rate it is not.
 
-The last experiment we did was plugging ithe parameters from our top-performing chromosome into Palacios VMM. show the resulting chrosome for that test case
+The last experiment we did was plugging ithe parameters from our top-performing chromosome into Palacios VMM. Table~\ref{tab:table1} shows the resulting chrosome for that test case
 
 \begin{table}[H]
 \centering
 \begin{footnotesize}
 \renewcommand{\arraystretch}{1.2}
 
- \begin{tabularx}{\textwidth}{ | X | X | X | X | X | X | X | X | X | X | X |}
+ \begin{tabularx}{17cm}{ | X | X | X | X | X | X | X | X | X | X | X |}
  \hline
-Machine ID & Machine Fitness & TDF  & Physical Core ID & Physical Core Speed(Khz) & Achieved Utilization & Maximum Utilization & Virtual Core ID & Virtual Core Speed(Khz) & Slice & Period \\ \hline
+Machine ID & Fitness & TDF  & Phys. Core & PCore Speed (Khz) & Achieved Utilization & Max. Utilization & Virtual Core& VCore Speed (Khz) & Slice & Period \\ \hline
 
 24 & 0.833 & 2 & 0 & 6198490 & 57.03 & 93 & 2 & 7742333 & 874929 & 1592000 \\ \hline
 24 & 0.833 & 2 & 0 & 6198490 & 57.03 & 93 & 3 & 8115486 & 618205 & 1046012 \\ \hline
@@ -197,10 +198,16 @@ Virtual Core ID & Physical Core ID & Total Time ($\mu$$s$) \\ \hline
 %\end{center}
 \end{table}
 
+\section{Related Work}
+
+Other works like~\cite{Shahid94,Wu04anincremental,Omara2010} have used genetic algorithms for solving the CPU allocation problem. Our work differs of these approaches mainly in two aspects. The first one is the scope of our algorithm which is oriented specifically to optimize the allocation problem of systems 
+using a real time scheduling mechanism, and even more specific to solve this problem in the context of VMMs where parameters as the TDF play an important role in the allocation process. The second one is the complexity of our chromosome, which include an important number of parameters from different entities to be optimized and which have to meet some constraints imposed for the scheduling algorithm in order to produce a legal allocation result.
+
 \section{Conclusion}
 
 In conclusion, we have written a functional genetic algorithm to evolve good parameters for task allocation on real-time multiprocessors in preparation for EDF scheduling. This code works quickly and evolves functional allocation parameters for hundreds of virtual cores. We found that high mutation and crossover rates are not necessary for good performance, but that elitism is often critical when there is a high mutation rate. Future work for this project includes allowing standardizing the constraint function, so that allocations can be prepared for different types of tasks. Also, we would like to write code that allows for a best possible allocation, when more cores need to be scheduled than there is space for. Overall we are pleased at the performance of this genetic algorithm and hope to continue to work on it to transform it into a useful tool for task allocation on real-time multiprocessors.
 
+\singlespacing
 \bibliographystyle{abbrv}
 \bibliography{finalProj_report}
 \end{document}
