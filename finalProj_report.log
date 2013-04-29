@@ -1,21 +1,24 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2011.9.12)  28 APR 2013 12:35
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  28 APR 2013 20:10
 entering extended mode
-**C:/Users/Oscar/Documents/GitHub/VMM/finalProj_report.tex
-(C:/Users/Oscar/Documents/GitHub/VMM/finalProj_report.tex
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**finalProj_report.tex
+(./finalProj_report.tex
 LaTeX2e <2009/09/24>
-Babel <v3.8l> and hyphenation patterns for english, afrikaans, ancientgreek, ar
-abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
-croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, ga
-lician, german, german-x-2009-06-19, greek, gujarati, hindi, hungarian, iceland
-ic, indonesian, interlingua, irish, italian, kannada, kurmanji, lao, latin, lat
-vian, lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerm
-an, ngerman-x-2009-06-19, nynorsk, oriya, panjabi, pinyin, polish, portuguese, 
-romanian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swis
-sgerman, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, u
-senglishmax, welsh, loaded.
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\article.cls"
+Babel <v3.8l> and hyphenation patterns for english, dumylang, nohyphenation, ge
+rman-x-2009-06-19, ngerman-x-2009-06-19, afrikaans, ancientgreek, ibycus, arabi
+c, armenian, basque, bulgarian, catalan, pinyin, coptic, croatian, czech, danis
+h, dutch, ukenglish, usenglishmax, esperanto, estonian, ethiopic, farsi, finnis
+h, french, galician, german, ngerman, swissgerman, monogreek, greek, hungarian,
+ icelandic, assamese, bengali, gujarati, hindi, kannada, malayalam, marathi, or
+iya, panjabi, tamil, telugu, indonesian, interlingua, irish, italian, kurmanji,
+ lao, latin, latvian, lithuanian, mongolian, mongolianlmc, bokmal, nynorsk, pol
+ish, portuguese, romanian, russian, sanskrit, serbian, serbianc, slovak, sloven
+ian, spanish, swedish, turkish, turkmen, ukrainian, uppersorbian, welsh, loaded
+.
+(/usr/local/texlive/2011/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\size11.clo"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/base/size11.clo
 File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
@@ -30,31 +33,31 @@ File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \KV@toks@=\toks14
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\trig.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\graphics.cfg"
-File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
+(/usr/local/texlive/2011/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
 )
 Package graphics Info: Driver file: pdftex.def on input line 91.
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pdftex-def\pdftex.def"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/pdftex-def/pdftex.def
 File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/infwarerr.sty
 Package: infwarerr 2010/04/08 v1.3 Providing info/warning/message (HO)
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
 Package: ltxcmds 2011/04/18 v1.20 LaTeX kernel commands for general use (HO)
 )
 \Gread@gobject=\count87
@@ -62,7 +65,7 @@ Package: ltxcmds 2011/04/18 v1.20 LaTeX kernel commands for general use (HO)
 \Gin@req@height=\dimen103
 \Gin@req@width=\dimen104
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\float\float.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count88
 \float@exts=\toks15
@@ -70,7 +73,7 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks16
 \@floatcapt=\box27
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\wrapfig\wrapfig.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/wrapfig/wrapfig.sty
 \wrapoverhang=\dimen105
 \WF@size=\dimen106
 \c@WF@wrappedlines=\count89
@@ -78,18 +81,18 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \WF@everypar=\toks17
 Package: wrapfig 2003/01/31  v 3.6
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\geometry\geometry.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2010/09/12 v5.6 Page Geometry
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/ifpdf.sty
 Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
 Package ifpdf Info: pdfTeX in PDF mode is detected.
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\ifvtex.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/ifvtex.sty
 Package: ifvtex 2010/03/01 v1.5 Switches for detecting VTeX and its modes (HO)
 Package ifvtex Info: VTeX not detected.
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/generic/ifxetex/ifxetex.sty
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
 \Gm@cnth=\count90
@@ -104,16 +107,15 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@layouthoffset=\dimen113
 \Gm@layoutvoffset=\dimen114
 \Gm@dimlist=\toks18
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\geometry\geometry.cfg"))
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ltxmisc\url.sty"
+)
+(/usr/local/texlive/2011/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip10
 Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\tabularx.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/tools/tabularx.sty
 Package: tabularx 1999/01/07 v2.07 `tabularx' package (DPC)
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\array.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/tools/array.sty
 Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
 \col@sep=\dimen115
 \extrarowheight=\dimen116
@@ -129,28 +131,28 @@ Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
 \TX@cols=\count93
 \TX@ftn=\toks20
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\siunitx\siunitx.sty"
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\expl3\expl3.sty"
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\expl3\l3names.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/siunitx/siunitx.sty
+(/usr/local/texlive/2011/texmf-dist/tex/latex/expl3/expl3.sty
+(/usr/local/texlive/2011/texmf-dist/tex/latex/expl3/l3names.sty
 Package: l3names 2011/01/08 v2122 L3 Experimental Naming Scheme for TeX Primiti
 ves
 )
 Package: expl3 2011/04/09 v2222 L3 Experimental code bundle wrapper
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\misc\etex.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/etex-pkg/etex.sty
 Package: etex 1998/03/26 v2.0 eTeX basic definition package (PEB)
 \et@xins=\count94
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\expl3\l3basics.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/expl3/l3basics.sty
 Package: l3basics 2011/04/23 v2246 L3 Experimental basic definitions
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\expl3\l3expan.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/expl3/l3expan.sty
 Package: l3expan 2011/04/09 v2223 L3 Experimental Argument Expansion module
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\expl3\l3tl.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/expl3/l3tl.sty
 Package: l3tl 2011/04/09 v2223 L3 Experimental Token Lists
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\expl3\l3int.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/expl3/l3int.sty
 Package: l3int 2011/04/11 v2229 L3 Experimental Integer module
 \l_tmpa_int=\count95
 \l_tmpb_int=\count96
@@ -161,14 +163,14 @@ Package: l3int 2011/04/11 v2229 L3 Experimental Integer module
 \g_tl_inline_level_int=\count101
 \g_prg_inline_level_int=\count102
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\expl3\l3quark.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/expl3/l3quark.sty
 Package: l3quark 2011/04/14 v2234 L3 Experimental Quark Commands
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\expl3\l3seq.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/expl3/l3seq.sty
 Package: l3seq 2011/04/21 v2245 The LaTeX3 kernel: sequences and stacks
 \g_seq_nesting_depth_int=\count103
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\expl3\l3toks.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/expl3/l3toks.sty
 Package: l3toks 2011/04/09 v2223 L3 Experimental Token Registers
 \l_tmpb_toks=\toks21
 \l_tmpc_toks=\toks22
@@ -178,22 +180,22 @@ Package: l3toks 2011/04/09 v2223 L3 Experimental Token Registers
 \c_empty_toks=\toks26
 \l_tl_replace_toks=\toks27
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\expl3\l3prg.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/expl3/l3prg.sty
 Package: l3prg 2011/04/09 v2223 L3 Experimental control structures
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\expl3\l3clist.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/expl3/l3clist.sty
 Package: l3clist 2011/04/09 v2223 L3 Experimental comma separated lists
 \g_clist_map_inline_int=\count104
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\expl3\l3token.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/expl3/l3token.sty
 Package: l3token 2011/04/09 v2223 L3 Experimental token investigation and manip
 ulation
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\expl3\l3prop.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/expl3/l3prop.sty
 Package: l3prop 2011/04/09 v2223 L3 Experimental Property Lists
 \g_prop_inline_level_int=\count105
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\expl3\l3msg.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/expl3/l3msg.sty
 Package: l3msg 2010/10/02 v2052 L3 Experimental LaTeX Messages module
 \l_msg_redirect_classes_prop=\toks28
 \l_msg_redirect_names_prop=\toks29
@@ -205,13 +207,13 @@ Package: l3msg 2010/10/02 v2052 L3 Experimental LaTeX Messages module
 \l_msg_redirect_trace_prop=\toks35
 \l_msg_redirect_none_prop=\toks36
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\expl3\l3io.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/expl3/l3io.sty
 Package: l3io 2010/10/03 v2063 L3 Experimental i/o module
 \g_iow_streams_prop=\toks37
 \g_ior_streams_prop=\toks38
 \l_iow_stream_int=\count106
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\expl3\l3skip.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/expl3/l3skip.sty
 Package: l3skip 2011/02/15 v2149 L3 Experimental skip registers
 \l_tmpa_skip=\skip45
 \l_tmpb_skip=\skip46
@@ -225,32 +227,32 @@ Package: l3skip 2011/02/15 v2149 L3 Experimental skip registers
 \g_tmpa_dim=\dimen126
 \g_tmpb_dim=\dimen127
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\expl3\l3box.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/expl3/l3box.sty
 Package: l3box 2011/04/09 v2223 L3 Experimental Box module
 \l_tmpb_box=\box29
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\expl3\l3keyval.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/expl3/l3keyval.sty
 Package: l3keyval 2011/04/09 v2223 L3 Experimental keyval processing
 \l_KV_level_int=\count107
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\expl3\l3keys.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/expl3/l3keys.sty
 Package: l3keys 2010/11/11 v2082 L3 Experimental key-value support
 \l_keys_choice_int=\count108
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\expl3\l3precom.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/expl3/l3precom.sty
 Package: l3precom 2011/04/09 v2223 L3 Experimental precompilation module
 \g_gen_sym_int=\count109
 \g_ggen_sym_int=\count110
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\expl3\l3xref.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/expl3/l3xref.sty
 Package: l3xref 2011/04/09 v2223 L3 Experimental cross referencing
 \g_xref_all_curr_immediate_fields_prop=\toks39
 \g_xref_all_curr_deferred_fields_prop=\toks40
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\expl3\l3file.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/expl3/l3file.sty
 Package: l3file 2011/04/21 v2242 The LaTeX3 kernel: file operations
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\expl3\l3fp.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/expl3/l3fp.sty
 Package: l3fp 2011/03/19 v2201 L3 Experimental floating-point operations
 \c_one_million=\count111
 \c_one_hundred_million=\count112
@@ -307,12 +309,12 @@ Package: l3fp 2011/03/19 v2201 L3 Experimental floating-point operations
 \l_fp_tmp_dim=\dimen128
 \l_fp_tmp_skip=\skip50
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\expl3\l3luatex.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/expl3/l3luatex.sty
 Package: l3luatex 2010/07/18 v1985 L3 Experimental LuaTeX functions
 \g_cctab_allocate_int=\count163
 \g_cctab_stack_int=\count164
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\calc.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count165
 \calc@Bcount=\count166
@@ -325,9 +327,9 @@ LaTeX Info: Redefining \addtolength on input line 77.
 \calc@Ccount=\count167
 \calc@Cskip=\skip53
 ))
-Package: siunitx 2011/05/25 v2.2f A comprehensive (SI) units package
+Package: siunitx 2011/06/15 v2.2i A comprehensive (SI) units package
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\xpackages\xbase\xparse.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/xpackages/xbase/xparse.sty
 Package: xparse 2011/04/08 v2219 Generic document command parser
 \c_xparse_shorthands_prop=\toks41
 \l_xparse_m_args_int=\count168
@@ -335,15 +337,15 @@ Package: xparse 2011/04/08 v2219 Generic document command parser
 \l_xparse_processor_int=\count170
 \l_xparse_total_args_int=\count171
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ams\math\amstext.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2000/06/29 v2.01
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ams\math\amsgen.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0
 \@emptytoks=\toks42
 \ex@=\dimen131
 ))
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\xpackages\xtras\l3keys2e.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/xpackages/xtras/l3keys2e.sty
 Package: l3keys2e 2011/05/06 v2320 Parsing LaTeX3 keyvals as LaTeX2e package op
 tions
 )
@@ -399,92 +401,93 @@ tions
 \l_siunitx_table_integer_int=\count190
 \l_siunitx_table_uncert_int=\count191
  LaTeX info: Defining document command \DeclareBinaryPrefix
-(LaTeX)  with arg. spec. 'mmm' on line 6791.
+(LaTeX)  with arg. spec. 'mmm' on line 6794.
 
  LaTeX info: Defining document command \DeclareSIPostPower
-(LaTeX)  with arg. spec. 'mm' on line 6794.
+(LaTeX)  with arg. spec. 'mm' on line 6797.
 
  LaTeX info: Defining document command \DeclareSIPrefix
-(LaTeX)  with arg. spec. 'mmm' on line 6797.
+(LaTeX)  with arg. spec. 'mmm' on line 6800.
 
  LaTeX info: Defining document command \DeclareSIPrePower
-(LaTeX)  with arg. spec. 'mm' on line 6800.
-
- LaTeX info: Defining document command \DeclareSIQualifier
 (LaTeX)  with arg. spec. 'mm' on line 6803.
 
+ LaTeX info: Defining document command \DeclareSIQualifier
+(LaTeX)  with arg. spec. 'mm' on line 6806.
+
  LaTeX info: Defining document command \DeclareSIUnit
-(LaTeX)  with arg. spec. 'O{}mm' on line 6806.
+(LaTeX)  with arg. spec. 'O{}mm' on line 6809.
 
  LaTeX info: Defining document command \DeclareSIUnitWithOptions
-(LaTeX)  with arg. spec. 'mmm' on line 6809.
+(LaTeX)  with arg. spec. 'mmm' on line 6812.
 
  LaTeX info: Defining document command \ang
-(LaTeX)  with arg. spec. 'o>{\SplitArgument {2}{;}}m' on line 6824.
+(LaTeX)  with arg. spec. 'o>{\SplitArgument {2}{;}}m' on line 6827.
 
  LaTeX info: Defining document command \num
-(LaTeX)  with arg. spec. 'om' on line 6831.
+(LaTeX)  with arg. spec. 'om' on line 6834.
 
  LaTeX info: Defining document command \numlist
-(LaTeX)  with arg. spec. 'o>{\SplitList {;}}m' on line 6838.
+(LaTeX)  with arg. spec. 'o>{\SplitList {;}}m' on line 6841.
 
  LaTeX info: Defining document command \numrange
-(LaTeX)  with arg. spec. 'omm' on line 6845.
+(LaTeX)  with arg. spec. 'omm' on line 6848.
 
  LaTeX info: Defining document command \SIlist
-(LaTeX)  with arg. spec. 'o>{\SplitList {;}}mm' on line 6855.
+(LaTeX)  with arg. spec. 'o>{\SplitList {;}}mm' on line 6858.
 
  LaTeX info: Defining document command \SIrange
-(LaTeX)  with arg. spec. 'ommm' on line 6865.
+(LaTeX)  with arg. spec. 'ommm' on line 6868.
 
  LaTeX info: Defining document command \SI
-(LaTeX)  with arg. spec. 'omom' on line 6875.
+(LaTeX)  with arg. spec. 'omom' on line 6878.
 
  LaTeX info: Defining document command \sisetup
-(LaTeX)  with arg. spec. 'm' on line 6878.
+(LaTeX)  with arg. spec. 'm' on line 6881.
 
  LaTeX info: Defining document command \tablenum
-(LaTeX)  with arg. spec. 'om' on line 6885.
+(LaTeX)  with arg. spec. 'om' on line 6892.
 
  LaTeX info: Defining document command \si
-(LaTeX)  with arg. spec. 'om' on line 6895.
+(LaTeX)  with arg. spec. 'om' on line 6902.
 
  LaTeX info: Defining document command \siunitx_bookmark_num:w
-(LaTeX)  with arg. spec. 'om' on line 6932.
+(LaTeX)  with arg. spec. 'om' on line 6939.
 
  LaTeX info: Defining document command \siunitx_bookmark_numrange:w
-(LaTeX)  with arg. spec. 'omm' on line 6934.
+(LaTeX)  with arg. spec. 'omm' on line 6941.
 
  LaTeX info: Defining document command \siunitx_bookmark_SI:w
-(LaTeX)  with arg. spec. 'omom' on line 6936.
+(LaTeX)  with arg. spec. 'omom' on line 6943.
 
  LaTeX info: Defining document command \siunitx_bookmark_SIlist:w
-(LaTeX)  with arg. spec. 'omm' on line 6938.
+(LaTeX)  with arg. spec. 'omm' on line 6945.
 
  LaTeX info: Defining document command \siunitx_bookmark_SIrange:w
-(LaTeX)  with arg. spec. 'ommm' on line 6940.
+(LaTeX)  with arg. spec. 'ommm' on line 6947.
 
  LaTeX info: Defining document command \siunitx_bookmark_si:w
-(LaTeX)  with arg. spec. 'om' on line 6941.
+(LaTeX)  with arg. spec. 'om' on line 6948.
 
 \g_ior_tmp_stream=\read1
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\beamer\base\translator\translator
-.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/beamer/translator/translator.sty
 Package: translator 2010/06/12 ver 1.10
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\beamer\base\translator\translator
--language-mappings.tex")))
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\setspace\setspace.sty"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/beamer/translator/translator-lang
+uage-mappings.tex)))
+(/usr/local/texlive/2011/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2000/12/01 6.7 Contributed and Supported LaTeX2e package
 
 Package: `setspace' 6.7 <2000/12/01>
-) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\cite\cite.sty"
+) (/usr/local/texlive/2011/texmf-dist/tex/latex/cite/cite.sty
 LaTeX Info: Redefining \cite on input line 302.
 LaTeX Info: Redefining \nocite on input line 373.
 Package: cite 2010/09/10  v 5.3
 )
-(C:\Users\Oscar\Documents\GitHub\VMM\finalProj_report.aux)
+(./finalProj_report.aux)
+\openout1 = `finalProj_report.aux'.
+
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
 LaTeX Font Info:    ... okay on input line 28.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
@@ -498,7 +501,7 @@ LaTeX Font Info:    ... okay on input line 28.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
 LaTeX Font Info:    ... okay on input line 28.
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+(/usr/local/texlive/2011/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count192
 \scratchdimen=\dimen145
@@ -509,8 +512,51 @@ LaTeX Font Info:    ... okay on input line 28.
 \MPscratchCnt=\count195
 \MPscratchDim=\dimen146
 \MPnumerator=\count196
+\makeMPintoPDFobject=\count197
 \everyMPtoPDFconversion=\toks51
+) (/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2011/04/22 v0.16 Utilities of pdfTeX for LuaTeX (HO)
+
+(/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
 )
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/usr/local/texlive/2011/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/local/texlive/2011/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Managing graphics extensions (HO)
+
+(/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2011/04/07 v1.3 Defining keys (HO)
+))
+(/usr/local/texlive/2011/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2010/12/23 v3.10 Keyval support for LaTeX options (HO)
+
+(/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2011/04/07 v1.13 Key value parser (HO)
+
+(/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2011/02/16 v1.5 Prefix for e-TeX command names (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+
+(/usr/local/texlive/2011/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -546,251 +592,249 @@ LaTeX Font Info:    ... okay on input line 28.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\beamer\base\translator\dicts\tran
-slator-basic-dictionary\translator-basic-dictionary-English.dict"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/beamer/translator/dicts/translato
+r-basic-dictionary/translator-basic-dictionary-English.dict
 Dictionary: translator-basic-dictionary, Language: English 
 )
-\c_siunitx_mathsf_int=\count197
+\c_siunitx_mathsf_int=\count198
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <10.95> on input line 28.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 28.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 28.
-\c_siunitx_mathtt_int=\count198
+\c_siunitx_mathtt_int=\count199
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <12> on input line 29.
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 29.
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+(/usr/local/texlive/2011/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 29.
  [1
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] [3] [4]
-<figures/fitness08mut08cross.png, id=26, 578.16pt x 433.62pt>
+{/usr/local/texlive/2011/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
+ [4]
+<figures/fitness08mut08cross.png, id=27, 578.16pt x 433.62pt>
 File: figures/fitness08mut08cross.png Graphic file (type png)
 
 <use figures/fitness08mut08cross.png>
-Package pdftex.def Info: figures/fitness08mut08cross.png used on input line 97.
+Package pdftex.def Info: figures/fitness08mut08cross.png used on input line 99.
 
 (pdftex.def)             Requested size: 288.78816pt x 132.39616pt.
  [5]
-<figures/fitness01mut01cross.png, id=30, 578.16pt x 433.62pt>
+<figures/fitness01mut01cross.png, id=31, 578.16pt x 433.62pt>
 File: figures/fitness01mut01cross.png Graphic file (type png)
 
 <use figures/fitness01mut01cross.png>
-Package pdftex.def Info: figures/fitness01mut01cross.png used on input line 104
+Package pdftex.def Info: figures/fitness01mut01cross.png used on input line 106
 .
 (pdftex.def)             Requested size: 288.78816pt x 132.39616pt.
 
-<figures/fitness0mut08cross.png, id=31, 578.16pt x 433.62pt>
+<figures/fitness0mut08cross.png, id=32, 578.16pt x 433.62pt>
 File: figures/fitness0mut08cross.png Graphic file (type png)
 
 <use figures/fitness0mut08cross.png>
-Package pdftex.def Info: figures/fitness0mut08cross.png used on input line 115.
+Package pdftex.def Info: figures/fitness0mut08cross.png used on input line 117.
 
 (pdftex.def)             Requested size: 288.78816pt x 132.39616pt.
- [6 <C:/Users/Oscar/Documents/GitHub/VMM/figures/fitness08mut08cross.png (PNG c
-opy)> <C:/Users/Oscar/Documents/GitHub/VMM/figures/fitness01mut01cross.png (PNG
- copy)>]
-<figures/fitness08mut0crossDrop.png, id=35, 578.16pt x 433.62pt>
+ [6 <./figures/fitness08mut08cross.png (PNG copy)> <./figures/fitness01mut01cro
+ss.png (PNG copy)>]
+<figures/fitness08mut0crossDrop.png, id=36, 578.16pt x 433.62pt>
 File: figures/fitness08mut0crossDrop.png Graphic file (type png)
 
 <use figures/fitness08mut0crossDrop.png>
 Package pdftex.def Info: figures/fitness08mut0crossDrop.png used on input line 
-122.
+124.
 (pdftex.def)             Requested size: 288.78816pt x 132.39616pt.
 
-<figures/fitness08mut01cross.png, id=36, 578.16pt x 433.62pt>
+<figures/fitness08mut01cross.png, id=37, 578.16pt x 433.62pt>
 File: figures/fitness08mut01cross.png Graphic file (type png)
 
 <use figures/fitness08mut01cross.png>
-Package pdftex.def Info: figures/fitness08mut01cross.png used on input line 131
+Package pdftex.def Info: figures/fitness08mut01cross.png used on input line 133
 .
 (pdftex.def)             Requested size: 288.78816pt x 132.39616pt.
 
-<figures/fitness01mut08cross.png, id=37, 578.16pt x 433.62pt>
+<figures/fitness01mut08cross.png, id=38, 578.16pt x 433.62pt>
 File: figures/fitness01mut08cross.png Graphic file (type png)
 
 <use figures/fitness01mut08cross.png>
-Package pdftex.def Info: figures/fitness01mut08cross.png used on input line 138
+Package pdftex.def Info: figures/fitness01mut08cross.png used on input line 140
 .
 (pdftex.def)             Requested size: 288.78816pt x 132.39616pt.
- [7 <C:/Users/Oscar/Documents/GitHub/VMM/figures/fitness0mut08cross.png (PNG co
-py)> <C:/Users/Oscar/Documents/GitHub/VMM/figures/fitness08mut0crossDrop.png (P
-NG copy)> <C:/Users/Oscar/Documents/GitHub/VMM/figures/fitness08mut01cross.png 
-(PNG copy)>]
-Overfull \hbox (2.38242pt too wide) in paragraph at lines 165--165
+ [7 <./figures/fitness0mut08cross.png (PNG copy)> <./figures/fitness08mut0cross
+Drop.png (PNG copy)> <./figures/fitness08mut01cross.png (PNG copy)>]
+Overfull \hbox (2.38242pt too wide) in paragraph at lines 167--167
 []|\OT1/cmr/m/n/9 Machine
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 165--165
+Underfull \hbox (badness 10000) in paragraph at lines 167--167
 []|\OT1/cmr/m/n/9 Phys.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 165--165
+Underfull \hbox (badness 10000) in paragraph at lines 167--167
 []|\OT1/cmr/m/n/9 PCore
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 165--165
+Underfull \hbox (badness 10000) in paragraph at lines 167--167
 \OT1/cmr/m/n/9 Speed
  []
 
 
-Overfull \hbox (4.9553pt too wide) in paragraph at lines 165--165
+Overfull \hbox (4.9553pt too wide) in paragraph at lines 167--167
 []|\OT1/cmr/m/n/9 Achieved
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 165--165
+Underfull \hbox (badness 10000) in paragraph at lines 167--167
 \OT1/cmr/m/n/9 Uti-liza-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 165--165
+Underfull \hbox (badness 10000) in paragraph at lines 167--167
 []|\OT1/cmr/m/n/9 Max.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 165--165
+Underfull \hbox (badness 10000) in paragraph at lines 167--167
 \OT1/cmr/m/n/9 Uti-liza-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 165--165
+Underfull \hbox (badness 10000) in paragraph at lines 167--167
 []|\OT1/cmr/m/n/9 Virtual
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 165--165
+Underfull \hbox (badness 10000) in paragraph at lines 167--167
 []|\OT1/cmr/m/n/9 VCore
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 165--165
+Underfull \hbox (badness 10000) in paragraph at lines 167--167
 \OT1/cmr/m/n/9 Speed
  []
 
 
-Overfull \hbox (0.8387pt too wide) in paragraph at lines 165--165
+Overfull \hbox (0.8387pt too wide) in paragraph at lines 167--167
 []|\OT1/cmr/m/n/9 6198490| 
  []
 
 
-Overfull \hbox (0.8387pt too wide) in paragraph at lines 165--165
+Overfull \hbox (0.8387pt too wide) in paragraph at lines 167--167
 []|\OT1/cmr/m/n/9 7742333| 
  []
 
 
-Overfull \hbox (0.8387pt too wide) in paragraph at lines 165--165
+Overfull \hbox (0.8387pt too wide) in paragraph at lines 167--167
 []|\OT1/cmr/m/n/9 1592000| 
  []
 
 
-Overfull \hbox (0.8387pt too wide) in paragraph at lines 165--165
+Overfull \hbox (0.8387pt too wide) in paragraph at lines 167--167
 []|\OT1/cmr/m/n/9 6198490| 
  []
 
 
-Overfull \hbox (0.8387pt too wide) in paragraph at lines 165--165
+Overfull \hbox (0.8387pt too wide) in paragraph at lines 167--167
 []|\OT1/cmr/m/n/9 8115486| 
  []
 
 
-Overfull \hbox (0.8387pt too wide) in paragraph at lines 165--165
+Overfull \hbox (0.8387pt too wide) in paragraph at lines 167--167
 []|\OT1/cmr/m/n/9 1046012| 
  []
 
 
-Overfull \hbox (0.8387pt too wide) in paragraph at lines 165--165
+Overfull \hbox (0.8387pt too wide) in paragraph at lines 167--167
 []|\OT1/cmr/m/n/9 4922740| 
  []
 
 
-Overfull \hbox (0.8387pt too wide) in paragraph at lines 165--165
+Overfull \hbox (0.8387pt too wide) in paragraph at lines 167--167
 []|\OT1/cmr/m/n/9 6731667| 
  []
 
 
-Overfull \hbox (0.8387pt too wide) in paragraph at lines 165--165
+Overfull \hbox (0.8387pt too wide) in paragraph at lines 167--167
 []|\OT1/cmr/m/n/9 1303450| 
  []
 
 
-Overfull \hbox (0.8387pt too wide) in paragraph at lines 165--165
+Overfull \hbox (0.8387pt too wide) in paragraph at lines 167--167
 []|\OT1/cmr/m/n/9 4922740| 
  []
 
 
-Overfull \hbox (0.8387pt too wide) in paragraph at lines 165--165
+Overfull \hbox (0.8387pt too wide) in paragraph at lines 167--167
 []|\OT1/cmr/m/n/9 8866626| 
  []
 
 
-Overfull \hbox (0.8387pt too wide) in paragraph at lines 165--165
+Overfull \hbox (0.8387pt too wide) in paragraph at lines 167--167
 []|\OT1/cmr/m/n/9 6602449| 
  []
 
 
-Overfull \hbox (0.8387pt too wide) in paragraph at lines 165--165
+Overfull \hbox (0.8387pt too wide) in paragraph at lines 167--167
 []|\OT1/cmr/m/n/9 2715879| 
  []
 
 
-Overfull \hbox (0.8387pt too wide) in paragraph at lines 165--165
+Overfull \hbox (0.8387pt too wide) in paragraph at lines 167--167
 []|\OT1/cmr/m/n/9 6602449| 
  []
 
 
-Overfull \hbox (0.8387pt too wide) in paragraph at lines 165--165
+Overfull \hbox (0.8387pt too wide) in paragraph at lines 167--167
 []|\OT1/cmr/m/n/9 7215736| 
  []
 
 
-Overfull \hbox (0.8387pt too wide) in paragraph at lines 165--165
+Overfull \hbox (0.8387pt too wide) in paragraph at lines 167--167
 []|\OT1/cmr/m/n/9 1039601| 
  []
 
 
-Overfull \hbox (2.37837pt too wide) in paragraph at lines 165--166
+Overfull \hbox (2.37837pt too wide) in paragraph at lines 167--168
  [][] 
  []
 
-[8 <C:/Users/Oscar/Documents/GitHub/VMM/figures/fitness01mut08cross.png (PNG co
-py)>] [9] (C:\Users\Oscar\Documents\GitHub\VMM\finalProj_report.bbl) [10]
-(C:\Users\Oscar\Documents\GitHub\VMM\finalProj_report.aux) ) 
+[8 <./figures/fitness01mut08cross.png (PNG copy)>] [9] (./finalProj_report.bbl)
+[10] (./finalProj_report.aux) ) 
 Here is how much of TeX's memory you used:
- 9032 strings out of 494049
- 193836 string characters out of 3146065
- 206873 words of memory out of 3000000
- 12186 multiletter control sequences out of 15000+200000
+ 9347 strings out of 493633
+ 199489 string characters out of 3143378
+ 215315 words of memory out of 3000000
+ 12487 multiletter control sequences out of 15000+200000
  12280 words of font info for 45 fonts, out of 3000000 for 9000
- 715 hyphenation exceptions out of 8191
- 38i,10n,33p,1317b,353s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files (
-x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files (x8
-6)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files (x86)
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files (x86)/M
-iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Program Files (x86)/MiKT
-eX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files (x86)/MiKTeX 
-2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/MiKTeX 2.9
-/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fo
-nts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts
-/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/typ
-e1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/p
-ublic/amsfonts/cm/cmr9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publi
-c/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/
-amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/ams
-fonts/cm/cmti10.pfb>
-Output written on finalProj_report.pdf (10 pages, 375823 bytes).
+ 831 hyphenation exceptions out of 8191
+ 38i,10n,33p,1280b,353s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/local/texlive/2011/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmex10.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr10.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmr12.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmr17.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmr6.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr8.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmr9.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cms
+y10.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
+8.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10
+.pfb>
+Output written on finalProj_report.pdf (10 pages, 364522 bytes).
 PDF statistics:
- 97 PDF objects out of 1000 (max. 8388607)
+ 99 PDF objects out of 1000 (max. 8388607)
+ 66 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  31 words of extra memory for PDF output out of 10000 (max. 10000000)
 
