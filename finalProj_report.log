@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2011.9.12)  29 APR 2013 10:51
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2011.9.12)  29 APR 2013 13:58
 entering extended mode
 **C:/Users/Oscar/Documents/GitHub/VMM/finalProj_report.tex
 (C:/Users/Oscar/Documents/GitHub/VMM/finalProj_report.tex
@@ -569,210 +569,210 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 29.
  [1
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] [3] [4]
-<figures/fitness08mut08cross.png, id=26, 578.16pt x 433.62pt>
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] [3] [4] [5]
+<figures/fitness08mut08cross.png, id=29, 578.16pt x 433.62pt>
 File: figures/fitness08mut08cross.png Graphic file (type png)
 
 <use figures/fitness08mut08cross.png>
-Package pdftex.def Info: figures/fitness08mut08cross.png used on input line 99.
-
+Package pdftex.def Info: figures/fitness08mut08cross.png used on input line 104
+.
 (pdftex.def)             Requested size: 288.78816pt x 132.39616pt.
- [5]
+
 <figures/fitness01mut01cross.png, id=30, 578.16pt x 433.62pt>
 File: figures/fitness01mut01cross.png Graphic file (type png)
 
 <use figures/fitness01mut01cross.png>
-Package pdftex.def Info: figures/fitness01mut01cross.png used on input line 106
+Package pdftex.def Info: figures/fitness01mut01cross.png used on input line 111
 .
-(pdftex.def)             Requested size: 288.78816pt x 132.39616pt.
-
-<figures/fitness0mut08cross.png, id=31, 578.16pt x 433.62pt>
-File: figures/fitness0mut08cross.png Graphic file (type png)
-
-<use figures/fitness0mut08cross.png>
-Package pdftex.def Info: figures/fitness0mut08cross.png used on input line 117.
-
 (pdftex.def)             Requested size: 288.78816pt x 132.39616pt.
  [6 <C:/Users/Oscar/Documents/GitHub/VMM/figures/fitness08mut08cross.png (PNG c
 opy)> <C:/Users/Oscar/Documents/GitHub/VMM/figures/fitness01mut01cross.png (PNG
  copy)>]
+<figures/fitness0mut08cross.png, id=34, 578.16pt x 433.62pt>
+File: figures/fitness0mut08cross.png Graphic file (type png)
+
+<use figures/fitness0mut08cross.png>
+Package pdftex.def Info: figures/fitness0mut08cross.png used on input line 122.
+
+(pdftex.def)             Requested size: 288.78816pt x 132.39616pt.
+
 <figures/fitness08mut0crossDrop.png, id=35, 578.16pt x 433.62pt>
 File: figures/fitness08mut0crossDrop.png Graphic file (type png)
 
 <use figures/fitness08mut0crossDrop.png>
 Package pdftex.def Info: figures/fitness08mut0crossDrop.png used on input line 
-124.
+129.
 (pdftex.def)             Requested size: 288.78816pt x 132.39616pt.
 
 <figures/fitness08mut01cross.png, id=36, 578.16pt x 433.62pt>
 File: figures/fitness08mut01cross.png Graphic file (type png)
 
 <use figures/fitness08mut01cross.png>
-Package pdftex.def Info: figures/fitness08mut01cross.png used on input line 133
-.
-(pdftex.def)             Requested size: 288.78816pt x 132.39616pt.
-
-<figures/fitness01mut08cross.png, id=37, 578.16pt x 433.62pt>
-File: figures/fitness01mut08cross.png Graphic file (type png)
-
-<use figures/fitness01mut08cross.png>
-Package pdftex.def Info: figures/fitness01mut08cross.png used on input line 140
+Package pdftex.def Info: figures/fitness08mut01cross.png used on input line 138
 .
 (pdftex.def)             Requested size: 288.78816pt x 132.39616pt.
  [7 <C:/Users/Oscar/Documents/GitHub/VMM/figures/fitness0mut08cross.png (PNG co
 py)> <C:/Users/Oscar/Documents/GitHub/VMM/figures/fitness08mut0crossDrop.png (P
-NG copy)> <C:/Users/Oscar/Documents/GitHub/VMM/figures/fitness08mut01cross.png 
-(PNG copy)>]
-Overfull \hbox (2.38242pt too wide) in paragraph at lines 167--167
+NG copy)>]
+<figures/fitness01mut08cross.png, id=41, 578.16pt x 433.62pt>
+File: figures/fitness01mut08cross.png Graphic file (type png)
+
+<use figures/fitness01mut08cross.png>
+Package pdftex.def Info: figures/fitness01mut08cross.png used on input line 145
+.
+(pdftex.def)             Requested size: 288.78816pt x 132.39616pt.
+
+Overfull \hbox (2.38242pt too wide) in paragraph at lines 172--172
 []|\OT1/cmr/m/n/9 Machine
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--167
+Underfull \hbox (badness 10000) in paragraph at lines 172--172
 []|\OT1/cmr/m/n/9 Phys.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--167
+Underfull \hbox (badness 10000) in paragraph at lines 172--172
 []|\OT1/cmr/m/n/9 PCore
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--167
+Underfull \hbox (badness 10000) in paragraph at lines 172--172
 \OT1/cmr/m/n/9 Speed
  []
 
 
-Overfull \hbox (4.9553pt too wide) in paragraph at lines 167--167
+Overfull \hbox (4.9553pt too wide) in paragraph at lines 172--172
 []|\OT1/cmr/m/n/9 Achieved
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--167
+Underfull \hbox (badness 10000) in paragraph at lines 172--172
 \OT1/cmr/m/n/9 Uti-liza-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--167
+Underfull \hbox (badness 10000) in paragraph at lines 172--172
 []|\OT1/cmr/m/n/9 Max.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--167
+Underfull \hbox (badness 10000) in paragraph at lines 172--172
 \OT1/cmr/m/n/9 Uti-liza-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--167
+Underfull \hbox (badness 10000) in paragraph at lines 172--172
 []|\OT1/cmr/m/n/9 Virtual
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--167
+Underfull \hbox (badness 10000) in paragraph at lines 172--172
 []|\OT1/cmr/m/n/9 VCore
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 167--167
+Underfull \hbox (badness 10000) in paragraph at lines 172--172
 \OT1/cmr/m/n/9 Speed
  []
 
 
-Overfull \hbox (0.8387pt too wide) in paragraph at lines 167--167
+Overfull \hbox (0.8387pt too wide) in paragraph at lines 172--172
 []|\OT1/cmr/m/n/9 6198490| 
  []
 
 
-Overfull \hbox (0.8387pt too wide) in paragraph at lines 167--167
+Overfull \hbox (0.8387pt too wide) in paragraph at lines 172--172
 []|\OT1/cmr/m/n/9 7742333| 
  []
 
 
-Overfull \hbox (0.8387pt too wide) in paragraph at lines 167--167
+Overfull \hbox (0.8387pt too wide) in paragraph at lines 172--172
 []|\OT1/cmr/m/n/9 1592000| 
  []
 
 
-Overfull \hbox (0.8387pt too wide) in paragraph at lines 167--167
+Overfull \hbox (0.8387pt too wide) in paragraph at lines 172--172
 []|\OT1/cmr/m/n/9 6198490| 
  []
 
 
-Overfull \hbox (0.8387pt too wide) in paragraph at lines 167--167
+Overfull \hbox (0.8387pt too wide) in paragraph at lines 172--172
 []|\OT1/cmr/m/n/9 8115486| 
  []
 
 
-Overfull \hbox (0.8387pt too wide) in paragraph at lines 167--167
+Overfull \hbox (0.8387pt too wide) in paragraph at lines 172--172
 []|\OT1/cmr/m/n/9 1046012| 
  []
 
 
-Overfull \hbox (0.8387pt too wide) in paragraph at lines 167--167
+Overfull \hbox (0.8387pt too wide) in paragraph at lines 172--172
 []|\OT1/cmr/m/n/9 4922740| 
  []
 
 
-Overfull \hbox (0.8387pt too wide) in paragraph at lines 167--167
+Overfull \hbox (0.8387pt too wide) in paragraph at lines 172--172
 []|\OT1/cmr/m/n/9 6731667| 
  []
 
 
-Overfull \hbox (0.8387pt too wide) in paragraph at lines 167--167
+Overfull \hbox (0.8387pt too wide) in paragraph at lines 172--172
 []|\OT1/cmr/m/n/9 1303450| 
  []
 
 
-Overfull \hbox (0.8387pt too wide) in paragraph at lines 167--167
+Overfull \hbox (0.8387pt too wide) in paragraph at lines 172--172
 []|\OT1/cmr/m/n/9 4922740| 
  []
 
 
-Overfull \hbox (0.8387pt too wide) in paragraph at lines 167--167
+Overfull \hbox (0.8387pt too wide) in paragraph at lines 172--172
 []|\OT1/cmr/m/n/9 8866626| 
  []
 
 
-Overfull \hbox (0.8387pt too wide) in paragraph at lines 167--167
+Overfull \hbox (0.8387pt too wide) in paragraph at lines 172--172
 []|\OT1/cmr/m/n/9 6602449| 
  []
 
 
-Overfull \hbox (0.8387pt too wide) in paragraph at lines 167--167
+Overfull \hbox (0.8387pt too wide) in paragraph at lines 172--172
 []|\OT1/cmr/m/n/9 2715879| 
  []
 
 
-Overfull \hbox (0.8387pt too wide) in paragraph at lines 167--167
+Overfull \hbox (0.8387pt too wide) in paragraph at lines 172--172
 []|\OT1/cmr/m/n/9 6602449| 
  []
 
 
-Overfull \hbox (0.8387pt too wide) in paragraph at lines 167--167
+Overfull \hbox (0.8387pt too wide) in paragraph at lines 172--172
 []|\OT1/cmr/m/n/9 7215736| 
  []
 
 
-Overfull \hbox (0.8387pt too wide) in paragraph at lines 167--167
+Overfull \hbox (0.8387pt too wide) in paragraph at lines 172--172
 []|\OT1/cmr/m/n/9 1039601| 
  []
 
 
-Overfull \hbox (2.37837pt too wide) in paragraph at lines 167--168
+Overfull \hbox (2.37837pt too wide) in paragraph at lines 172--173
  [][] 
  []
 
-[8 <C:/Users/Oscar/Documents/GitHub/VMM/figures/fitness01mut08cross.png (PNG co
-py)>] [9] (C:\Users\Oscar\Documents\GitHub\VMM\finalProj_report.bbl) [10]
+[8 <C:/Users/Oscar/Documents/GitHub/VMM/figures/fitness08mut01cross.png (PNG co
+py)> <C:/Users/Oscar/Documents/GitHub/VMM/figures/fitness01mut08cross.png (PNG 
+copy)>] (C:\Users\Oscar\Documents\GitHub\VMM\finalProj_report.bbl [9]) [10]
 (C:\Users\Oscar\Documents\GitHub\VMM\finalProj_report.aux) ) 
 Here is how much of TeX's memory you used:
  9032 strings out of 494049
  193836 string characters out of 3146065
- 206873 words of memory out of 3000000
+ 207906 words of memory out of 3000000
  12186 multiletter control sequences out of 15000+200000
  12280 words of font info for 45 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
- 38i,10n,33p,1317b,353s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,10n,33p,1346b,353s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files (
 x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files (x8
 6)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files (x86)
@@ -788,7 +788,7 @@ ublic/amsfonts/cm/cmr9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publi
 c/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/
 amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/ams
 fonts/cm/cmti10.pfb>
-Output written on finalProj_report.pdf (10 pages, 375730 bytes).
+Output written on finalProj_report.pdf (10 pages, 377315 bytes).
 PDF statistics:
  97 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

@@ -1,4 +1,4 @@
-\title{Final Project\\ Allocation of Tasks on Real-Time Multiprocessor Systems using Genetic Algorithms}
+\title{CS 523. Complex Adaptive Systems Final Project\\ Allocation of Tasks on Real-Time Multiprocessor Systems using Genetic Algorithms}
 
 \author{ Oscar Mondragon, and  
 Amanda Minnich \\
@@ -74,9 +74,14 @@ This fitness function measures how close to full each of our physical CPUs are. 
 
 Since optimizing the allocation of tasks on real-time multiprocessors systems is quite complex, this seems be an  ideal problem to which to apply a genetic algorithm. There are a variety of parameters to be optimized, and we need to explore the parameter space, but to do so exhaustively would take exponential time. By encoding a fitness function related to the efficient use of our multiprocessor resources, we can use the genetic algorithm to evolve parameters that (roughly) maximize this value.
 
+\section{Related Work}
+
+Other works like~\cite{Shahid94,Wu04anincremental,Omara2010} have used genetic algorithms for solving the CPU allocation problem. Our work differs from these approaches in two main aspects. The first is the scope of our algorithm, which is oriented specifically towards optimizing the allocation problem of systems using a real time scheduling mechanism, more specifically towards solving this problem in the context of VMMs, where parameters such as the TDF play an important role in the allocation process. The second is the complexity of our chromosome, which includes multiple parameters from different entities that need to be optimized and which has to meet constraints imposed for the scheduling algorithm in order to produce a legal allocation result.
+
+
 \section{Methods}
 
-Our program consits of around 900 lines of C code. We chose that programming language because it easily interfaces with existing virtualization software. We input the number of machines in the population, the number of generations for the algorithm to run, and the number of virtual cores in the virtual machine. Our experiments were all run with 50 physical cores and 650 virtual cores. We select random values in a fixed range for the maximum utilization value for each physical core and the CPU speed for both the physical and virtual cores. These values are fixed across the different machines in the population: for example in every machine physical core number 1 will have the same (initially random) maximum utilization and speed values. Our chromosome consists of a TDF for the virtual machine, slice and period values for every core of every virtual machine, and an allocation matching of a virtual core to a physical core for every virtual core. We created structs to represent physical cores, virtual cores, the virtual machine, an overall machine which corresponds to an individual in the population, and the population itself, which had 100 individuals for all experiments. This was necessary because of the hierarchical nature of this system. 
+Our program consits of around 900 lines of C code. We chose that programming language because it easily interfaces with existing virtualization software. We input the number of machines in the population, the number of generations for the algorithm to run, the number of physical cores and the number of virtual cores in the virtual machine. Our experiments were all run with 50 physical cores and 650 virtual cores. We select random values in a fixed range for the maximum utilization value for each physical core and the CPU speed for both the physical and virtual cores. These values are fixed across the different machines in the population: for example in every machine physical core number 1 will have the same (initially random) maximum utilization and speed values. Our chromosome consists of a TDF for the virtual machine, slice and period values for every core of every virtual machine, and an allocation matching of a virtual core to a physical core for every virtual core. We created structs to represent physical cores, virtual cores, the virtual machine, an overall machine which corresponds to an individual in the population, and the population itself, which had 100 individuals for all experiments. This was necessary because of the hierarchical nature of this system. 
 
 While writing this program, we took inspiration from the genetic algorithms from Project 2, but due to the nature of the problem modifications in implementation were necessary. Like standard genetic algorithms, our chromosome parameters receive random initial values, and over the course of the experiment they undergo selection, crossover, and mutation, along with a fitness evaluation at the end of each round. We used tournament selection, with and without elitism. When elitism was present, the elite individual did not undergo crossover or mutation. That individual could however be picked during selection again to participate in these processes. We implemented standard 1-pt crossover, where a random crossover point is picked and two parents swap chromosome values at this point. For our mutation function, we re-assigned random parameter values for the virtual core parameters. We did not mutate the TDF, due to difficulties with constraint checking. This did not seem to have a large effect on the outcome of the experiment. 
 
@@ -86,7 +91,7 @@ Once we got the genetic algorithm working, we ran 12 experiments to explore high
 
 We also did a smaller-scale run of our genetic algorithm and tested the top-performing chromosome values in the Palacios Virtual Machine Monitor, which is a free software package that Mondragon currently works with~\cite{Mondragon:13}. As mentioned above, our genetic algorithm attempts to generate a suitable allocation configuration oriented to maximize the utilization of the physical CPUs when the Earliest Deadline Scheduler (EDF) is used. This scheduler has been previously implemented in Palacios VMM as part of Mondragon's research and was used to validate our results.
 
-We kept all of the same parameters of the previous test cases, but reduced the number of physical cores to 3 and the number of virtual cores to 6. Both mutation and crossover rates were set to 0.5 and elitism was used. For this experiment the 2.6.37 linux kernel was compiled into a bootable ISO image. This image was installed whithin a QEMU~\cite{Bellard:2005} emulated machine, and Palacios was executed embedded in that linux distribution. In QEMU options, 3 physical cores were specified and the amount of RAM memory was set to 2048 MB. To get the palacios logs outside QEMU, the option -serial was used. For the guest configuration, the parameters specified in the chromosome, such as TDF, slice, period, and allocated cpu (target CPU) were written in the VM XML config file. This XML file was used to generate the VM by using the guest\_creator tool provided by Palacios. Given to the complexity of the installation, and configuration of Palacios VMM and its VM guests, the Palacios code is not provided. The complete installation and setting was done on Mondragon's personal computer; if required, it can be shown in operation on those machines. In addition, the Palacios log file is provided in our turned in materials.
+We kept all of the same parameters of the previous test cases, but reduced the number of physical cores to 3 and the number of virtual cores to 6. Both mutation and crossover rates were set to 0.5 and elitism was used. For this experiment the 2.6.37 linux kernel was compiled into a bootable ISO image. This image was installed whithin a QEMU~\cite{Bellard:2005} emulated machine, and Palacios was executed embedded in that linux distribution. In QEMU options, 3 physical cores were specified and the amount of RAM memory was set to 2048 MB. To get the palacios logs outside QEMU, the option -serial was used. For the guest configuration, the parameters specified in the chromosome, such as TDF, slice, period, and allocated cpu (target CPU) were written in the VM XML config file. This XML file was used to generate the VM by using the guest\_creator tool provided by Palacios. Given to the complexity of the installation, and configuration of Palacios VMM and its VM guests, the Palacios code is not provided. The complete installation and setting was done on Mondragon's personal computer; if required, it can be shown in operation on that machine. In addition, the Palacios log file is provided in our turned in materials.
 
 \section{Results}
 
@@ -144,7 +149,7 @@ To tease out whether crossover or mutation was more important, we ran experiment
 
 These plots show very similar performance, although again we found that with a high mutation rate elitism is necessary, and with a high crossover rate but low mutation rate it is not.
 
-The last experiment we did was plugging ithe parameters from our top-performing chromosome into Palacios VMM. Table~\ref{tab:table1} shows the resulting chrosome for that test case
+The last experiment we did was plugging ithe parameters from our top-performing chromosome into Palacios VMM. Table~\ref{tab:table1} shows the resulting chrosome for that test case.
 
 \begin{table}[H]
 \centering
@@ -170,7 +175,7 @@ Machine ID & Fitness & TDF  & Phys. Core & PCore Speed (Khz) & Achieved Utilizat
 %\end{center}
 \end{table}
 
-Since a good fitness value of 0.83 was reached for this test case, we plugged this configuration into a guest virtual machine (VM) configuration file (XML configuration file included in turned in materials). The resulting virtual machine was launched in Palacios, which was able to allocate all the virtual cores correctly and run them on the physical CPUs (Palacios log Serial.out included in turned in materials). 
+Since a good fitness value of 0.83 was reached for this test case, we plugged this configuration into a guest virtual machine (VM) configuration file (XML configuration file included in turned in materials). The resulting virtual machine was launched in Palacios, which was able to allocate all the virtual cores correctly and run them on the physical CPUs (PalaciosLog.txt included in turned in materials). 
 
 For the purposes of our work, the proper allocation of virtual cores over physical cores after the admission control phase in Palacios shows the correctness of the result. In additions to legal allocation, however, we also want good performance of the scheduler algorithm based on our allocation. After running the virtual machine for approximately 4 minutes, the log shows that all the virtual cores are scheduled periodically with a good performance. Table~\ref{tab:table2} shows the total time allocated to each virtual core during the time of the test. We can see that the CPU is shared properly among the virtual cores.
 
@@ -199,10 +204,6 @@ Virtual Core ID & Physical Core ID & Total Time ($\mu$$s$) \\ \hline
  \label{tab:table2}
 %\end{center}
 \end{table}
-
-\section{Related Work}
-
-Other works like~\cite{Shahid94,Wu04anincremental,Omara2010} have used genetic algorithms for solving the CPU allocation problem. Our work differs from these approaches in two main aspects. The first is the scope of our algorithm, which is oriented specifically towards optimizing the allocation problem of systems using a real time scheduling mechanism, more specifically towards solving this problem in the context of VMMs, where parameters such as the TDF play an important role in the allocation process. The second is the complexity of our chromosome, which includes multiple parameters from different entities that need to be optimized and which has to meet constraints imposed for the scheduling algorithm in order to produce a legal allocation result.
 
 \section{Conclusion}
 
